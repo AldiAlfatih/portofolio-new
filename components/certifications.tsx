@@ -54,7 +54,7 @@ const certifications = [
     title: "Cloud Practitioner Essentials (Belajar Dasar AWS Cloud)",
     issuer: "Dicoding Indonesia",
     date: "Februari 2025 - Februari 2028",
-    image: "aws cloud certificate",
+    image: "/cloud.png",
     credentialId: "MRZMNW4JLPYQ",
     link: "https://www.dicoding.com/certificates/MRZMNW4JLPYQ",
     skills: ["AWS Cloud", "AWS Cloud Practitioner", "AWS Cloud Essentials"],
@@ -64,7 +64,7 @@ const certifications = [
     title: "Belajar Dasar AI",
     issuer: "Dicoding Indonesia",
     date: "Januari 2025 - Januari 2028",
-    image: "Artificial Intelligence certificate",
+    image: "/dasar-ai.png",
     credentialId: "07Z63GKGYZQR",
     link: "https://www.dicoding.com/certificates/07Z63GKGYZQR",
     skills: ["Artificial Intelligence", "Machine Learning", "Deep Learning"],
@@ -74,7 +74,7 @@ const certifications = [
     title: "Belajar Dasar Data Science",
     issuer: "Dicoding Indonesia",
     date: "Januari 2025 - Januari 2028",
-    image: "Data Science certificate",
+    image: "/data-science.png",
     credentialId: "QLZ932K42Z5D",
     link: "https://www.dicoding.com/certificates/QLZ932K42Z5D",
     skills: ["Python","Data Science", "Data Analysis", "Data Visualization"],
@@ -84,7 +84,7 @@ const certifications = [
     title: "Belajar Dasar Structured Query Language (SQL)",
     issuer: "Dicoding Indonesia",
     date: "Januari 2025 - Januari 2028",
-    image: "SQL certificate",
+    image: "/sql.png",
     credentialId: "KEXL79G10XG2",
     link: "https://www.dicoding.com/certificates/KEXL79G10XG2",
     skills: ["SQL", "Database", "Data Analysis"],
@@ -94,7 +94,7 @@ const certifications = [
     title: "Belajar Dasar Pemrograman Web",
     issuer: "Dicoding Indonesia",
     date: "Juni 2024 - Juni 2027",
-    image: "Web certificate",
+    image: "/web.png",
     credentialId: "2VX3R0RN4ZYQ",
     link: "https://www.dicoding.com/certificates/2VX3R0RN4ZYQ",
     skills: ["HTML", "CSS", "JavaScript", "React", "Next.js", "Tailwind CSS", "Bootstrap", "PHP", "Laravel"],
@@ -104,7 +104,7 @@ const certifications = [
     title: "Belajar Dasar Visualisasi Data",
     issuer: "Dicoding Indonesia",
     date: "Desember 2023 - Desember 2026",
-    image: "Visualisasi Data certificate",
+    image: "/vis-data.png",
     credentialId: "NVP77KJVOPR0",
     link: "https://www.dicoding.com/certificates/NVP77KJVOPR0",
     skills: ["Python", "Data Science", "Data Analysis", "Data Visualization"],
@@ -114,7 +114,7 @@ const certifications = [
     title: "Belajar Machine Learning untuk Pemula",
     issuer: "Dicoding Indonesia",
     date: "Desember 2023 - Desember 2026",
-    image: "Machine Learning certificate",
+    image: "/ml.png",
     credentialId: "1OP8NN8K2XQK",
     link: "https://www.dicoding.com/certificates/1OP8NN8K2XQK",
     skills: ["Python", "Machine Learning", "Deep Learning", "TensorFlow", "Keras", "Scikit-learn", "Pandas", "Numpy"],
@@ -124,7 +124,7 @@ const certifications = [
     title: "Memulai Pemrograman dengan Python",
     issuer: "Dicoding Indonesia",
     date: "Desember 2023 - Desember 2026",
-    image: "Python certificate",
+    image: "/python.png",
     credentialId: "JMZVD3QKRZN9",
     link: "https://www.dicoding.com/certificates/JMZVD3QKRZN9",
     skills: ["Python", "Programming", "Data Science", "Data Analysis", "Data Visualization"],
@@ -186,7 +186,7 @@ export default function Certifications() {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          Sertifikasi & Kredensial AI
+          Sertifikasi & Kredensial
         </motion.h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -203,7 +203,7 @@ export default function Certifications() {
                 {/* Certificate Image */}
                 <div className="relative h-40 overflow-hidden">
                   <Image
-                    src={`/ai-certificates.png?height=300&width=400&query=${cert.image}`}
+                    src={cert.image && cert.image.startsWith("/") ? cert.image : "/ai-certificates.png"}
                     alt={cert.title}
                     fill
                     className="object-cover transition-transform duration-500 group-hover:scale-110"
@@ -279,15 +279,18 @@ export default function Certifications() {
                     ))}
                   </div>
 
-                  {/* View Certificate Button */}
-                  <motion.button
-                    className="w-full flex items-center justify-center space-x-2 py-2 px-4 bg-gradient-to-r from-cyan-500/20 to-purple-500/20 border border-cyan-500/50 rounded-lg text-cyan-400 hover:bg-cyan-500/30 hover:border-cyan-400 transition-all duration-300"
+                  {/* View Certificate Link */}
+                  <motion.a
+                    href={cert.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full inline-flex items-center justify-center space-x-2 py-2 px-4 bg-gradient-to-r from-cyan-500/20 to-purple-500/20 border border-cyan-500/50 rounded-lg text-cyan-400 hover:bg-cyan-500/30 hover:border-cyan-400 transition-all duration-300"
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                   >
                     <ExternalLink className="w-4 h-4" />
                     <span className="text-sm font-medium">Lihat Sertifikat</span>
-                  </motion.button>
+                  </motion.a>
                 </div>
 
                 {/* Animated border */}
