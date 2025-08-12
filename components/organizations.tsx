@@ -21,7 +21,7 @@ const organizations = [
       "Finalist Lomba LiFO Universitas Hasanuddin",
       "Pengembangan robot inovatif untuk aplikasi industri.",
     ],
-    image: "hero logo",
+    image: "/hero-logo.png",
     icon: Lightbulb,
     color: "from-cyan-500 to-blue-600",
   },
@@ -42,7 +42,7 @@ const organizations = [
       "Peningkatan partisipasi anggota dalam kompetisi coding nasional.",
       "Pengembangan aplikasi inovatif oleh anggota.",
     ],
-    image: "hcc logo",
+    image: "/hcc-logo.jpg",
     icon: Heart,
     color: "from-green-500 to-teal-600",
   },
@@ -100,7 +100,7 @@ export default function Organizations() {
                   {/* Organization Logo */}
                   <div className="relative w-16 h-16 rounded-xl overflow-hidden border-2 border-gray-600/50 group-hover:border-cyan-500/50 transition-all duration-300 flex-shrink-0">
                     <Image
-                      src={`/organization-logos.png?height=100&width=100&query=${org.image}`}
+                      src={org.image && org.image.startsWith("/") ? org.image : "/placeholder-logo.png"}
                       alt={org.name}
                       fill
                       className="object-cover"
@@ -217,8 +217,8 @@ export default function Organizations() {
                   <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-cyan-500/10 via-purple-500/10 to-pink-500/10 blur-sm" />
                 </div>
               </div>
-            </motion.div>
-          ))}
+            </motion.div)
+          )}
         </div>
       </div>
     </section>
