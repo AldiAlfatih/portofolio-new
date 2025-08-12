@@ -24,12 +24,12 @@ export default function Footer() {
               <Brain className="w-6 h-6 text-cyan-400" />
             </motion.div>
             <span className="text-xl font-bold bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
-              AI.Engineer
+              Muhammad Aldi Alfatih
             </span>
           </div>
 
           <p className="text-gray-500 text-sm flex items-center justify-center space-x-1">
-            <span>© {currentYear} Muhammad Aldi Alfatih</span>
+            <span>© {currentYear} BigBoss</span>
             {/* <motion.div animate={{ scale: [1, 1.2, 1] }} transition={{ duration: 1, repeat: Number.POSITIVE_INFINITY }}>
               <Heart className="w-4 h-4 text-red-500 fill-current" />
             </motion.div>

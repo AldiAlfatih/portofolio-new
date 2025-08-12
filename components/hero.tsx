@@ -132,7 +132,7 @@ export default function Hero() {
             >
               <motion.a href="https://drive.google.com/file/d/1JKKelBIuOUDmwydEcseUwpEfT917BIqt/view?usp=sharing" whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                 <Download size={20} className="mr-2" />
-                Unduh CV AI Engineer
+                Unduh CV
               </motion.a>
             </Button>
           </motion.div>

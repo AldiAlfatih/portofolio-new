@@ -6,7 +6,7 @@ import { Briefcase, Calendar, MapPin, TrendingUp, Award, Users, Target, Zap } fr
 const experiences = [
   {
     title: "Founder dan AI Engineer",
-    company: "ISARA: InovasI Komunikasi Dua Arah Melalui Gerakan Isyarat,Teks, Gambar dan Suara Berbasis Artificial Inteligence Menggunakan Kamera Smartphone  ",
+    company: "ISARA: InovasI Komunikasi Dua Arah Melalui Gerakan Isyarat,Teks, Gambar dan Suara Berbasis Artificial Inteligence Menggunakan Kamera Smartphone",
     location: "",
     period: "14 Mei 2025 – Sekarang",
     type: "",

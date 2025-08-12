@@ -125,7 +125,7 @@ export default function Header() {
               <Brain className="w-7 h-7 text-white drop-shadow-lg" />
             </motion.div>
             <span className="text-2xl font-bold bg-gradient-to-r from-blue-500 via-cyan-500 to-purple-600 bg-clip-text text-transparent drop-shadow-sm">
-              AI.Engineer
+              Muhammad Aldi Alfatih
             </span>
           </Link>
 

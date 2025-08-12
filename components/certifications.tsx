@@ -114,7 +114,7 @@ const certifications = [
     title: "Belajar Machine Learning untuk Pemula",
     issuer: "Dicoding Indonesia",
     date: "Desember 2023 - Desember 2026",
-    image: "/ml.png",
+    image: "/ML.png",
     credentialId: "1OP8NN8K2XQK",
     link: "https://www.dicoding.com/certificates/1OP8NN8K2XQK",
     skills: ["Python", "Machine Learning", "Deep Learning", "TensorFlow", "Keras", "Scikit-learn", "Pandas", "Numpy"],

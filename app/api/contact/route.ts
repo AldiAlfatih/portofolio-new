@@ -21,9 +21,10 @@ export async function POST(req: Request) {
 
     const RESEND_API_KEY = process.env.RESEND_API_KEY
     const CONTACT_TO = process.env.CONTACT_TO || process.env.CONTACT_EMAIL
+    const CONTACT_FROM = process.env.CONTACT_FROM || "onboarding@resend.dev"
 
     if (RESEND_API_KEY && CONTACT_TO) {
-      // Send email via Resend REST API to avoid extra dependency
+      // Send email via Resend REST API
       const subject = `New ${topic} inquiry from ${name}`
       const html = `
         <div style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;">
@@ -43,7 +44,7 @@ export async function POST(req: Request) {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          from: "no-reply@resend.dev",
+          from: CONTACT_FROM,
           to: CONTACT_TO,
           subject,
           html,

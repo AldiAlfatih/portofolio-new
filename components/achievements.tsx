@@ -30,13 +30,6 @@ const achievements = [
         type: "Research Grant",
         impact: "Mendapat pendanaan untuk proyek inovasi teknologi",
       },
-    ],
-  },
-  {
-    category: "National",
-    icon: Flag,
-    color: "from-red-500 to-pink-600",
-    items: [
       {
         title: "LOMBA ESAI PERBENIHAN TANAMAN HUTAN TAHUN 2024 ",
         description: "Lomba Esai Oleh UPT Perbenihan Tanaman Hutan Jawa timur",
@@ -46,6 +39,20 @@ const achievements = [
       },
     ],
   },
+  // {
+  //   category: "National",
+  //   icon: Flag,
+  //   color: "from-red-500 to-pink-600",
+  //   items: [
+  //     {
+  //       title: "LOMBA ESAI PERBENIHAN TANAMAN HUTAN TAHUN 2024 ",
+  //       description: "Lomba Esai Oleh UPT Perbenihan Tanaman Hutan Jawa timur",
+  //       year: "2024",
+  //       type: "Research Grant",
+  //       impact: "Kompetisi Esai Nasional Tingkat Mahasiswa",
+  //     },
+  //   ],
+  // },
   {
     category: "Academic Excellence",
     icon: Star,

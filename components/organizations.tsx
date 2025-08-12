@@ -217,8 +217,8 @@ export default function Organizations() {
                   <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-cyan-500/10 via-purple-500/10 to-pink-500/10 blur-sm" />
                 </div>
               </div>
-            </motion.div)
-          )}
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>
