@@ -7,14 +7,13 @@ import { Button } from "@/components/ui/button"
 
 const projects = [
   {
-    title: "AI-Powered Medical Diagnosis",
-    description: "Deep learning model untuk diagnosis medis menggunakan computer vision dengan akurasi 96%",
+    title: "ISARA: Inovasi Komunikasi Dua Arah Melalui Gerakan Isyarat, Teks, Gambar, dan Suara Berbasis Artificial Intelligence Menggunakan Kamera Smartphone",
+    description: "ISARA adalah aplikasi berbasis AI yang memungkinkan komunikasi dua arah antara pengguna bahasa isyarat dan non-penutur isyarat. Menggunakan teknologi Computer Vision dan Natural Language Processing, ISARA dapat mendeteksi gerakan tangan BISINDO melalui kamera smartphone, mengubahnya menjadi teks dan suara, serta menampilkan terjemahan teks ke animasi isyarat secara interaktif. Aplikasi ini dirancang untuk meningkatkan inklusivitas dan mengurangi hambatan komunikasi.",
     image: "medical AI diagnosis system",
-    icon: Brain,
-    tech: ["TensorFlow", "CNN", "Python", "OpenCV"],
+    tech: ["TensorFlow", "CNN", "Python", "Keras", "CameraX", "Android Studio", "Java", "TFLite", "OpenCV"],
     demoUrl: "#",
     codeUrl: "#",
-    gradient: "from-cyan-500 to-blue-600",
+    gradient: "from-cyan-500 to-blue-600",    
   },
   {
     title: "Natural Language Processing Chatbot",
@@ -83,117 +82,120 @@ export default function Projects() {
         </motion.h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {projects.map((project, index) => (
-            <motion.div
-              key={index}
-              className="group relative"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-            >
-              <div className="bg-gray-800/50 backdrop-blur-sm rounded-2xl overflow-hidden border border-gray-700/50 hover:border-cyan-500/50 transition-all duration-500 group-hover:transform group-hover:scale-105 group-hover:shadow-2xl group-hover:shadow-cyan-500/10">
-                {/* Project Image */}
-                <div className="relative h-48 overflow-hidden">
-                  <Image
-                    src={`/ai-project-showcase.png?height=400&width=600&query=${project.image}`}
-                    alt={project.title}
-                    fill
-                    className="object-cover transition-transform duration-500 group-hover:scale-110"
-                  />
+          {projects.map((project, index) => {
+            const IconComponent = project.icon ?? Brain
+            return (
+              <motion.div
+                key={index}
+                className="group relative"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+              >
+                <div className="bg-gray-800/50 backdrop-blur-sm rounded-2xl overflow-hidden border border-gray-700/50 hover:border-cyan-500/50 transition-all duration-500 group-hover:transform group-hover:scale-105 group-hover:shadow-2xl group-hover:shadow-cyan-500/10">
+                  {/* Project Image */}
+                  <div className="relative h-48 overflow-hidden">
+                    <Image
+                      src="/ai-project-showcase.png"
+                      alt={project.title}
+                      fill
+                      className="object-cover transition-transform duration-500 group-hover:scale-110"
+                    />
 
-                  {/* Floating Icon */}
-                  <motion.div
-                    className={`absolute top-4 right-4 p-3 bg-gradient-to-r ${project.gradient} rounded-full shadow-lg`}
-                    animate={{
-                      rotate: [0, 360],
-                      scale: [1, 1.1, 1],
-                    }}
-                    transition={{
-                      rotate: { duration: 10, repeat: Number.POSITIVE_INFINITY, ease: "linear" },
-                      scale: { duration: 2, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" },
-                    }}
-                  >
-                    <project.icon className="w-5 h-5 text-white" />
-                  </motion.div>
+                    {/* Floating Icon */}
+                    <motion.div
+                      className={`absolute top-4 right-4 p-3 bg-gradient-to-r ${project.gradient} rounded-full shadow-lg`}
+                      animate={{
+                        rotate: [0, 360],
+                        scale: [1, 1.1, 1],
+                      }}
+                      transition={{
+                        rotate: { duration: 10, repeat: Number.POSITIVE_INFINITY, ease: "linear" },
+                        scale: { duration: 2, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" },
+                      }}
+                    >
+                      <IconComponent className="w-5 h-5 text-white" />
+                    </motion.div>
 
-                  {/* Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                </div>
-
-                {/* Project Content */}
-                <div className="p-6">
-                  <h3 className="text-xl font-bold text-white mb-3 group-hover:text-cyan-400 transition-colors duration-300">
-                    {project.title}
-                  </h3>
-                  <p className="text-gray-400 mb-4 text-sm leading-relaxed">{project.description}</p>
-
-                  {/* Tech Stack */}
-                  <div className="flex flex-wrap gap-2 mb-6">
-                    {project.tech.map((tech, techIndex) => (
-                      <motion.span
-                        key={tech}
-                        className="px-3 py-1 bg-gray-700/50 text-cyan-400 text-xs rounded-full border border-cyan-500/30"
-                        initial={{ opacity: 0, scale: 0 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
-                        viewport={{ once: true }}
-                        transition={{
-                          duration: 0.3,
-                          delay: index * 0.1 + techIndex * 0.05,
-                        }}
-                        whileHover={{ scale: 1.1 }}
-                      >
-                        {tech}
-                      </motion.span>
-                    ))}
+                    {/* Overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                   </div>
 
-                  {/* Action Buttons */}
-                  <div className="flex space-x-3">
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      asChild
-                      className="flex-1 border-cyan-500/50 text-cyan-400 hover:bg-cyan-500/10 hover:border-cyan-400 bg-transparent"
-                    >
-                      <motion.a
-                        href={project.demoUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
+                  {/* Project Content */}
+                  <div className="p-6">
+                    <h3 className="text-xl font-bold text-white mb-3 group-hover:text-cyan-400 transition-colors duration-300">
+                      {project.title}
+                    </h3>
+                    <p className="text-gray-400 mb-4 text-sm leading-relaxed">{project.description}</p>
+
+                    {/* Tech Stack */}
+                    <div className="flex flex-wrap gap-2 mb-6">
+                      {project.tech.map((tech, techIndex) => (
+                        <motion.span
+                          key={tech}
+                          className="px-3 py-1 bg-gray-700/50 text-cyan-400 text-xs rounded-full border border-cyan-500/30"
+                          initial={{ opacity: 0, scale: 0 }}
+                          whileInView={{ opacity: 1, scale: 1 }}
+                          viewport={{ once: true }}
+                          transition={{
+                            duration: 0.3,
+                            delay: index * 0.1 + techIndex * 0.05,
+                          }}
+                          whileHover={{ scale: 1.1 }}
+                        >
+                          {tech}
+                        </motion.span>
+                      ))}
+                    </div>
+
+                    {/* Action Buttons */}
+                    <div className="flex space-x-3">
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        asChild
+                        className="flex-1 border-cyan-500/50 text-cyan-400 hover:bg-cyan-500/10 hover:border-cyan-400 bg-transparent"
                       >
-                        <ExternalLink size={14} className="mr-2" />
-                        Demo
-                      </motion.a>
-                    </Button>
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      asChild
-                      className="flex-1 border-purple-500/50 text-purple-400 hover:bg-purple-500/10 hover:border-purple-400 bg-transparent"
-                    >
-                      <motion.a
-                        href={project.codeUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
+                        <motion.a
+                          href={project.demoUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          whileHover={{ scale: 1.05 }}
+                          whileTap={{ scale: 0.95 }}
+                        >
+                          <ExternalLink size={14} className="mr-2" />
+                          Demo
+                        </motion.a>
+                      </Button>
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        asChild
+                        className="flex-1 border-purple-500/50 text-purple-400 hover:bg-purple-500/10 hover:border-purple-400 bg-transparent"
                       >
-                        <Github size={14} className="mr-2" />
-                        Code
-                      </motion.a>
-                    </Button>
+                        <motion.a
+                          href={project.codeUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          whileHover={{ scale: 1.05 }}
+                          whileTap={{ scale: 0.95 }}
+                        >
+                          <Github size={14} className="mr-2" />
+                          Code
+                        </motion.a>
+                      </Button>
+                    </div>
+                  </div>
+
+                  {/* Animated border */}
+                  <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
+                    <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-cyan-500/20 via-purple-500/20 to-pink-500/20 blur-sm" />
                   </div>
                 </div>
-
-                {/* Animated border */}
-                <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
-                  <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-cyan-500/20 via-purple-500/20 to-pink-500/20 blur-sm" />
-                </div>
-              </div>
-            </motion.div>
-          ))}
+              </motion.div>
+            )
+          })}
         </div>
       </div>
     </section>
