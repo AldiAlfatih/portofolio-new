@@ -263,7 +263,7 @@ export default function Contact() {
               <Mail className="w-8 h-8 text-white" />
             </motion.div>
 
-            <h3 className="text-2xl font-bold text-white mb-4">Ready to Build the Future with AI?</h3>
+            <h3 className="text-2xl font-bold text-white mb-4">Ingin Berkolaborasi? atau ingin tanya lebih lanjut?</h3>
 
             <Button asChild className="bg-gradient-to-r from-cyan-500 to-purple-600 hover:from-cyan-600 hover:to-purple-700 text-white px-8 py-3 text-lg font-semibold rounded-full shadow-lg hover:shadow-cyan-500/25 transition-all duration-300">
               <motion.a href="mailto:aldialfatih016@gmail.com" whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
