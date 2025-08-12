@@ -31,7 +31,7 @@ const achievements = [
         impact: "Mendapat pendanaan untuk proyek inovasi teknologi",
       },
       {
-        title: "LOMBA ESAI PERBENIHAN TANAMAN HUTAN TAHUN 2024 ",
+        title: "Juara Favorit Lomba Esai Perbenihan Tanaman Hutan 2024 ",
         description: "Lomba Esai Oleh UPT Perbenihan Tanaman Hutan Jawa timur",
         year: "2024",
         type: "Research Grant",
