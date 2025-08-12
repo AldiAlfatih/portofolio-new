@@ -14,8 +14,14 @@ const inter = Inter({
 
 export const metadata = {
   title: "AI Engineer Portfolio | Artificial Intelligence Specialist",
-  description: "Portfolio of an AI Engineer specializing in Machine Learning, Deep Learning, Computer Vision, Natural Language Processing, Expert System, and AI Solutions",
-    // generator: 'v0.dev'
+  description:
+    "Portfolio of an AI Engineer specializing in Machine Learning, Deep Learning, Computer Vision, Natural Language Processing, Expert System, and AI Solutions",
+  // generator: 'v0.dev'
+  icons: {
+    icon: "/isara.png",
+    shortcut: "/isara.png",
+    apple: "/isara.png",
+  },
 }
 
 export default function RootLayout({
