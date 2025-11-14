@@ -130,7 +130,7 @@ export default function Hero() {
               className="bg-gradient-to-r from-cyan-500 to-purple-600 hover:from-cyan-600 hover:to-purple-700 text-white px-8 py-3 text-lg font-semibold rounded-full shadow-lg hover:shadow-cyan-500/25 transition-all duration-300 transform hover:scale-105"
               asChild
             >
-              <motion.a href="https://drive.google.com/file/d/1JKKelBIuOUDmwydEcseUwpEfT917BIqt/view?usp=sharing" whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+              <motion.a href="https://drive.google.com/file/d/1dWJpHrOP4NoWN_nCcQxxj1_Vi-la8khx/view?usp=drive_link" whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                 <Download size={20} className="mr-2" />
                 Unduh CV
               </motion.a>

@@ -31,28 +31,14 @@ const achievements = [
         impact: "Mendapat pendanaan untuk proyek inovasi teknologi",
       },
       {
-        title: "Juara Favorit Lomba Esai Perbenihan Tanaman Hutan 2024 ",
-        description: "Lomba Esai Oleh UPT Perbenihan Tanaman Hutan Jawa timur",
+        title: "Juara Favorit Lomba Esai Perbenihan Tanaman Hutan 2024",
+        description: "Lomba Esai oleh UPT Perbenihan Tanaman Hutan Jawa Timur",
         year: "2024",
-        type: "Research Grant",
-        impact: "Kompetisi Esai Nasional Tingkat Mahasiswa",
+        type: "Essay Competition",
+        impact: "Kompetisi esai nasional tingkat mahasiswa",
       },
     ],
   },
-  // {
-  //   category: "National",
-  //   icon: Flag,
-  //   color: "from-red-500 to-pink-600",
-  //   items: [
-  //     {
-  //       title: "LOMBA ESAI PERBENIHAN TANAMAN HUTAN TAHUN 2024 ",
-  //       description: "Lomba Esai Oleh UPT Perbenihan Tanaman Hutan Jawa timur",
-  //       year: "2024",
-  //       type: "Research Grant",
-  //       impact: "Kompetisi Esai Nasional Tingkat Mahasiswa",
-  //     },
-  //   ],
-  // },
   {
     category: "Academic Excellence",
     icon: Star,
@@ -61,7 +47,7 @@ const achievements = [
       {
         title: "IPK 3.92",
         description: "Institut Teknologi Bacharuddin Jusuf Habibie",
-        year: "2022 - Sekarang",
+        year: "2022 – Sekarang",
         type: "Academic Achievement",
         impact: "Prestasi akademik dengan IPK sangat memuaskan",
       },
@@ -73,18 +59,48 @@ const achievements = [
     color: "from-green-500 to-teal-600",
     items: [
       {
-        title: "99% Accuracy AI Model",
-        description: "Sistem Monitoring Pertanian Hidroponik Selada",
+        title: "Pengembangan Prototipe Aplikasi ISARA",
+        description:
+          "Sistem penerjemah dua arah BISINDO ke teks dan teks ke isyarat berbasis kamera smartphone.",
+        year: "2025",
+        type: "AI/Assistive Technology",
+        impact:
+          "Membangun prototipe aplikasi mobile yang mengintegrasikan Computer Vision dan NLP untuk komunikasi inklusif.",
+      },
+      {
+        title: "Pengembangan Dataset BISINDO untuk Model AI ISARA",
+        description:
+          "Dataset internal alfabet dan kosakata BISINDO sebagai fondasi pelatihan model pengenalan isyarat.",
+        year: "2025",
+        type: "Dataset Creation",
+        impact:
+          "Menyusun dan mengkurasi dataset terstruktur yang menjadi basis pelatihan model gesture recognition ISARA.",
+      },
+      {
+        title: "Implementasi Sistem E-Monev Bappeda Kota Parepare",
+        description:
+          "Pengembangan dan deployment sistem Elektronik Monitoring dan Evaluasi untuk Bappeda Kota Parepare.",
+        year: "2025",
+        type: "Government Web System",
+        impact:
+          "Mewujudkan aplikasi web yang digunakan langsung oleh Bappeda dan OPD untuk pengelolaan data program, pagu, dan realisasi.",
+      },
+      {
+        title: "Sistem AI Prediksi Kualitas Panen Selada Hidroponik",
+        description:
+          "Model machine learning berbasis ANN dan LSTM untuk memprediksi kualitas panen dari data sensor lingkungan.",
         year: "2024",
         type: "AI/ML Project",
-        impact: "Model ANN untuk prediksi kualitas panen dengan akurasi tinggi",
+        impact:
+          "Mengembangkan model AI yang mampu memberikan prediksi kualitas panen secara konsisten pada data uji internal.",
       },
       {
         title: "Computer Vision Dataset Creation",
-        description: "Sistem Klasifikasi Gulma - Kabupaten Enrekang",
+        description: "Sistem Klasifikasi Gulma – Kabupaten Enrekang",
         year: "2024",
         type: "Research Project",
-        impact: "Membangun dataset berkualitas tinggi untuk klasifikasi gulma",
+        impact:
+          "Membangun dataset berkualitas tinggi untuk klasifikasi gulma dan tanaman hortikultura.",
       },
     ],
   },
