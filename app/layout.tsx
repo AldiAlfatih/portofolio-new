@@ -18,9 +18,9 @@ export const metadata = {
     "Portfolio of an AI Engineer specializing in Machine Learning, Deep Learning, Computer Vision, Natural Language Processing, Expert System, and AI Solutions",
   // generator: 'v0.dev'
   icons: {
-    icon: "/isara.png",
-    shortcut: "/isara.png",
-    apple: "/isara.png",
+    icon: "/download.svg",
+    shortcut: "/download.svg",
+    apple: "/download.svg",
   },
 }
 

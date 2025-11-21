@@ -59,8 +59,8 @@ const experiences = [
     description:
       "Asisten dosen untuk mata kuliah Computer Vision, mendampingi kegiatan perkuliahan dan praktikum.",
     achievements: [
-      "Mendampingi dosen pengampu dalam penyampaian materi pengolahan citra, ekstraksi fitur, dan pengenalan model CNN di kelas.",
-      "Membantu menyiapkan materi praktikum dan contoh kode berbasis Python, OpenCV, dan library deep learning.",
+      // "Mendampingi dosen pengampu dalam penyampaian materi pengolahan citra, ekstraksi fitur, dan pengenalan model CNN di kelas.",
+      // "Membantu menyiapkan materi praktikum dan contoh kode berbasis Python, OpenCV, dan library deep learning.",
       "Membimbing mahasiswa dalam mengerjakan tugas dan proyek mini, termasuk debugging kode dan klarifikasi konsep.",
       "Memberikan umpan balik teknis terhadap tugas dan presentasi mahasiswa agar selaras dengan capaian pembelajaran mata kuliah.",
     ],

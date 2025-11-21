@@ -75,7 +75,7 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            Mahasiswa Ilmu Komputer & AI Enthusiast
+            Computer Science Student · AI & Software Engineer
           </motion.h2>
 
           <motion.p
@@ -84,8 +84,9 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
           >
-            Mahasiswa Institut Teknologi B.J. Habibie dengan passion dalam AI, Deep Learning, Machine Learning, Natural Language Processing, dan Computer
-            Vision
+            {/* Mahasiswa Institut Teknologi B.J. Habibie dengan passion dalam AI, Deep Learning, Machine Learning, Natural Language Processing, dan Computer
+            Vision */}
+            Berfokus pada AI, mencakup Deep Learning, Machine Learning, Natural Language Processing, dan Computer Vision, serta pengembangan perangkat lunak sebagai Back-End Developer
           </motion.p>
 
           <motion.div

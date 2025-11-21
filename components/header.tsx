@@ -114,15 +114,19 @@ export default function Header() {
             onClick={() => handleLinkClick("#home")}
           >
             <motion.div
-              className="relative p-3 bg-gradient-to-br from-blue-400 via-cyan-400 to-purple-500 rounded-2xl shadow-xl"
+              className="relative p-2 bg-gradient-to-br from-blue-400 via-cyan-400 to-purple-500 rounded-2xl shadow-xl flex items-center justify-center"
               whileHover={{
-                scale: 1.1,
-                rotate: 360,
+                scale: 1.05,
+                rotate: 0,
                 boxShadow: "0 20px 40px rgba(59, 130, 246, 0.3)",
               }}
-              transition={{ duration: 0.8, ease: "easeInOut" }}
+              transition={{ duration: 0.4, ease: "easeInOut" }}
             >
-              <Brain className="w-7 h-7 text-white drop-shadow-lg" />
+              <img
+                src="/favicon_aldi_256.png"
+                alt="Aldi Alfatih"
+                className="w-7 h-7 rounded-md object-cover drop-shadow-lg"
+              />
             </motion.div>
             <span className="text-2xl font-bold bg-gradient-to-r from-blue-500 via-cyan-500 to-purple-600 bg-clip-text text-transparent drop-shadow-sm">
               Muhammad Aldi Alfatih
