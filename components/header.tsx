@@ -1,21 +1,21 @@
 "use client"
 
-import { useState, useEffect } from "react"
-import Link from "next/link"
-import { Menu, X, Brain, Globe, Sun, Moon, ChevronDown } from "lucide-react"
-import { motion, AnimatePresence } from "framer-motion"
+import {
+    NavigationMenu,
+    NavigationMenuContent,
+    NavigationMenuItem,
+    NavigationMenuLink,
+    NavigationMenuList,
+    NavigationMenuTrigger,
+} from "@/components/ui/navigation-menu"
+import { useLanguage } from "@/contexts/language-context"
 import { useActiveSection } from "@/hooks/use-active-section"
 import { useScrollProgress } from "@/hooks/use-scroll-progress"
-import { useLanguage } from "@/contexts/language-context"
+import { AnimatePresence, motion } from "framer-motion"
+import { ChevronDown, Globe, Menu, Moon, Sun, X } from "lucide-react"
 import { useTheme } from "next-themes"
-import {
-  NavigationMenu,
-  NavigationMenuContent,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-  NavigationMenuTrigger,
-} from "@/components/ui/navigation-menu"
+import Link from "next/link"
+import { useEffect, useState } from "react"
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false)

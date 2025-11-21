@@ -1,11 +1,11 @@
-import type React from "react"
-import { Inter } from "next/font/google"
-import "./globals.css"
-import Header from "@/components/header"
-import Footer from "@/components/footer"
-import { ThemeProvider } from "@/contexts/theme-context"
-import { LanguageProvider } from "@/contexts/language-context"
 import FloatingElements from "@/components/floating-elements"
+import Footer from "@/components/footer"
+import Header from "@/components/header"
+import { LanguageProvider } from "@/contexts/language-context"
+import { ThemeProvider } from "@/contexts/theme-context"
+import { Inter } from "next/font/google"
+import type React from "react"
+import "./globals.css"
 
 const inter = Inter({
   subsets: ["latin"],
