@@ -8,8 +8,8 @@ export default function About() {
   const stats = [
     { icon: Brain, label: "Projects", value: "10+" },
     { icon: Cpu, label: "ML Models", value: "5+" },
-    { icon: Database, label: "Datasets", value: "100+" },
-    { icon: TrendingUp, label: "Accuracy", value: "99%" },
+    { icon: Database, label: "Datasets", value: "3" },
+    { icon: TrendingUp, label: "Accuracy", value: "+++" },
     { icon: null, label: "GPA", value: "3.92" },
   ]
 
