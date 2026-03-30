@@ -3,7 +3,7 @@ import Footer from "@/components/footer"
 import Header from "@/components/header"
 import { LanguageProvider } from "@/contexts/language-context"
 import { ThemeProvider } from "@/contexts/theme-context"
-import { Inter } from "next/font/google"
+import { Inter, JetBrains_Mono } from "next/font/google"
 import type React from "react"
 import "./globals.css"
 
@@ -12,15 +12,19 @@ const inter = Inter({
   variable: "--font-inter",
 })
 
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ["latin"],
+  variable: "--font-jetbrains-mono",
+})
+
 export const metadata = {
-  title: "AI Engineer Portfolio | Artificial Intelligence Specialist",
+  title: "Portofolio AI Engineer | Spesialis Artificial Intelligence",
   description:
-    "Portfolio of an AI Engineer specializing in Machine Learning, Deep Learning, Computer Vision, Natural Language Processing, Expert System, and AI Solutions",
-  // generator: 'v0.dev'
+    "Portofolio seorang AI Engineer dengan keahlian di bidang Machine Learning, Deep Learning, Computer Vision, Natural Language Processing, dan Solusi AI.",
   icons: {
-    icon: "/download.svg",
-    shortcut: "/download.svg",
-    apple: "/download.svg",
+    icon: "/favicon_aldi_256_new.svg",
+    shortcut: "/favicon_aldi_256_new.svg",
+    apple: "/favicon_aldi_256_new.svg",
   },
 }
 
@@ -30,11 +34,11 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="id" className={`${inter.variable} scroll-smooth`}>
+    <html lang="id" className={`${inter.variable} ${jetbrainsMono.variable} scroll-smooth`}>
       <body className="font-sans min-h-screen flex flex-col">
         <ThemeProvider>
           <LanguageProvider>
-            <div className="bg-gradient-to-br var(--theme-background) text-gray-100 relative overflow-hidden min-h-screen">
+            <div className="bg-terminal-bg text-terminal-text relative overflow-hidden min-h-screen">
               <FloatingElements />
               <Header />
               {children}

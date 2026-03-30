@@ -89,46 +89,43 @@ export default function Header() {
 
   return (
     <motion.header
-      className={`fixed top-0 w-full z-50 transition-all duration-500 ${
+      className={`fixed top-0 w-full z-50 transition-all duration-300 ${
         scrolled
-          ? "bg-gray-900/90 dark:bg-gray-900/90 backdrop-blur-2xl shadow-2xl border-b border-gray-700/30 dark:border-gray-700/30"
+          ? "bg-terminal-bg border-b border-terminal-text/20 shadow-lg shadow-black/50"
           : "bg-transparent"
       }`}
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
     >
-      <motion.div
-        className="absolute top-0 left-0 h-1 bg-gradient-to-r from-blue-400 via-cyan-400 to-purple-500 origin-left shadow-lg"
+      {/* Scroll progress bar — solid python-light */}
+      <div
+        className="absolute top-0 left-0 h-1 bg-python-light origin-left"
         style={{ width: `${scrollProgress}%` }}
-        initial={{ scaleX: 0 }}
-        animate={{ scaleX: 1 }}
-        transition={{ duration: 0.1 }}
       />
 
       <div className="container mx-auto px-6 py-4">
         <div className="flex justify-between items-center">
           <Link
             href="#home"
-            className="flex items-center space-x-3 group focus:outline-none focus:ring-2 focus:ring-blue-400/50 focus:ring-offset-2 rounded-xl transition-all duration-300"
+            className="flex items-center space-x-3 group focus:outline-none focus:ring-2 focus:ring-python-blue/50 focus:ring-offset-2 rounded-xl transition-all duration-200"
             onClick={() => handleLinkClick("#home")}
           >
             <motion.div
-              className="relative p-2 bg-gradient-to-br from-blue-400 via-cyan-400 to-purple-500 rounded-2xl shadow-xl flex items-center justify-center"
+              className="relative p-2 bg-terminal-bg border-2 border-terminal-text/30 rounded-2xl flex items-center justify-center"
               whileHover={{
                 scale: 1.05,
-                rotate: 0,
-                boxShadow: "0 20px 40px rgba(59, 130, 246, 0.3)",
+                borderColor: "#0B60B0",
               }}
-              transition={{ duration: 0.4, ease: "easeInOut" }}
+              transition={{ duration: 0.2 }}
             >
               <img
-                src="/favicon_aldi_256.png"
+                src="/favicon_aldi_256_new.svg"
                 alt="Aldi Alfatih"
-                className="w-7 h-7 rounded-md object-cover drop-shadow-lg"
+                className="w-7 h-7 rounded-md object-cover"
               />
             </motion.div>
-            <span className="text-2xl font-bold bg-gradient-to-r from-blue-500 via-cyan-500 to-purple-600 bg-clip-text text-transparent drop-shadow-sm">
+            <span className="text-2xl font-bold text-terminal-text">
               Muhammad Aldi Alfatih
             </span>
           </Link>
@@ -140,18 +137,18 @@ export default function Header() {
                   {item.dropdown ? (
                     <>
                       <NavigationMenuTrigger
-                        className={`px-6 py-3 text-sm font-medium transition-all duration-400 rounded-xl hover:text-cyan-400 focus:outline-none focus:ring-2 focus:ring-cyan-400/50 backdrop-blur-sm ${
-                          isActiveLink(item) ? "text-cyan-400 bg-white/10" : "text-white/90 hover:bg-white/10"
+                        className={`px-6 py-3 text-sm font-medium transition-colors duration-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-python-blue/50 ${
+                          isActiveLink(item) ? "text-python-light bg-python-blue/10" : "text-terminal-text/80 hover:text-python-light hover:bg-python-blue/10"
                         }`}
                       >
                         {item.name}
                       </NavigationMenuTrigger>
                       <NavigationMenuContent>
                         <motion.div
-                          className="w-72 p-6 bg-white/95 dark:bg-gray-800/95 backdrop-blur-2xl rounded-2xl shadow-2xl border border-blue-100/50 dark:border-blue-900/50"
+                          className="w-72 p-6 bg-[#0a0a0a] border border-terminal-text/20 rounded-2xl shadow-2xl shadow-black/80"
                           initial={{ opacity: 0, y: -10 }}
                           animate={{ opacity: 1, y: 0 }}
-                          transition={{ duration: 0.3 }}
+                          transition={{ duration: 0.2 }}
                         >
                           {item.dropdown.map((subItem, subIndex) => (
                             <NavigationMenuLink key={subItem.name} asChild>
@@ -166,21 +163,13 @@ export default function Header() {
                                     e.preventDefault()
                                     handleLinkClick(subItem.href)
                                   }}
-                                  className={`block px-4 py-3 text-sm font-medium rounded-xl transition-all duration-300 hover:bg-gradient-to-r hover:from-blue-50 hover:to-cyan-50 dark:hover:from-blue-900/30 dark:hover:to-cyan-900/30 hover:text-cyan-600 dark:hover:text-cyan-400 hover:shadow-md ${
+                                  className={`block px-4 py-3 text-sm font-medium rounded-xl transition-colors duration-200 hover:bg-python-blue/10 hover:text-python-light ${
                                     activeSection === subItem.id
-                                      ? "text-cyan-600 dark:text-cyan-400 bg-gradient-to-r from-blue-50 to-cyan-50 dark:from-blue-900/30 dark:to-cyan-900/30 shadow-lg"
-                                      : "text-gray-700 dark:text-gray-300"
+                                      ? "text-python-light bg-python-blue/10 border-l-2 border-python-light"
+                                      : "text-terminal-text/70"
                                   }`}
                                 >
                                   {subItem.name}
-                                  {activeSection === subItem.id && (
-                                    <motion.div
-                                      className="h-0.5 bg-gradient-to-r from-cyan-400 to-blue-500 mt-2 rounded-full shadow-sm"
-                                      initial={{ width: 0 }}
-                                      animate={{ width: "100%" }}
-                                      transition={{ duration: 0.4 }}
-                                    />
-                                  )}
                                 </Link>
                               </motion.div>
                             </NavigationMenuLink>
@@ -195,17 +184,17 @@ export default function Header() {
                         e.preventDefault()
                         handleLinkClick(item.href!)
                       }}
-                      className={`relative px-6 py-3 text-sm font-medium transition-all duration-400 rounded-xl hover:text-cyan-400 focus:outline-none focus:ring-2 focus:ring-cyan-400/50 backdrop-blur-sm ${
-                        activeSection === item.id ? "text-cyan-400" : "text-white/90 hover:bg-white/10"
+                      className={`relative px-6 py-3 text-sm font-medium transition-colors duration-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-python-blue/50 ${
+                        activeSection === item.id ? "text-python-light" : "text-terminal-text/80 hover:text-python-light hover:bg-python-blue/10"
                       }`}
                     >
                       {item.name}
                       {activeSection === item.id && (
                         <motion.div
-                          className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 h-0.5 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-full shadow-sm"
+                          className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 h-0.5 bg-python-light rounded-full"
                           initial={{ width: 0 }}
                           animate={{ width: "80%" }}
-                          transition={{ duration: 0.4 }}
+                          transition={{ duration: 0.3 }}
                         />
                       )}
                     </Link>
@@ -218,8 +207,8 @@ export default function Header() {
           <div className="flex items-center space-x-2">
             <motion.button
               onClick={() => setLanguage(language === "id" ? "en" : "id")}
-              className="p-3 text-white/80 hover:text-cyan-400 transition-all duration-300 rounded-xl hover:bg-white/10 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-cyan-400/50 backdrop-blur-sm"
-              whileHover={{ scale: 1.1, rotate: 15 }}
+              className="p-3 text-terminal-text/70 hover:text-python-light transition-colors duration-200 rounded-xl hover:bg-python-blue/10 focus:outline-none focus:ring-2 focus:ring-python-blue/50"
+              whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
               aria-label="Toggle language"
             >
@@ -228,8 +217,8 @@ export default function Header() {
 
             <motion.button
               onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-              className="p-3 text-white/80 hover:text-cyan-400 transition-all duration-300 rounded-xl hover:bg-white/10 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-cyan-400/50 backdrop-blur-sm"
-              whileHover={{ scale: 1.1, rotate: 180 }}
+              className="p-3 text-terminal-text/70 hover:text-python-light transition-colors duration-200 rounded-xl hover:bg-python-blue/10 focus:outline-none focus:ring-2 focus:ring-python-blue/50"
+              whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
               aria-label="Toggle theme"
             >
@@ -237,7 +226,7 @@ export default function Header() {
             </motion.button>
 
             <motion.button
-              className="lg:hidden p-3 text-white/80 hover:text-cyan-400 transition-all duration-300 rounded-xl hover:bg-white/10 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-cyan-400/50 backdrop-blur-sm"
+              className="lg:hidden p-3 text-terminal-text/70 hover:text-python-light transition-colors duration-200 rounded-xl hover:bg-python-blue/10 focus:outline-none focus:ring-2 focus:ring-python-blue/50"
               onClick={() => setIsOpen(!isOpen)}
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
@@ -274,11 +263,11 @@ export default function Header() {
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            className="lg:hidden bg-white/95 dark:bg-gray-900/95 backdrop-blur-2xl border-t border-blue-100/30 dark:border-blue-900/30 shadow-2xl"
+            className="lg:hidden bg-[#0a0a0a] border-t border-terminal-text/20"
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.4, ease: "easeOut" }}
+            transition={{ duration: 0.3 }}
           >
             <div className="container mx-auto px-6 py-6 space-y-2">
               {navigationItems.map((item, index) => (
@@ -287,16 +276,16 @@ export default function Header() {
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: index * 0.1, duration: 0.3 }}
-                  className="border-b border-gray-100/50 dark:border-gray-800/50 last:border-b-0 pb-2 last:pb-0"
+                  className="border-b border-terminal-text/10 last:border-b-0 pb-2 last:pb-0"
                 >
                   {item.dropdown ? (
                     <div className="space-y-2">
                       <button
                         onClick={() => toggleMobileDropdown(item.name)}
-                        className={`w-full flex items-center justify-between py-3 px-4 text-base font-semibold transition-all duration-300 rounded-xl ${
+                        className={`w-full flex items-center justify-between py-3 px-4 text-base font-semibold transition-colors duration-200 rounded-xl ${
                           isActiveLink(item)
-                            ? "text-cyan-600 dark:text-cyan-400 bg-gradient-to-r from-blue-50 to-cyan-50 dark:from-blue-900/30 dark:to-cyan-900/30 shadow-lg"
-                            : "text-gray-900 dark:text-gray-100 hover:text-cyan-500 dark:hover:text-cyan-400 hover:bg-blue-50/50 dark:hover:bg-blue-900/20"
+                            ? "text-python-light bg-python-blue/10"
+                            : "text-terminal-text hover:text-python-light hover:bg-python-blue/10"
                         }`}
                       >
                         {item.name}
@@ -330,21 +319,13 @@ export default function Header() {
                                     e.preventDefault()
                                     handleLinkClick(subItem.href)
                                   }}
-                                  className={`block py-3 px-4 text-sm font-medium transition-all duration-300 rounded-lg ${
+                                  className={`block py-3 px-4 text-sm font-medium transition-colors duration-200 rounded-lg ${
                                     activeSection === subItem.id
-                                      ? "text-cyan-600 dark:text-cyan-400 bg-gradient-to-r from-blue-50 to-cyan-50 dark:from-blue-900/30 dark:to-cyan-900/30 shadow-md"
-                                      : "text-gray-600 dark:text-gray-400 hover:text-cyan-500 dark:hover:text-cyan-400 hover:bg-blue-50/30 dark:hover:bg-blue-900/10"
+                                      ? "text-python-light bg-python-blue/10 border-l-2 border-python-light"
+                                      : "text-terminal-text/60 hover:text-python-light hover:bg-python-blue/10"
                                   }`}
                                 >
                                   {subItem.name}
-                                  {activeSection === subItem.id && (
-                                    <motion.div
-                                      className="h-0.5 bg-gradient-to-r from-cyan-400 to-blue-500 mt-2 rounded-full"
-                                      initial={{ width: 0 }}
-                                      animate={{ width: "100%" }}
-                                      transition={{ duration: 0.4 }}
-                                    />
-                                  )}
                                 </Link>
                               </motion.div>
                             ))}
@@ -359,21 +340,13 @@ export default function Header() {
                         e.preventDefault()
                         handleLinkClick(item.href!)
                       }}
-                      className={`block py-3 px-4 text-base font-semibold transition-all duration-300 rounded-xl ${
+                      className={`block py-3 px-4 text-base font-semibold transition-colors duration-200 rounded-xl ${
                         activeSection === item.id
-                          ? "text-cyan-600 dark:text-cyan-400 bg-gradient-to-r from-blue-50 to-cyan-50 dark:from-blue-900/30 dark:to-cyan-900/30 shadow-lg"
-                          : "text-gray-900 dark:text-gray-100 hover:text-cyan-500 dark:hover:text-cyan-400 hover:bg-blue-50/50 dark:hover:bg-blue-900/20"
+                          ? "text-python-light bg-python-blue/10"
+                          : "text-terminal-text hover:text-python-light hover:bg-python-blue/10"
                       }`}
                     >
                       {item.name}
-                      {activeSection === item.id && (
-                        <motion.div
-                          className="h-0.5 bg-gradient-to-r from-cyan-400 to-blue-500 mt-2 rounded-full"
-                          initial={{ width: 0 }}
-                          animate={{ width: "100%" }}
-                          transition={{ duration: 0.4 }}
-                        />
-                      )}
                     </Link>
                   )}
                 </motion.div>

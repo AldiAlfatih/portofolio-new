@@ -40,7 +40,7 @@ export default function ScrollToTop() {
           <Button
             onClick={scrollToTop}
             size="icon"
-            className="rounded-full shadow-lg hover:shadow-xl transition-shadow duration-300 bg-gradient-to-r from-cyan-500 to-purple-600 hover:from-cyan-600 hover:to-purple-700"
+            className="rounded-full shadow-lg bg-python-blue hover:bg-python-blue/80 border border-terminal-text/20 text-terminal-text transition-colors duration-200"
           >
             <ArrowUp className="w-5 h-5" />
           </Button>

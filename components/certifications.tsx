@@ -5,51 +5,6 @@ import Image from "next/image"
 import { Award, Calendar, ExternalLink, CheckCircle } from "lucide-react"
 
 const certifications = [
-  // {
-  //   title: "TensorFlow Developer Certificate",
-  //   issuer: "Google",
-  //   date: "2024",
-  //   image: "tensorflow certificate",
-  //   credentialId: "TF-2024-001",
-  //   skills: ["TensorFlow", "Deep Learning", "Neural Networks"],
-  //   verified: true,
-  // },
-  // {
-  //   title: "AWS Certified Machine Learning - Specialty",
-  //   issuer: "Amazon Web Services",
-  //   date: "2023",
-  //   image: "aws ml certificate",
-  //   credentialId: "AWS-ML-2023-456",
-  //   skills: ["AWS SageMaker", "MLOps", "Cloud ML"],
-  //   verified: true,
-  // },
-  // {
-  //   title: "Deep Learning Specialization",
-  //   issuer: "Coursera - DeepLearning.AI",
-  //   date: "2023",
-  //   image: "deeplearning ai certificate",
-  //   credentialId: "DL-SPEC-2023-789",
-  //   skills: ["CNN", "RNN", "Transformers"],
-  //   verified: true,
-  // },
-  // {
-  //   title: "Machine Learning Engineer Nanodegree",
-  //   issuer: "Udacity",
-  //   date: "2022",
-  //   image: "udacity ml certificate",
-  //   credentialId: "UD-ML-2022-123",
-  //   skills: ["Scikit-learn", "Model Deployment", "MLOps"],
-  //   verified: true,
-  // },
-  // {
-  //   title: "Professional Data Scientist",
-  //   issuer: "IBM",
-  //   date: "2022",
-  //   image: "ibm data science certificate",
-  //   credentialId: "IBM-DS-2022-456",
-  //   skills: ["Python", "Data Analysis", "Statistics"],
-  //   verified: true,
-  // },
   {
     title: "Cloud Practitioner Essentials (Belajar Dasar AWS Cloud)",
     issuer: "Dicoding Indonesia",
@@ -150,29 +105,6 @@ const certifications = [
     skills: ["SQL", "Python", "R","Data Science", "Data Analysis", "Data Visualization"],
     verified: true,
   },
-//   {
-//     title: "Course Dicoding",
-//     issuer: "Dicoding",
-//     date: "2023",
-//     image: "dicoding certificate",
-//     credentialId: "DIC-2023-001",
-//     skills: [
-//       "Belajar Dasar Pemrograman Web",
-//       "Belajar Machine Learning untuk Pemula",
-//       "Belajar Dasar Visualisasi Data",
-//       "Memulai Pemrograman dengan Python",
-//     ],
-//     verified: true,
-//   },
-//   {
-//     title: "Skill Academy",
-//     issuer: "Skill Academy",
-//     date: "2023",
-//     image: "skill academy certificate",
-//     credentialId: "SKL-2023-002",
-//     skills: ["Mempelajari Bahasa Pemrograman untuk Ahli Statistika (Data Scientist)"],
-//     verified: true,
-//   },
 ]
 
 export default function Certifications() {
@@ -180,12 +112,13 @@ export default function Certifications() {
     <section id="certifications" className="py-20 relative">
       <div className="container mx-auto px-4">
         <motion.h2
-          className="text-4xl font-bold text-center mb-16 bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent"
+          className="text-4xl font-bold text-center mb-16 text-terminal-text"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
+          <span className="text-python-light font-mono mr-2"></span>
           Sertifikasi & Kredensial
         </motion.h2>
 
@@ -199,7 +132,7 @@ export default function Certifications() {
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
             >
-              <div className="bg-gray-800/50 backdrop-blur-sm rounded-2xl overflow-hidden border border-gray-700/50 hover:border-cyan-500/50 transition-all duration-500 group-hover:transform group-hover:scale-105 group-hover:shadow-2xl group-hover:shadow-cyan-500/10 h-full">
+              <div className="bg-[#0a0a0a] rounded-2xl overflow-hidden border border-terminal-text/15 hover:border-python-blue transition-colors duration-200 h-full">
                 {/* Certificate Image */}
                 <div className="relative h-40 overflow-hidden">
                   <Image
@@ -211,60 +144,40 @@ export default function Certifications() {
 
                   {/* Verified Badge */}
                   {cert.verified && (
-                    <motion.div
-                      className="absolute top-4 right-4 bg-green-500 rounded-full p-2 shadow-lg"
-                      animate={{
-                        scale: [1, 1.1, 1],
-                      }}
-                      transition={{
-                        duration: 2,
-                        repeat: Number.POSITIVE_INFINITY,
-                        ease: "easeInOut",
-                      }}
-                    >
-                      <CheckCircle className="w-4 h-4 text-white" />
-                    </motion.div>
+                    <div className="absolute top-4 right-4 bg-python-blue rounded-full p-2 border border-python-blue/50">
+                      <CheckCircle className="w-4 h-4 text-terminal-text" />
+                    </div>
                   )}
 
                   {/* Award Icon */}
-                  <motion.div
-                    className="absolute top-4 left-4 p-2 bg-gradient-to-r from-yellow-500 to-orange-600 rounded-full shadow-lg"
-                    animate={{
-                      rotate: [0, 10, -10, 0],
-                    }}
-                    transition={{
-                      duration: 3,
-                      repeat: Number.POSITIVE_INFINITY,
-                      ease: "easeInOut",
-                    }}
-                  >
-                    <Award className="w-4 h-4 text-white" />
-                  </motion.div>
+                  <div className="absolute top-4 left-4 p-2 bg-python-blue rounded-full border border-python-blue/50">
+                    <Award className="w-4 h-4 text-terminal-text" />
+                  </div>
                 </div>
 
                 {/* Certificate Content */}
                 <div className="p-6">
-                  <h3 className="text-lg font-bold text-white mb-2 group-hover:text-cyan-400 transition-colors duration-300">
+                  <h3 className="text-lg font-bold text-terminal-text mb-2 group-hover:text-python-light transition-colors duration-200">
                     {cert.title}
                   </h3>
 
                   <div className="flex items-center space-x-2 mb-3">
-                    <span className="text-cyan-400 font-medium">{cert.issuer}</span>
-                    <span className="text-gray-500">•</span>
-                    <div className="flex items-center space-x-1 text-gray-400">
+                    <span className="text-python-light font-medium">{cert.issuer}</span>
+                    <span className="text-terminal-text/30">•</span>
+                    <div className="flex items-center space-x-1 text-terminal-text/40">
                       <Calendar className="w-4 h-4" />
                       <span className="text-sm">{cert.date}</span>
                     </div>
                   </div>
 
-                  <div className="text-xs text-gray-500 mb-4">ID: {cert.credentialId}</div>
+                  <div className="text-xs text-terminal-text/30 mb-4 font-mono">ID: {cert.credentialId}</div>
 
                   {/* Skills */}
                   <div className="flex flex-wrap gap-2 mb-4">
                     {cert.skills.map((skill, skillIndex) => (
                       <motion.span
                         key={skill}
-                        className="px-2 py-1 bg-gray-700/50 text-cyan-400 text-xs rounded-full border border-cyan-500/30"
+                        className="px-2 py-1 bg-terminal-bg text-python-light text-xs rounded-full border border-terminal-text/15 font-mono"
                         initial={{ opacity: 0, scale: 0 }}
                         whileInView={{ opacity: 1, scale: 1 }}
                         viewport={{ once: true }}
@@ -272,7 +185,6 @@ export default function Certifications() {
                           duration: 0.3,
                           delay: index * 0.1 + skillIndex * 0.05,
                         }}
-                        whileHover={{ scale: 1.1 }}
                       >
                         {skill}
                       </motion.span>
@@ -284,18 +196,13 @@ export default function Certifications() {
                     href={cert.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-full inline-flex items-center justify-center space-x-2 py-2 px-4 bg-gradient-to-r from-cyan-500/20 to-purple-500/20 border border-cyan-500/50 rounded-lg text-cyan-400 hover:bg-cyan-500/30 hover:border-cyan-400 transition-all duration-300"
+                    className="w-full inline-flex items-center justify-center space-x-2 py-2 px-4 bg-python-blue/15 border border-python-blue/30 rounded-lg text-python-light hover:bg-python-blue/25 hover:border-python-blue transition-colors duration-200"
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                   >
                     <ExternalLink className="w-4 h-4" />
                     <span className="text-sm font-medium">Lihat Sertifikat</span>
                   </motion.a>
-                </div>
-
-                {/* Animated border */}
-                <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
-                  <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-cyan-500/20 via-purple-500/20 to-pink-500/20 blur-sm" />
                 </div>
               </div>
             </motion.div>
