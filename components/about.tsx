@@ -9,7 +9,7 @@ export default function About() {
     { icon: Brain, label: "Proyek", value: "10+" },
     { icon: Cpu, label: "Model ML", value: "5+" },
     { icon: Database, label: "Dataset", value: "3" },
-    { icon: TrendingUp, label: "Akurasi", value: "+++" },
+    // { icon: TrendingUp, label: "Akurasi", value: "+++" },
     { icon: null, label: "IPK", value: "3.93" },
   ]
 
