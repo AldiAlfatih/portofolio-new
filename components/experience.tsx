@@ -1,9 +1,36 @@
 "use client"
 
+import { Description } from "@radix-ui/react-toast"
 import { motion } from "framer-motion"
 import { Briefcase, Calendar, MapPin, TrendingUp, Award, Users, Target, Zap } from "lucide-react"
+import { title } from "process"
+import Achievements from "./achievements"
 
 const experiences = [
+    {
+    title: "Economic Policy Intern",
+    company: "Bank Indonesia Kantor Perwakilan Sulawesi Selatan",
+    location: "Makassar",
+    period: "06 April 2026 - Sekarang",
+    type: "Magang",
+    description: "Ditempatkan pada unit Kelompok Perumusan Kebijakan Provinsi (KPKP) untuk mendukung analisis data ekonomi makro dan perumusan rekomendasi strategis bagi stabilitas ekonomi daerah.",
+    achievements: [
+      "Membantu proses pengolahan data untuk penyusunan Laporan Perekonomian Provinsi (LPP) Sulawesi Selatan.",
+      "Mendukung pemantauan indikator ekonomi makro termasuk proyeksi inflasi dan pertumbuhan PDRB.",
+      "Berpartisipasi dalam pengumpulan data kebijakan lokal yang berdampak pada stabilitas harga di wilayah Sulampua.",
+      "Membantu administrasi koordinasi dengan pemangku kepentingan strategis seperti TPID (Tim Pengendali Inflasi Daerah)."
+    ],
+    technologies: [
+      "Microsoft Excel (Advanced)",
+      "Data Analysis",
+      "Macroeconomic Reporting",
+      "Economic Forecasting"
+    ],
+    projects: [
+      "Penyusunan Policy Note Analisis Permasalahan Hulu-Hilir Rantai Nilai dan Strategi Pengembangan Industri Kakao di Sulampua.",
+    ],
+    icon: Briefcase,
+  },
   {
     title: "AI Researcher Engineer",
     company: "GoDentist – OrthoPredictAI",
@@ -33,7 +60,7 @@ const experiences = [
     title: "AI Trainer Specialist",
     company: "SoftAge Information Technology Ltd",
     location: "Remote",
-    period: "September 2025 – Sekarang",
+    period: "September 2025 – Februari",
     type: "Kontrak Remote",
     description:
       "Kontraktor jarak jauh yang memproduksi data pelatihan untuk LLM dan agentic AI pada platform SROT.",
