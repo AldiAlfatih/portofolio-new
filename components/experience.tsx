@@ -334,7 +334,7 @@ export default function Experience() {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <span className="text-python-light font-mono mr-2">def</span>
+          <span className="text-python-light font-mono mr-2"></span>
           Pengalaman Proyek & Akademik
           <span className="text-python-light font-mono ml-1">():</span>
         </motion.h2>
