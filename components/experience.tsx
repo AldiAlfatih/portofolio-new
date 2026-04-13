@@ -336,7 +336,7 @@ export default function Experience() {
         >
           <span className="text-python-light font-mono mr-2"></span>
           Pengalaman Proyek & Akademik
-          <span className="text-python-light font-mono ml-1">():</span>
+          <span className="text-python-light font-mono ml-1"></span>
         </motion.h2>
 
         <div className="max-w-4xl mx-auto">
