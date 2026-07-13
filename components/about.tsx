@@ -86,17 +86,13 @@ export default function About() {
           >
             <div className="bg-[#0a0a0a] rounded-2xl p-8 border border-terminal-text/15 hover:border-python-blue transition-colors duration-200">
               <p className="text-terminal-text/70 text-lg leading-relaxed mb-6">
-                Mahasiswa S1 Ilmu Komputer dengan fokus pada pengembangan solusi teknis end-to-end, mulai dari
-                arsitektur <span className="text-python-light font-semibold">back-end</span> hingga implementasi model{" "}
-                <span className="text-python-light font-semibold">Artificial Intelligence</span>. Berpengalaman sebagai{" "}
-                <span className="text-python-light font-semibold">Co-Founder & AI Engineer</span> untuk proyek ISARA Language
-                (sistem penerjemah BISINDO), serta sebagai{" "}
-                <span className="text-python-light font-semibold">Lead Back-End Developer</span> untuk proyek e-Government.
+                Fresh Graduates S1 Ilmu Komputer (S.Kom) dengan IPK 3,93 yang memiliki kompetensi teknis di bidang <span className="text-python-light font-semibold">Backend Development</span> dan <span className="text-python-light font-semibold">Artificial Intelligence</span>.
+              </p>
+              <p className="text-terminal-text/70 text-lg leading-relaxed mb-6">
+                Berpengalaman magang di Bank Indonesia (KPKP) dalam pengolahan data strategis serta memiliki rekam jejak kepemimpinan sebagai Ketua Habibie Coding Club.
               </p>
               <p className="text-terminal-text/70 text-lg leading-relaxed">
-                Pengalaman tersebut menunjukkan kemampuan untuk merancang, mengembangkan, dan
-                mengimplementasikan solusi teknis kompleks ke dalam produk aplikasi web dan mobile,
-                dengan kemampuan kolaborasi lintas disiplin yang kuat.
+                Mahir membangun solusi teknologi end-to-end menggunakan arsitektur Laravel/Inertia.js dan implementasi model Computer Vision pada aplikasi nyata.
               </p>
             </div>
 

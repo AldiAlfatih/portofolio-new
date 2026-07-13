@@ -44,7 +44,7 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            AI Engineer <span className="text-python-light">•</span> Backend Developer
+            Fresh Graduate S1 Ilmu Komputer <span className="text-python-light">•</span> AI & Backend
           </motion.h2>
 
           <motion.p
@@ -53,9 +53,7 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.5 }}
           >
-            Mahasiswa S1 Ilmu Komputer dengan fokus pada pengembangan solusi teknis end-to-end,
-            mulai dari arsitektur back-end hingga implementasi model AI.
-            Berpengalaman sebagai Co-Founder & AI Engineer ISARA Language serta Lead Back-End Developer untuk proyek e-Government.
+            Fresh Graduates S1 Ilmu Komputer (S.Kom) dengan IPK 3,93 yang memiliki kompetensi teknis di bidang Backend Development dan Artificial Intelligence. Mahir membangun solusi teknologi end-to-end.
           </motion.p>
 
           <motion.div

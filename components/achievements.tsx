@@ -22,11 +22,11 @@ const achievements = [
     icon: Flag,
     items: [
       {
-        title: "1st Gold Medal Kategori Matematika",
-        description: "Indonesia Academic Olympiad (Tingkat Perguruan Tinggi Nasional)",
-        year: "2026",
-        type: "Olimpiade Akademik",
-        impact: "Meraih medali emas tingkat nasional antar perguruan tinggi",
+        title: "Peraih Pendanaan PKM-KC 2025",
+        description: "Program Kreativitas Mahasiswa - Karsa Cipta",
+        year: "2025",
+        type: "Pendanaan Riset",
+        impact: "Mendapat pendanaan DIKTI untuk proyek inovasi teknologi ISARA Language",
       },
       {
         title: "5th Place (Top 10 Finalist) Hasanuddin Techno Fest #9",
@@ -36,11 +36,11 @@ const achievements = [
         impact: "Kompetisi ide inovasi tingkat nasional di Universitas Hasanuddin",
       },
       {
-        title: "Peraih Pendanaan PKM-KC 2025",
-        description: "Program Kreativitas Mahasiswa - Karsa Cipta",
-        year: "2025",
-        type: "Pendanaan Riset",
-        impact: "Mendapat pendanaan DIKTI untuk proyek inovasi teknologi ISARA Language",
+        title: "1st Gold Medal Kategori Matematika",
+        description: "Indonesia Academic Olympiad (Tingkat Perguruan Tinggi Nasional)",
+        year: "2026",
+        type: "Olimpiade Akademik",
+        impact: "Meraih medali emas tingkat nasional antar perguruan tinggi",
       },
       {
         title: "Juara Favorit Lomba Esai Perbenihan Tanaman Hutan 2024",
@@ -127,7 +127,7 @@ export default function Achievements() {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <span className="text-python-light font-mono mr-2">#</span>
+          <span className="text-python-light font-mono mr-2"></span>
           Prestasi & Pencapaian
         </motion.h2>
 

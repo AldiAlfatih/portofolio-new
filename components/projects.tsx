@@ -7,10 +7,10 @@ import { Button } from "@/components/ui/button"
 
 const projects = [
   {
-    title: "ISARA Language — Sistem Penerjemah BISINDO Dua Arah",
+    title: "ISARA: Inovasi Komunikasi Dua Arah",
     role: "Co-Founder & Computer Vision Engineer",
     description:
-      "Prototipe sistem penerjemah dua arah Bahasa Isyarat Indonesia (BISINDO) ke teks dan teks ke isyarat berbasis kamera smartphone. Menggabungkan Computer Vision untuk deteksi skeleton isyarat dan NLP untuk naturalisasi teks, sehingga komunikasi antara pengguna Tuli dan non-penutur isyarat menjadi lebih inklusif.",
+      "Merancang arsitektur Computer Vision untuk pengenalan Bahasa Isyarat Indonesia (BISINDO) secara near real-time menggunakan TensorFlow dan MediaPipe yang berhasil meraih pendanaan nasional PKM-KC 2025. Mengembangkan pipeline vision-to-text dan text-to-sign.",
     image: "isara-sign-language-app",
     icon: Brain,
     tech: [
@@ -28,10 +28,10 @@ const projects = [
     codeUrl: "#",
   },
   {
-    title: "Sistem E-Monev Bappeda Kota Parepare",
+    title: "Proyek Sistem E-Monev Bappeda",
     role: "Lead Back-End Developer",
     description:
-      "Aplikasi web Elektronik Monitoring dan Evaluasi untuk Bappeda Kota Parepare. Arsitektur server-side dibangun menggunakan Laravel dan Inertia.js dengan pola MVC, mencakup pengelolaan pagu, anggaran, dan realisasi per triwulan serta otentikasi dan otorisasi multi peran.",
+      "Merancang dan bertanggung jawab penuh atas arsitektur server-side menggunakan Laravel dan Inertia.js untuk efisiensi monitoring anggaran daerah. Mengimplementasikan logika bisnis inti termasuk sistem otentikasi, otorisasi, dan validasi data ketat.",
     image: "e-monev-dashboard",
     icon: Server,
     tech: [
@@ -48,10 +48,10 @@ const projects = [
     codeUrl: "#",
   },
   {
-    title: "Sistem Prediksi Kualitas Panen Hidroponik",
+    title: "Monitoring Hidroponik Cerdas",
     role: "AI Engineer",
     description:
-      "Model machine learning berbasis ANN dan LSTM untuk memprediksi kualitas panen selada hidroponik dari data sensor lingkungan (suhu, kelembapan, TDS, suhu air). Model diintegrasikan ke aplikasi mobile Android untuk prediksi kualitas panen secara real-time.",
+      "Mengembangkan model ANN dan LSTM untuk memprediksi kualitas panen selada berdasarkan data sensor IoT (suhu, kelembapan, TDS) yang diintegrasikan ke aplikasi Android.",
     image: "hydroponic-ai-system",
     icon: Brain,
     tech: [
@@ -67,10 +67,10 @@ const projects = [
     codeUrl: "#",
   },
   {
-    title: "Sistem Klasifikasi Gulma — Kabupaten Enrekang",
+    title: "Sistem Klasifikasi Gulma",
     role: "Peneliti Pembantu",
     description:
-      "Pengembangan dataset berkualitas tinggi dan sistem klasifikasi gulma serta tanaman hortikultura menggunakan citra lapangan. Pengumpulan data primer berupa ratusan citra gulma di berbagai kondisi pencahayaan dan sudut pengambilan gambar, dianotasi menggunakan Roboflow.",
+      "Membangun dataset primer melalui pengumpulan ratusan citra di lapangan (Enrekang) dan melakukan anotasi data menggunakan Roboflow untuk klasifikasi gulma.",
     image: "weed-classification-system",
     icon: Eye,
     tech: [
@@ -85,10 +85,10 @@ const projects = [
     codeUrl: "#",
   },
   {
-    title: "Dataset Kebencanaan Banjir — Segmentasi & Object Recognition",
+    title: "Dataset Mitigasi Bencana",
     role: "Peneliti Pembantu",
     description:
-      "Pengembangan dataset kebencanaan dari video amatir banjir dengan ekstraksi frame dan anotasi segmentasi semantik menggunakan CVAT. Dataset mencakup area tergenang, bangunan, kendaraan, pohon, dan manusia untuk riset mitigasi kebencanaan berbasis Computer Vision.",
+      "Melakukan ekstraksi ribuan frame dari video amatir dan anotasi segmentasi semantik pada area banjir menggunakan platform CVAT.",
     image: "flood-dataset-segmentation",
     icon: Eye,
     tech: ["CVAT", "Segmentation", "Computer Vision", "Python"],

@@ -7,33 +7,34 @@ import { title } from "process"
 import Achievements from "./achievements"
 
 const experiences = [
-    {
-    title: "Economic Policy Intern",
-    company: "Bank Indonesia Kantor Perwakilan Sulawesi Selatan",
+  {
+    title: "Intern – Divisi Kelompok Perumusan Kebijakan Provinsi (KPKP)",
+    company: "Bank Indonesia (Kantor Perwakilan Sulawesi Selatan)",
     location: "Makassar",
-    period: "06 April 2026 - Sekarang",
+    period: "April 2026 – Juni 2026",
     type: "Magang",
     description: "Ditempatkan pada unit Kelompok Perumusan Kebijakan Provinsi (KPKP) untuk mendukung analisis data ekonomi makro dan perumusan rekomendasi strategis bagi stabilitas ekonomi daerah.",
     achievements: [
-      "Membantu proses pengolahan data untuk penyusunan Laporan Perekonomian Provinsi (LPP) Sulawesi Selatan.",
-      "Mendukung pemantauan indikator ekonomi makro termasuk proyeksi inflasi dan pertumbuhan PDRB.",
-      "Berpartisipasi dalam pengumpulan data kebijakan lokal yang berdampak pada stabilitas harga di wilayah Sulampua.",
-      "Membantu administrasi koordinasi dengan pemangku kepentingan strategis seperti TPID (Tim Pengendali Inflasi Daerah)."
+      "Melakukan pembersihan data (data cleaning) dan prapemrosesan menggunakan Python, serta mengembangkan dashboard Prognosa dan Monitoring Anggaran menggunakan Power BI untuk melacak realisasi anggaran divisi secara real-time.",
+      "Melakukan riset awal serta analisis makroekonomi dan sektoral di wilayah Sulampua (Sulawesi, Maluku, Papua) untuk mendukung perumusan kebijakan berbasis bukti.",
+      "Menyusun Kerangka Acuan (TOR) yang komprehensif terkait komoditas strategis daerah sebagai landasan penyusunan catatan kebijakan (policy note) di lingkungan bank sentral.",
+      "Merombak (revamping) dan mengoptimalkan antarmuka Minisite BI Sulawesi Selatan menggunakan Microsoft SharePoint untuk meningkatkan efisiensi akses informasi internal.",
+      "Berkolaborasi dengan tim internal dan pemangku kepentingan eksternal dalam mendukung inisiatif pengembangan ekonomi regional."
     ],
     technologies: [
-      "Microsoft Excel (Advanced)",
+      "Python",
+      "Power BI",
+      "Data Cleaning",
+      "SharePoint",
       "Data Analysis",
-      "Macroeconomic Reporting",
       "Economic Forecasting"
     ],
-    projects: [
-      "Penyusunan Policy Note Analisis Permasalahan Hulu-Hilir Rantai Nilai dan Strategi Pengembangan Industri Kakao di Sulampua.",
-    ],
+    projects: [],
     icon: Briefcase,
   },
   {
     title: "AI Researcher Engineer",
-    company: "GoDentist – OrthoPredictAI",
+    company: "GoDentist",
     location: "Remote",
     period: "Oktober 2025 – November 2025",
     type: "Magang",
@@ -43,7 +44,7 @@ const experiences = [
       "Menyusun research plan teknis untuk model multimodal vision plus tabular, termasuk tujuan penelitian, pertanyaan riset, hipotesis, metodologi, serta rencana evaluasi model.",
       "Mendesain skema dataset dan template kuesioner pasien untuk mengintegrasikan citra pra perawatan dengan data demografis, klinis, durasi perawatan, dan biaya historis.",
       "Melakukan studi literatur terstruktur terkait pemanfaatan machine learning dan computer vision pada prediksi durasi perawatan ortodontik dan perencanaan terapi.",
-      "Menyusun dokumentasi teknis awal arsitektur OrthoPredictAI sebagai blueprint pengembangan modul prediksi durasi dan biaya di ekosistem GoDentist.",
+      "Menyusun dokumentasi teknis awal arsitektur OrthoPredictAI sebagai blueprint pengembangan modul prediksi durasi dan biaya di ekosistem GoDentist."
     ],
     technologies: [
       "Python",
@@ -101,33 +102,28 @@ const projectExperiences = [
     title: "Asisten Dosen Mata Kuliah Computer Vision",
     company: "Institut Teknologi Bacharuddin Jusuf Habibie",
     location: "Parepare",
-    period: "Oktober 2025 – Sekarang",
+    period: "Oktober 2025 – Januari 2026",
     type: "Akademik",
-    description:
-      "Asisten dosen untuk mata kuliah Computer Vision, mendampingi kegiatan perkuliahan dan praktikum.",
+    description: "Mendampingi dosen dalam penyampaian materi dan membimbing mahasiswa dalam debugging kode proyek berbasis visi komputer.",
     achievements: [
       "Mendampingi dosen pengampu dalam penyampaian materi Computer Vision.",
-      "Membimbing mahasiswa dalam mengerjakan tugas dan proyek, menjelaskan konsep yang sulit, dan membantu debugging kode.",
-      "Memberikan umpan balik teknis terhadap tugas atau presentasi mahasiswa agar selaras dengan capaian pembelajaran mata kuliah.",
-      "Mengawasi Ujian mahasiswa.",
+      "Membimbing mahasiswa dalam debugging kode proyek berbasis visi komputer."
     ],
     technologies: ["Python", "OpenCV", "Deep Learning", "Teaching"],
     icon: Award,
   },
   {
     title: "Co-Founder & Computer Vision Engineer — ISARA Language",
-    company: "Proyek PKM-KC (Pendanaan DIKTI)",
+    company: "Proyek PKM-KC",
     location: "Parepare",
     period: "Mei 2025 – November 2025",
     type: "Startup / Riset",
     description:
       "Inovasi komunikasi dua arah melalui gerakan isyarat, teks, gambar dan suara berbasis Artificial Intelligence menggunakan kamera smartphone.",
     achievements: [
-      "Merancang dan mengembangkan arsitektur sistem berbasis Computer Vision untuk mengenali Bahasa Isyarat Indonesia BISINDO menggunakan kamera smartphone.",
-      "Mengoptimalkan model gesture recognition dan NLP pada aplikasi ISARA untuk mencapai performa near real-time, yang memungkinkan komunikasi dua arah yang mulus antara penyandang disabilitas dan masyarakat umum.",
-      "Mengintegrasikan pipeline vision to text dan text to sign dengan antarmuka aplikasi Android.",
-      "Memimpin tim kecil dalam pengembangan fitur inti aplikasi, yaitu Isyarat ke Teks, Teks ke Isyarat, Belajar, dan Pengaturan.",
-      "Mengembangkan dan menanamkan model ke dalam aplikasi sehingga dapat berjalan secara lokal di smartphone.",
+      "Merancang arsitektur Computer Vision untuk pengenalan Bahasa Isyarat Indonesia (BISINDO) secara near real-time menggunakan TensorFlow dan MediaPipe yang berhasil meraih pendanaan nasional PKM-KC 2025.",
+      "Mengembangkan pipeline vision-to-text dan text-to-sign dengan integrasi model NLP serta memastikan aplikasi berjalan secara lokal (on-device AI) pada perangkat Android.",
+      "Memimpin tim pengembang dalam implementasi fitur inti (Isyarat ke Teks, Teks ke Isyarat, dan Modul Belajar) serta bertanggung jawab atas pengujian kualitas sistem pada perangkat mobile."
     ],
     technologies: ["Python", "TensorFlow", "Keras", "MediaPipe", "TFLite", "OpenCV", "Android", "CameraX", "Java"],
     icon: Target,
@@ -139,12 +135,10 @@ const projectExperiences = [
     period: "Maret 2025 – Oktober 2025",
     type: "Proyek Pemerintah",
     description:
-      "Bertanggung jawab penuh atas arsitektur dan pengembangan sisi server untuk aplikasi Elektronik Monitoring dan Evaluasi Bappeda.",
+      "Merancang dan bertanggung jawab penuh atas arsitektur server-side menggunakan Laravel dan Inertia.js untuk efisiensi monitoring anggaran daerah.",
     achievements: [
-      "Membangun arsitektur server-side menggunakan Laravel dan Inertia.js, yang mempercepat waktu pengembangan dan meningkatkan efisiensi sistem monitoring evaluasi.",
-      "Mengimplementasikan logika bisnis utama, termasuk otentikasi dan otorisasi pengguna, validasi form yang kompleks, serta alur kerja sistem monitoring dan evaluasi.",
-      "Membangun struktur aplikasi berbasis pola MVC dengan pengelolaan routing, controller, dan model untuk menghasilkan kode yang terorganisir, mudah dipelihara, dan skalabel.",
-      "Menjaga keamanan dan integritas data melalui implementasi validasi yang ketat pada setiap request yang masuk.",
+      "Merancang dan bertanggung jawab penuh atas arsitektur server-side menggunakan Laravel dan Inertia.js untuk efisiensi monitoring anggaran daerah.",
+      "Mengimplementasikan logika bisnis inti, termasuk sistem otentikasi, otorisasi, dan validasi data ketat untuk memastikan integritas sistem monitoring Bappeda."
     ],
     technologies: ["Laravel", "PHP", "PostgreSQL", "Inertia.js", "Vue.js", "Tailwind CSS"],
     icon: Target,
@@ -156,10 +150,9 @@ const projectExperiences = [
     period: "April 2025 – Juni 2025",
     type: "Akademik",
     description:
-      "Asisten laboratorium untuk praktikum Pemrograman Web, fokus pada front-end dan back-end dasar.",
+      "Membimbing mahasiswa dalam pengembangan proyek akhir berbasis Laravel, CodeIgniter, dan PHP Native.",
     achievements: [
-      "Meningkatkan pemahaman praktis mahasiswa terhadap konsep front end development dan back end development.",
-      "Membimbing mahasiswa Prodi Ilmu Komputer angkatan 2 dalam menyelesaikan proyek akhir berbasis PHP Native dan framework Laravel serta CodeIgniter.",
+      "Membimbing mahasiswa dalam pengembangan proyek akhir berbasis Laravel, CodeIgniter, dan PHP Native."
     ],
     technologies: ["PHP", "Laravel", "CodeIgniter 4", "HTML", "CSS", "JavaScript"],
     icon: Award,
@@ -168,14 +161,12 @@ const projectExperiences = [
     title: "AI Engineer — Sistem Prediksi Kualitas Panen Hidroponik",
     company: "Institut Teknologi Bacharuddin Jusuf Habibie",
     location: "Parepare",
-    period: "September 2024 – Desember 2024",
+    period: "2024",
     type: "Proyek Riset",
     description:
-      "Mengembangkan model machine learning berbasis ANN dan LSTM untuk memprediksi kualitas panen selada hidroponik dari data sensor.",
+      "Mengembangkan model ANN dan LSTM untuk memprediksi kualitas panen selada berdasarkan data sensor IoT (suhu, kelembapan, TDS) yang diintegrasikan ke aplikasi Android.",
     achievements: [
-      "Mengembangkan dan mengimplementasikan model machine learning berbasis ANN dan LSTM untuk memprediksi kualitas panen selada hidroponik dari data sensor seperti suhu, kelembapan, TDS, dan suhu air.",
-      "Melakukan preprocessing data, pelatihan, dan evaluasi model hingga diperoleh performa yang stabil pada data uji internal.",
-      "Mengintegrasikan model yang telah dilatih ke dalam aplikasi mobile Android untuk menyediakan fitur prediksi kualitas panen secara real time.",
+      "Mengembangkan model ANN dan LSTM untuk memprediksi kualitas panen selada berdasarkan data sensor IoT (suhu, kelembapan, TDS) yang diintegrasikan ke aplikasi Android."
     ],
     technologies: ["Python", "TensorFlow", "ANN", "LSTM", "IoT", "ESP32", "Android"],
     icon: Target,
@@ -187,11 +178,9 @@ const projectExperiences = [
     period: "2024",
     type: "Proyek Riset",
     description:
-      "Pengembangan dataset dan sistem klasifikasi gulma serta tanaman hortikultura menggunakan citra lapangan.",
+      "Membangun dataset primer melalui pengumpulan ratusan citra di lapangan (Enrekang) dan melakukan anotasi data menggunakan Roboflow untuk klasifikasi gulma.",
     achievements: [
-      "Berperan fundamental dalam pengembangan sistem computer vision dengan membangun dataset berkualitas tinggi sebagai dasar pelatihan model klasifikasi gulma.",
-      "Melakukan pengumpulan data primer berupa ratusan citra gulma dan tanaman hortikultura di berbagai kondisi pencahayaan dan sudut pengambilan gambar di Kabupaten Enrekang.",
-      "Melakukan anotasi data citra menggunakan tools anotasi seperti Roboflow untuk menandai lokasi dan jenis gulma.",
+      "Membangun dataset primer melalui pengumpulan ratusan citra di lapangan (Enrekang) dan melakukan anotasi data menggunakan Roboflow untuk klasifikasi gulma."
     ],
     technologies: ["Python", "TensorFlow", "Keras", "OpenCV", "Roboflow", "Image Processing"],
     icon: Target,
@@ -203,11 +192,9 @@ const projectExperiences = [
     period: "2023",
     type: "Proyek Riset",
     description:
-      "Pengembangan dataset kebencanaan menggunakan video amatir dengan segmentasi area banjir dan pengenalan objek.",
+      "Melakukan ekstraksi ribuan frame dari video amatir dan anotasi segmentasi semantik pada area banjir menggunakan platform CVAT.",
     achievements: [
-      "Berperan kunci dalam pengembangan dataset computer vision untuk mitigasi kebencanaan dengan fokus pada pembuatan dataset segmentasi area banjir dari sumber video amatir.",
-      "Melakukan ekstraksi ribuan frame gambar dari kumpulan video amatir yang merekam kondisi banjir untuk menghasilkan data citra mentah.",
-      "Melaksanakan anotasi segmentasi semantik secara detail pada frame citra menggunakan platform CVAT, termasuk pelabelan area tergenang banjir dan objek penting.",
+      "Melakukan ekstraksi ribuan frame dari video amatir dan anotasi segmentasi semantik pada area banjir menggunakan platform CVAT."
     ],
     technologies: ["CVAT", "Segmentation", "Computer Vision", "Python"],
     icon: Target,

@@ -3,32 +3,55 @@
 import { Float, Html, OrbitControls, useTexture } from "@react-three/drei"
 import { Canvas, useFrame } from "@react-three/fiber"
 import {
-    Cloud,
+    Brain,
     Code2,
     Cpu,
     Database,
     Globe,
     Layers,
     Server,
+    Terminal,
+    Wrench,
+    FileCode,
+    Coffee,
+    Atom,
+    Network,
+    Eye,
+    Github,
+    Box,
     Smartphone,
-    Terminal
+    Figma,
+    Wifi,
+    BarChart,
+    Cloud
 } from "lucide-react"
 import React, { useRef } from "react"
 import * as THREE from "three"
 
 const innerOrbitItems = [
-    { icon: Code2, label: "Frontend" },
-    { icon: Server, label: "Backend" },
-    { icon: Database, label: "Database" },
-    { icon: Smartphone, label: "Mobile" },
+    { icon: Terminal, label: "Python" },
+    { icon: FileCode, label: "PHP" },
+    { icon: Code2, label: "JavaScript" },
+    { icon: Coffee, label: "Java" },
+    { icon: Database, label: "MySQL" },
+    { icon: Layers, label: "Laravel" },
+    { icon: Atom, label: "React" },
+    { icon: Globe, label: "Vue.js" },
 ]
 
 const outerOrbitItems = [
-    { icon: Globe, label: "Web" },
-    { icon: Layers, label: "Fullstack" },
-    { icon: Cpu, label: "AI/ML" },
-    { icon: Terminal, label: "DevOps" },
-    { icon: Cloud, label: "Cloud" },
+    { icon: Brain, label: "Machine Learning" },
+    { icon: Network, label: "Deep Learning" },
+    { icon: Eye, label: "Computer Vision" },
+    { icon: Cpu, label: "TensorFlow" },
+    { icon: Server, label: "RESTful API" },
+    { icon: Github, label: "Git & GitHub" },
+    { icon: Box, label: "Docker" },
+    { icon: Smartphone, label: "Android Studio" },
+    { icon: Figma, label: "Figma" },
+    { icon: Wifi, label: "IoT & Embedded" },
+    { icon: BarChart, label: "Data Mining" },
+    { icon: Cloud, label: "Model Deployment" },
 ]
 
 function ProfileSphere() {
