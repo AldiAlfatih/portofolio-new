@@ -175,8 +175,20 @@ export function TechLogo({ name, className = "w-4 h-4", size = 16 }: TechLogoPro
       )
     case "flutter":
       return (
-        <svg viewBox="0 0 24 24" width={size} height={size} className={className} fill="currentColor">
+        <svg viewBox="0 0 24 24" width={size} height={size} className={className} fill="#02569B">
           <path d="M14.314 0L2.3 12 6 15.7 21.684.013h-7.37zm.014 11.072L7.857 17.53l6.47 6.47H21.7l-6.46-6.468 6.46-6.46h-7.372z" />
+        </svg>
+      )
+    case "supabase":
+      return (
+        <svg viewBox="0 0 24 24" width={size} height={size} className={className} fill="#3FCF8E">
+          <path d="M21.362 9.354H12V.396a.396.396 0 0 0-.716-.233L2.21 12.355a.8.8 0 0 0 .62 1.291H12v8.958a.396.396 0 0 0 .716.233l9.074-12.192a.8.8 0 0 0-.62-1.291z" />
+        </svg>
+      )
+    case "dart":
+      return (
+        <svg viewBox="0 0 24 24" width={size} height={size} className={className} fill="#0175C2">
+          <path d="M4.125 0L0 4.125l8.25 8.25 7.425-7.425L11.55 0H4.125zm15.75 4.95l-7.425 7.425 4.125 4.125 7.425-7.425L19.875 4.95zM0 19.875L4.125 24h7.425l-4.125-4.125L0 19.875zm19.875 4.125l4.125-4.125-8.25-8.25-4.125 4.125 8.25 8.25z" />
         </svg>
       )
     case "pandas":
@@ -228,6 +240,56 @@ export function TechLogo({ name, className = "w-4 h-4", size = 16 }: TechLogoPro
       return (
         <svg viewBox="0 0 24 24" width={size} height={size} className={className} fill="currentColor">
           <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 14l-4-4h3V7h2v6h3l-4 4z" />
+        </svg>
+      )
+    case "putty":
+      return (
+        <svg viewBox="0 0 24 24" width={size} height={size} className={className} fill="currentColor">
+          <path d="M2.25 2.25h19.5v19.5H2.25V2.25zm2.25 2.25v7.5h7.5v-7.5h-7.5zm9 0v3h6v-3h-6zm0 4.5v3h6v-3h-6zm-9 4.5v6h6v-6h-6zm7.5 0v6h7.5v-6h-7.5z" />
+        </svg>
+      )
+    case "ssh":
+    case "remoteserveraccess":
+    case "applicationdeployment":
+    case "deployment":
+      return (
+        <svg viewBox="0 0 24 24" width={size} height={size} className={className} fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <polyline points="4 17 10 11 4 5" />
+          <line x1="12" y1="19" x2="20" y2="19" />
+        </svg>
+      )
+    case "nginx":
+      return (
+        <svg viewBox="0 0 24 24" width={size} height={size} className={className} fill="#009639">
+          <path d="M12.002 0L2 5.774v12.452L12.002 24l10-5.774V5.774L12.002 0zm5.666 16.593l-3.328-4.437v4.437h-2.34V7.407h2.34l3.328 4.437V7.407h2.34v9.186h-2.34zM9.664 16.593H7.324V7.407h2.34v9.186z" />
+        </svg>
+      )
+    case "bootstrap":
+      return (
+        <svg viewBox="0 0 24 24" width={size} height={size} className={className} fill="#7952B3">
+          <path d="M14.5 10.5c.8 0 1.5-.7 1.5-1.5s-.7-1.5-1.5-1.5h-4v3h4zm.5 5.5c.8 0 1.5-.7 1.5-1.5s-.7-1.5-1.5-1.5h-4.5v3H15zm-9-16h13c1.7 0 3 1.3 3 3v13c0 1.7-1.3 3-3 3H6c-1.7 0-3-1.3-3-3V3c0-1.7 1.3-3 3-3zm2 4.5v13h6.5c2.5 0 4.5-1.8 4.5-4 0-1.5-.8-2.8-2-3.4 1-.6 1.5-1.7 1.5-2.8 0-2-1.8-3.8-4-3.8H7.5z" />
+        </svg>
+      )
+    case "leaflet":
+    case "leafletjs":
+      return (
+        <svg viewBox="0 0 24 24" width={size} height={size} className={className} fill="#199900">
+          <path d="M10.875 0C8.36 0 4.07 4.025 1.59 7.747 0 10.133 0 12.164 0 13.914c0 5.568 4.512 10.086 10.08 10.086 2.057 0 3.966-.62 5.556-1.683C19.537 19.742 24 14.887 24 11.233 24 4.048 15.688 0 10.875 0zm1.94 2.898c3.834 1.764 8.797 6.425 8.797 10.16 0 2.45-3.637 6.643-6.93 8.53-.404-1.92-1.36-3.835-2.843-5.26-1.558-1.498-3.56-2.332-5.59-2.583 2.043-3.468 4.606-8.887 6.566-10.847z" />
+        </svg>
+      )
+    case "openstreetmap":
+    case "osm":
+      return (
+        <svg viewBox="0 0 24 24" width={size} height={size} className={className} fill="#7EBC6F">
+          <path d="M18.73 0a5.27 5.27 0 0 0-5.27 5.27c0 3.86 4.64 8.65 4.84 8.85.24.25.62.25.86 0 .2-.2 4.84-4.99 4.84-8.85A5.27 5.27 0 0 0 18.73 0zm0 7.9a2.63 2.63 0 1 1 0-5.26 2.63 2.63 0 0 1 0 5.26zm-7.9 4.47l-1.97 4.54-5.32-2.32L7.51 5.9a5.26 5.26 0 0 0 1.25-.43l.94 2.14a2.63 2.63 0 0 1 1.13.46zm1.31 1.75c.42.5.83.94 1.23 1.34l-3.87 8.54L.16 18.2l3.41-7.85 4.97 2.17 2.29-5.27c.4.35.86.63 1.37.81z" />
+        </svg>
+      )
+    case "reverb":
+    case "laravelreverb":
+    case "websocket":
+      return (
+        <svg viewBox="0 0 24 24" width={size} height={size} className={className} fill="#FF2D20">
+          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z" />
         </svg>
       )
     default:

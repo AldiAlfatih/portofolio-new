@@ -17,6 +17,7 @@ import {
 } from "lucide-react"
 import ThemeSwitcher from "@/components/theme-switcher"
 import LanguageToggle from "@/components/language-toggle"
+import { HoverBorderGradient } from "@/components/ui/hover-border-gradient"
 import { useLanguage } from "@/contexts/language-context"
 import { useActiveSection } from "@/hooks/use-active-section"
 
@@ -86,27 +87,22 @@ export default function Header() {
       transition={{ duration: 0.5, ease: "easeOut" }}
     >
       <div className="container mx-auto px-4 flex items-center justify-between">
-        {/* Brand Personal Wordmark without code placeholder */}
+        {/* Brand Personal Wordmark (Clean Typography) */}
         <a
           href="#home"
           onClick={(e) => {
             e.preventDefault()
             handleLinkClick("#home")
           }}
-          className="flex items-center gap-2.5 group"
+          className="flex flex-col group py-0.5"
           aria-label="Muhammad Aldi Alfatih Portfolio"
         >
-          <div className="w-9 h-9 rounded-xl border border-border bg-card flex items-center justify-center font-sans font-black text-xs text-foreground group-hover:border-primary transition-colors shadow-xs">
-            <span className="text-primary tracking-tight">AA</span>
-          </div>
-          <div className="flex flex-col">
-            <span className="font-bold text-sm text-foreground tracking-tight group-hover:text-primary transition-colors font-sans">
-              ALDI ALFATIH
-            </span>
-            <span className="text-[10px] font-mono text-muted-foreground uppercase tracking-wider">
-              S.Kom • AI & Software
-            </span>
-          </div>
+          <span className="font-extrabold text-base tracking-tight text-foreground group-hover:text-primary transition-colors font-sans leading-none mb-1">
+            Muhammad Aldi Alfatih, S.Kom<span className="text-primary">.</span>
+          </span>
+          <span className="text-[10px] font-mono text-muted-foreground uppercase tracking-wider">
+            AI Engineer & Software Engineer
+          </span>
         </a>
 
         {/* Desktop Nav */}
@@ -230,18 +226,28 @@ export default function Header() {
 
         {/* Right Actions: Command Palette Hint, Language Toggle & Theme Switcher */}
         <div className="flex items-center gap-2 sm:gap-2.5">
-          {/* Command Palette Trigger */}
-          <button
+          {/* Command Palette Trigger with Aceternity HoverBorderGradient */}
+          <HoverBorderGradient
+            as="div"
+            role="button"
+            tabIndex={0}
             onClick={triggerCommandPalette}
-            className="hidden sm:flex items-center gap-2 px-2.5 py-1.5 rounded-lg border border-border bg-surface text-xs text-muted-foreground hover:text-foreground hover:border-primary transition-colors font-mono"
+            onKeyDown={(e) => {
+              if (e.key === "Enter" || e.key === " ") {
+                e.preventDefault()
+                triggerCommandPalette()
+              }
+            }}
+            containerClassName="hidden sm:inline-flex rounded-xl cursor-pointer"
+            className="bg-card text-foreground flex items-center gap-2 px-3 py-1.5 text-xs font-mono shadow-xs select-none"
             title={dict.nav.commandPalette}
           >
             <Search className="w-3.5 h-3.5 text-primary" />
-            <span className="hidden md:inline text-[11px]">{dict.nav.search}</span>
-            <kbd className="px-1.5 py-0.5 rounded border border-border bg-surface-secondary text-[10px]">
+            <span className="hidden md:inline text-[11px] font-medium">{dict.nav.search}</span>
+            <kbd className="px-1.5 py-0.5 rounded border border-border bg-surface text-[10px] text-muted-foreground font-mono">
               Ctrl K
             </kbd>
-          </button>
+          </HoverBorderGradient>
 
           {/* Bilingual Language Toggle */}
           <LanguageToggle />

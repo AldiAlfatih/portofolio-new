@@ -2,7 +2,19 @@
 
 import React, { useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { X, ExternalLink, Github, Layers, Target, CheckCircle2, Cpu } from "lucide-react"
+import Image from "next/image"
+import {
+  X,
+  ExternalLink,
+  Github,
+  Layers,
+  Target,
+  CheckCircle2,
+  Cpu,
+  Sparkles,
+  FileText,
+  ArrowRight,
+} from "lucide-react"
 import { ProjectItem } from "@/types/portfolio"
 import { TechLogo } from "@/components/tech-logo"
 import { useLanguage } from "@/contexts/language-context"
@@ -46,10 +58,10 @@ export default function ProjectDetailModal({ project, onClose }: ProjectDetailMo
 
         {/* Modal Window */}
         <motion.div
-          initial={{ opacity: 0, scale: 0.95, y: 15 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          exit={{ opacity: 0, scale: 0.95, y: 15 }}
-          transition={{ duration: 0.2 }}
+          initial={{ opacity: 0, scale: 0.96, y: 16, filter: "blur(4px)" }}
+          animate={{ opacity: 1, scale: 1, y: 0, filter: "blur(0px)" }}
+          exit={{ opacity: 0, scale: 0.96, y: 16, filter: "blur(4px)" }}
+          transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
           className="relative w-full max-w-3xl max-h-[90vh] overflow-y-auto rounded-2xl border border-border bg-card text-card-foreground shadow-2xl p-6 sm:p-8 z-10"
         >
           {/* Close button */}
@@ -68,11 +80,11 @@ export default function ProjectDetailModal({ project, onClose }: ProjectDetailMo
                 {project.category}
               </span>
               <span className="text-xs font-mono text-muted-foreground px-2.5 py-0.5 rounded-full bg-surface-secondary border border-border">
-                {isEn ? "Role" : "Peran"}: {project.role}
+                {isEn ? "Role" : "Peran"}: {isEn && project.roleEn ? project.roleEn : project.role}
               </span>
             </div>
             <h2 className="text-2xl sm:text-3xl font-bold text-foreground tracking-tight">
-              {project.title}
+              {isEn && project.titleEn ? project.titleEn : project.title}
             </h2>
           </div>
 
@@ -97,33 +109,123 @@ export default function ProjectDetailModal({ project, onClose }: ProjectDetailMo
                 <Layers className="w-3.5 h-3.5 text-primary" />
                 {isEn ? "Overview & Engineering Context" : "Gambaran Umum & Konteks Rekayasa"}
               </h3>
-              <p className="leading-relaxed text-foreground/80">
-                {project.longDescription || project.description}
+              <p className="leading-relaxed text-foreground/80 text-left sm:text-justify hyphens-auto">
+                {isEn && project.longDescriptionEn
+                  ? project.longDescriptionEn
+                  : isEn && project.descriptionEn
+                  ? project.descriptionEn
+                  : project.longDescription || project.description}
               </p>
             </div>
 
             {/* Problem Statement */}
-            {project.problemStatement && (
+            {(project.problemStatement || project.problemStatementEn) && (
               <div className="p-4 rounded-xl border border-border/80 bg-surface-secondary/60">
                 <h3 className="text-xs font-mono uppercase tracking-wider text-muted-foreground mb-2 flex items-center gap-2">
                   <Target className="w-3.5 h-3.5 text-primary" />
                   {isEn ? "Problem Statement & Challenges" : "Problem Statement & Tantangan"}
                 </h3>
-                <p className="leading-relaxed text-foreground/80">
-                  {project.problemStatement}
+                <p className="leading-relaxed text-foreground/80 text-left sm:text-justify hyphens-auto">
+                  {isEn && project.problemStatementEn
+                    ? project.problemStatementEn
+                    : project.problemStatement}
                 </p>
               </div>
             )}
 
             {/* Technical Approach */}
-            {project.technicalApproach && (
+            {(project.technicalApproach || project.technicalApproachEn) && (
               <div>
                 <h3 className="text-xs font-mono uppercase tracking-wider text-muted-foreground mb-2 flex items-center gap-2">
                   <Cpu className="w-3.5 h-3.5 text-primary" />
                   {isEn ? "Technical Approach & Architecture" : "Pendekatan Teknis & Arsitektur"}
                 </h3>
-                <p className="leading-relaxed text-foreground/80">
-                  {project.technicalApproach}
+                <p className="leading-relaxed text-foreground/80 text-left sm:text-justify hyphens-auto">
+                  {isEn && project.technicalApproachEn
+                    ? project.technicalApproachEn
+                    : project.technicalApproach}
+                </p>
+              </div>
+            )}
+
+            {/* Visual Workflow Steps (Pipeline) */}
+            {project.workflowSteps && project.workflowSteps.length > 0 && (
+              <div className="p-4 rounded-xl border border-border bg-surface-secondary/40">
+                <h3 className="text-xs font-mono uppercase tracking-wider text-muted-foreground mb-3 flex items-center gap-2 font-semibold">
+                  <Layers className="w-3.5 h-3.5 text-primary" />
+                  {isEn ? "Technical Pipeline Workflow:" : "Alur Kerja Pipeline Teknis:"}
+                </h3>
+                <div className="flex flex-wrap items-center gap-2">
+                  {project.workflowSteps.map((step, sIdx) => (
+                    <React.Fragment key={sIdx}>
+                      <span className="px-3 py-1.5 rounded-lg border border-border bg-card text-xs font-mono font-medium text-foreground shadow-xs">
+                        {step}
+                      </span>
+                      {sIdx < project.workflowSteps!.length - 1 && (
+                        <ArrowRight className="w-3.5 h-3.5 text-primary shrink-0" />
+                      )}
+                    </React.Fragment>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* Model Architecture & Benchmark Evaluation Table */}
+            {project.evaluationTable && project.evaluationTable.length > 0 && (
+              <div className="p-4 rounded-xl border border-border bg-surface-secondary/40">
+                <h3 className="text-xs font-mono uppercase tracking-wider text-muted-foreground mb-3 flex items-center gap-2 font-semibold">
+                  <Sparkles className="w-3.5 h-3.5 text-primary" />
+                  {isEn
+                    ? "Model Architecture & Benchmark Evaluation (Research Dataset):"
+                    : "Evaluasi Komparasi Arsitektur Model (Dataset Penelitian):"}
+                </h3>
+                <div className="overflow-x-auto">
+                  <table className="w-full text-xs text-left font-sans border-collapse">
+                    <thead>
+                      <tr className="border-b border-border text-[11px] font-mono text-muted-foreground uppercase">
+                        <th className="py-2 pr-3">Model</th>
+                        <th className="py-2 px-3">Arsitektur</th>
+                        <th className="py-2 px-3">Fitur Input</th>
+                        <th className="py-2 px-3 text-right">Val Acc</th>
+                        <th className="py-2 px-3 text-right">Test Acc</th>
+                        <th className="py-2 pl-3 text-right">Beban</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-border/60">
+                      {project.evaluationTable.map((row, rIdx) => (
+                        <tr
+                          key={rIdx}
+                          className={
+                            row.model.includes("Terbaik") || row.model.includes("Best")
+                              ? "bg-primary/10 font-semibold"
+                              : ""
+                          }
+                        >
+                          <td className="py-2.5 pr-3 font-mono font-bold text-foreground">
+                            {row.model}
+                          </td>
+                          <td className="py-2.5 px-3 font-mono text-primary">
+                            {row.architecture}
+                          </td>
+                          <td className="py-2.5 px-3 text-muted-foreground">
+                            {row.features}
+                          </td>
+                          <td className="py-2.5 px-3 text-right font-mono font-bold text-foreground">
+                            {row.valAccuracy}
+                          </td>
+                          <td className="py-2.5 px-3 text-right font-mono font-bold text-emerald-500">
+                            {row.testAccuracy}
+                          </td>
+                          <td className="py-2.5 pl-3 text-right text-[11px] font-mono text-muted-foreground">
+                            {row.computeLoad}
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+                <p className="text-[10px] text-muted-foreground mt-2.5 italic font-sans">
+                  * Angka akurasi merupakan hasil benchmark komparatif pada dataset penelitian terisolasi (bukan klaim performa operasional mutlak di dunia nyata).
                 </p>
               </div>
             )}
@@ -160,13 +262,55 @@ export default function ProjectDetailModal({ project, onClose }: ProjectDetailMo
             )}
 
             {/* Results */}
-            {project.results && (
+            {(project.results || project.resultsEn) && (
               <div className="p-4 rounded-xl border border-emerald-500/20 bg-emerald-500/5">
                 <h3 className="text-xs font-mono uppercase tracking-wider text-emerald-500 mb-1.5 flex items-center gap-2 font-semibold">
                   <CheckCircle2 className="w-4 h-4 text-emerald-500" />
                   {isEn ? "Key Results & Impact" : "Capaian & Hasil Evaluasi"}
                 </h3>
-                <p className="leading-relaxed text-foreground/85">{project.results}</p>
+                <p className="leading-relaxed text-foreground/85 text-left sm:text-justify hyphens-auto">
+                  {isEn && project.resultsEn ? project.resultsEn : project.results}
+                </p>
+              </div>
+            )}
+
+            {/* Visual Evidence & Documentation (Original Assets from Portfolio) */}
+            {project.evidenceImages && project.evidenceImages.length > 0 && (
+              <div className="space-y-3 pt-4 border-t border-border">
+                <h3 className="text-xs font-mono uppercase tracking-wider text-muted-foreground flex items-center gap-2 font-semibold">
+                  <FileText className="w-3.5 h-3.5 text-primary" />
+                  {isEn
+                    ? "Visual Evidence & Documentation:"
+                    : "Dokumentasi & Bukti Pekerjaan (Aset Resmi):"}
+                </h3>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  {project.evidenceImages.map((img, imgIdx) => (
+                    <div
+                      key={imgIdx}
+                      className="rounded-xl border border-border bg-surface overflow-hidden group shadow-xs hover:border-primary transition-colors"
+                    >
+                      <div className="relative h-48 w-full bg-surface-secondary/70 overflow-hidden">
+                        <Image
+                          src={img.url}
+                          alt={img.title}
+                          fill
+                          className="object-contain p-2 transition-transform duration-300 group-hover:scale-105"
+                          sizes="(max-width: 768px) 100vw, 50vw"
+                        />
+                      </div>
+                      <div className="p-3 border-t border-border bg-card">
+                        <div className="text-xs font-bold text-foreground leading-snug">
+                          {img.title}
+                        </div>
+                        {img.caption && (
+                          <div className="text-[11px] text-muted-foreground mt-1 leading-relaxed font-sans">
+                            {img.caption}
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  ))}
+                </div>
               </div>
             )}
           </div>

@@ -10,18 +10,24 @@ import {
   Users,
   ArrowUpDown,
   Sparkles,
+  ArrowUpRight,
+  ChevronDown,
+  ChevronUp,
 } from "lucide-react"
 import { experiencesData } from "@/data/experiences"
 import { useLanguage } from "@/contexts/language-context"
-import { TechLogo } from "@/components/tech-logo"
 import { ExperienceItem } from "@/types/portfolio"
+import ExperienceDetailModal from "@/components/experience/experience-detail-modal"
 
 export default function Experience() {
-  const { dict } = useLanguage()
+  const { dict, language } = useLanguage()
+  const isEn = language === "en"
   const [activeCategory, setActiveCategory] = useState<
     "all" | "professional" | "academic_project" | "leadership"
   >("all")
   const [sortDirection, setSortDirection] = useState<"asc" | "desc">("desc")
+  const [selectedExperience, setSelectedExperience] = useState<ExperienceItem | null>(null)
+  const [showAll, setShowAll] = useState(false)
 
   // Filter and sort items based on honest chronology
   const displayedExperiences = useMemo(() => {
@@ -41,6 +47,11 @@ export default function Experience() {
       }
     })
   }, [activeCategory, sortDirection])
+
+  // Initial compact list (5 items) or full list
+  const visibleExperiences = showAll
+    ? displayedExperiences
+    : displayedExperiences.slice(0, 5)
 
   // Count items by category
   const countAll = experiencesData.length
@@ -96,46 +107,41 @@ export default function Experience() {
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mb-16 pb-4 border-b border-border">
           {/* Category Tabs */}
           <div className="flex flex-wrap items-center justify-center gap-1.5 p-1 rounded-xl border border-border bg-surface text-xs font-mono">
-            <button
-              onClick={() => setActiveCategory("all")}
-              className={`px-3 py-1.5 rounded-lg transition-all ${
-                activeCategory === "all"
-                  ? "bg-primary text-primary-foreground font-semibold shadow-xs"
-                  : "text-muted-foreground hover:text-foreground"
-              }`}
-            >
-              {dict.experience.tabAll} ({countAll})
-            </button>
-            <button
-              onClick={() => setActiveCategory("professional")}
-              className={`px-3 py-1.5 rounded-lg transition-all ${
-                activeCategory === "professional"
-                  ? "bg-primary text-primary-foreground font-semibold shadow-xs"
-                  : "text-muted-foreground hover:text-foreground"
-              }`}
-            >
-              {dict.experience.tabProf} ({countProf})
-            </button>
-            <button
-              onClick={() => setActiveCategory("academic_project")}
-              className={`px-3 py-1.5 rounded-lg transition-all ${
-                activeCategory === "academic_project"
-                  ? "bg-primary text-primary-foreground font-semibold shadow-xs"
-                  : "text-muted-foreground hover:text-foreground"
-              }`}
-            >
-              {dict.experience.tabAcademic} ({countAcademic})
-            </button>
-            <button
-              onClick={() => setActiveCategory("leadership")}
-              className={`px-3 py-1.5 rounded-lg transition-all ${
-                activeCategory === "leadership"
-                  ? "bg-primary text-primary-foreground font-semibold shadow-xs"
-                  : "text-muted-foreground hover:text-foreground"
-              }`}
-            >
-              {dict.experience.tabLeadership} ({countLeadership})
-            </button>
+            {[
+              { id: "all", label: `${dict.experience.tabAll} (${countAll})` },
+              { id: "professional", label: `${dict.experience.tabProf} (${countProf})` },
+              { id: "academic_project", label: `${dict.experience.tabAcademic} (${countAcademic})` },
+              { id: "leadership", label: `${dict.experience.tabLeadership} (${countLeadership})` },
+            ].map((tab) => {
+              const isActive = activeCategory === tab.id
+              return (
+                <button
+                  key={tab.id}
+                  onClick={() => {
+                    setActiveCategory(tab.id as any)
+                    setShowAll(false)
+                  }}
+                  className="relative px-3 py-1.5 rounded-lg transition-colors"
+                >
+                  {isActive && (
+                    <motion.span
+                      layoutId="activeExperienceTabPill"
+                      className="absolute inset-0 rounded-lg bg-primary shadow-xs -z-10"
+                      transition={{ type: "spring", stiffness: 350, damping: 30 }}
+                    />
+                  )}
+                  <span
+                    className={`relative z-10 ${
+                      isActive
+                        ? "text-primary-foreground font-semibold"
+                        : "text-muted-foreground hover:text-foreground"
+                    }`}
+                  >
+                    {tab.label}
+                  </span>
+                </button>
+              )
+            })}
           </div>
 
           {/* Chronological Sorting Switcher */}
@@ -162,10 +168,15 @@ export default function Experience() {
           <div className="md:hidden absolute left-4 sm:left-5 top-4 bottom-8 w-0.5 bg-gradient-to-b from-primary via-border to-primary/40 pointer-events-none" />
 
           {/* Nodes and Alternating Cards */}
-          <div className="space-y-12 sm:space-y-14">
+          <div className="space-y-10 sm:space-y-12">
             <AnimatePresence mode="popLayout">
-              {displayedExperiences.map((exp, idx) => {
+              {visibleExperiences.map((exp, idx) => {
                 const isEven = idx % 2 === 0
+                const expPeriod = isEn && exp.periodEn ? exp.periodEn : exp.period
+                const expType = isEn && exp.typeEn ? exp.typeEn : exp.type
+                const expTitle = isEn && exp.titleEn ? exp.titleEn : exp.title
+                const expLocation = isEn && exp.locationEn ? exp.locationEn : exp.location
+                const expDescription = isEn && exp.descriptionEn ? exp.descriptionEn : exp.description
 
                 return (
                   <motion.div
@@ -202,65 +213,55 @@ export default function Experience() {
                           : "md:pl-[calc(50%+1.5rem)] md:justify-end"
                       }`}
                     >
-                      {/* Timeline Card */}
-                      <div className="w-full p-6 sm:p-7 rounded-2xl border border-border bg-card shadow-xs hover:border-primary transition-all">
-                        {/* Period & Type Tag */}
-                        <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
-                          <span className="inline-flex items-center gap-1.5 text-xs font-mono font-bold text-primary">
-                            <Calendar className="w-3.5 h-3.5" />
-                            {exp.period}
-                          </span>
-                          <span className="text-[10px] font-mono px-2.5 py-0.5 rounded-full border border-border bg-surface-secondary text-foreground font-semibold">
-                            {exp.type}
-                          </span>
-                        </div>
-
-                        {/* Position Title & Organization */}
-                        <h3 className="text-base sm:text-lg font-bold text-foreground mb-1 leading-snug">
-                          {exp.title}
-                        </h3>
-                        <div className="text-xs sm:text-sm font-semibold text-accent mb-3 flex items-center gap-1.5 font-sans">
-                          <Building className="w-3.5 h-3.5 shrink-0" />
-                          <span>{exp.company}</span>
-                          <span className="text-muted-foreground font-normal">• {exp.location}</span>
-                        </div>
-
-                        {/* Brief Summary */}
-                        <p className="text-xs sm:text-sm text-foreground/80 leading-relaxed font-sans mb-4">
-                          {exp.description}
-                        </p>
-
-                        {/* Key Contributions & Impact */}
-                        {exp.achievements.length > 0 && (
-                          <div className="mb-4 space-y-2 pt-3 border-t border-border/60">
-                            <div className="text-[10px] font-mono uppercase tracking-wider text-muted-foreground font-semibold">
-                              {dict.experience.contributionsLabel}
-                            </div>
-                            <ul className="space-y-1.5 text-xs text-muted-foreground font-sans">
-                              {exp.achievements.map((ach, aIdx) => (
-                                <li key={aIdx} className="flex items-start gap-2 leading-relaxed">
-                                  <span className="text-primary mt-0.5 shrink-0 font-mono text-xs">↳</span>
-                                  <span>{ach}</span>
-                                </li>
-                              ))}
-                            </ul>
-                          </div>
-                        )}
-
-                        {/* Technology Stack Tags with Authentic Logos */}
-                        {exp.technologies && exp.technologies.length > 0 && (
-                          <div className="flex flex-wrap items-center gap-1.5 pt-3 border-t border-border/60">
-                            <span className="text-[10px] font-mono text-muted-foreground mr-1">
-                              {dict.experience.technologiesLabel}
+                      {/* Compact Timeline Node Card */}
+                      <div className="w-full p-5 sm:p-6 rounded-2xl border border-border bg-card shadow-xs hover:border-primary transition-all flex flex-col justify-between">
+                        <div>
+                          {/* Period & Type Tag */}
+                          <div className="flex flex-wrap items-center justify-between gap-2 mb-2.5">
+                            <span className="inline-flex items-center gap-1.5 text-xs font-mono font-bold text-primary">
+                              <Calendar className="w-3.5 h-3.5" />
+                              {expPeriod}
                             </span>
-                            {exp.technologies.map((tech) => (
-                              <span key={tech} className="tech-tag text-[10px]">
-                                <TechLogo name={tech} className="w-3 h-3" size={12} />
-                                <span>{tech}</span>
-                              </span>
-                            ))}
+                            <span className="text-[10px] font-mono px-2.5 py-0.5 rounded-full border border-border bg-surface-secondary text-foreground font-semibold">
+                              {expType}
+                            </span>
                           </div>
-                        )}
+
+                          {/* Position Title & Organization */}
+                          <h3 className="text-base sm:text-lg font-bold text-foreground mb-1 leading-snug">
+                            {expTitle}
+                          </h3>
+                          <div className="text-xs sm:text-sm font-semibold text-accent mb-3 flex items-center gap-1.5 font-sans">
+                            <Building className="w-3.5 h-3.5 shrink-0" />
+                            <span>{exp.company}</span>
+                            <span className="text-muted-foreground font-normal">
+                              • {expLocation}
+                            </span>
+                          </div>
+
+                          {/* 1-2 Sentence Compact Summary */}
+                          <p className="text-xs sm:text-sm text-foreground/80 leading-relaxed font-sans mb-4 text-left sm:text-justify hyphens-auto line-clamp-2">
+                            {expDescription}
+                          </p>
+                        </div>
+
+                        {/* Card Footer: Clean View Details Action */}
+                        <div className="pt-3 border-t border-border/60 flex items-center justify-between">
+                          <button
+                            onClick={() => setSelectedExperience(exp)}
+                            className="inline-flex items-center gap-1.5 text-xs font-mono font-bold text-primary hover:underline group/btn"
+                          >
+                            <span>{dict.experience.viewDetailsBtn}</span>
+                            <ArrowUpRight className="w-3.5 h-3.5 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform" />
+                          </button>
+
+                          {/* Mini count indicator for key contributions */}
+                          {exp.achievements && exp.achievements.length > 0 && (
+                            <span className="text-[10px] font-mono text-muted-foreground">
+                              {exp.achievements.length} {isEn ? "highlights" : "poin capaian"}
+                            </span>
+                          )}
+                        </div>
                       </div>
                     </div>
                   </motion.div>
@@ -268,8 +269,38 @@ export default function Experience() {
               })}
             </AnimatePresence>
           </div>
+
+          {/* Show All Toggle Button */}
+          {displayedExperiences.length > 5 && (
+            <div className="flex justify-center mt-12 relative z-10">
+              <button
+                onClick={() => setShowAll(!showAll)}
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-border bg-card text-xs font-mono font-semibold text-foreground hover:border-primary hover:text-primary transition-all shadow-xs"
+              >
+                {showAll ? (
+                  <>
+                    <span>{dict.experience.showLessBtn}</span>
+                    <ChevronUp className="w-3.5 h-3.5" />
+                  </>
+                ) : (
+                  <>
+                    <span>
+                      {dict.experience.showAllBtn} ({displayedExperiences.length})
+                    </span>
+                    <ChevronDown className="w-3.5 h-3.5" />
+                  </>
+                )}
+              </button>
+            </div>
+          )}
         </div>
       </div>
+
+      {/* Experience Detail Modal */}
+      <ExperienceDetailModal
+        experience={selectedExperience}
+        onClose={() => setSelectedExperience(null)}
+      />
     </section>
   )
 }

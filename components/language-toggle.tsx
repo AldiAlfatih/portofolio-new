@@ -21,9 +21,9 @@ export default function LanguageToggle() {
     return () => document.removeEventListener("mousedown", handleClickOutside)
   }, [])
 
-  const options: { code: Language; label: string; flag: string }[] = [
-    { code: "id", label: "Bahasa Indonesia", flag: "🇮🇩" },
-    { code: "en", label: "English", flag: "🇺🇸" },
+  const options: { code: Language; label: string; shortLabel: string }[] = [
+    { code: "id", label: "Bahasa Indonesia", shortLabel: "ID" },
+    { code: "en", label: "English", shortLabel: "EN" },
   ]
 
   const currentOption = options.find((o) => o.code === language) || options[0]
@@ -36,9 +36,9 @@ export default function LanguageToggle() {
         aria-label="Pilih Bahasa / Select Language"
         title="Ganti Bahasa / Switch Language"
       >
-        <span className="text-sm leading-none">{currentOption.flag}</span>
+        <Globe className="w-3.5 h-3.5 text-muted-foreground" />
         <span className="font-semibold uppercase tracking-wider text-[11px]">
-          {currentOption.code}
+          {currentOption.shortLabel}
         </span>
         <ChevronDown className="w-3 h-3 opacity-60" />
       </button>
@@ -72,7 +72,7 @@ export default function LanguageToggle() {
                     }`}
                   >
                     <span className="flex items-center gap-2">
-                      <span className="text-base">{opt.flag}</span>
+                      <span className="font-mono text-xs font-bold text-primary">{opt.shortLabel}</span>
                       <span className="font-sans">{opt.label}</span>
                     </span>
                     {isActive && <Check className="w-3.5 h-3.5 text-primary shrink-0" />}

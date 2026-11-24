@@ -1,30 +1,101 @@
 "use client"
 
-import React from "react"
-import { motion } from "framer-motion"
-import { Globe, Flag, Star, Trophy, Award, Sparkles } from "lucide-react"
-import { achievementsData } from "@/data/achievements"
+import React, { useState, useMemo } from "react"
+import { motion, AnimatePresence } from "framer-motion"
+import {
+  Trophy,
+  Globe,
+  Flag,
+  GraduationCap,
+  Award,
+  Building,
+  ArrowUpRight,
+  Filter,
+  ShieldCheck,
+  FileText,
+} from "lucide-react"
+import { achievementsList } from "@/data/achievements"
+import { AchievementItem } from "@/types/portfolio"
 import { useLanguage } from "@/contexts/language-context"
+import AchievementDetailModal from "@/components/achievements/achievement-detail-modal"
 
 export default function Achievements() {
   const { dict, language } = useLanguage()
+  const isEn = language === "en"
+  const [activeTab, setActiveTab] = useState<
+    "all" | "international" | "national" | "academic" | "hki"
+  >("all")
+  const [selectedAchievement, setSelectedAchievement] =
+    useState<AchievementItem | null>(null)
 
-  // Extract categories
-  const internationalGroup = achievementsData.find((g) => g.category === "Internasional")
-  const nationalGroup = achievementsData.find((g) => g.category === "Nasional")
-  const academicGroup = achievementsData.find(
-    (g) => g.category === "Keunggulan Akademik & Kehormatan" || g.category === "Keunggulan Akademik"
-  )
+  // Filter items based on active tab
+  const filteredAchievements = useMemo(() => {
+    if (activeTab === "all") return achievementsList
+    return achievementsList.filter((item) => item.category === activeTab)
+  }, [activeTab])
 
-  const internationalItem = internationalGroup?.items[0]
-  const nationalItems = nationalGroup?.items || []
-  const academicItems = academicGroup?.items || []
+  // Category counts
+  const countAll = achievementsList.length
+  const countInternational = achievementsList.filter(
+    (item) => item.category === "international"
+  ).length
+  const countNational = achievementsList.filter(
+    (item) => item.category === "national"
+  ).length
+  const countAcademic = achievementsList.filter(
+    (item) => item.category === "academic"
+  ).length
+  const countHki = achievementsList.filter(
+    (item) => item.category === "hki"
+  ).length
+
+  // Helper for category badge visual
+  const getCategoryBadge = (category: AchievementItem["category"]) => {
+    switch (category) {
+      case "international":
+        return (
+          <span className="inline-flex items-center gap-1 text-[11px] font-mono font-semibold px-2.5 py-0.5 rounded-full bg-blue-500/10 text-blue-500 border border-blue-500/20">
+            <Globe className="w-3 h-3" />
+            <span>{dict.achievements.tabInternational}</span>
+          </span>
+        )
+      case "national":
+        return (
+          <span className="inline-flex items-center gap-1 text-[11px] font-mono font-semibold px-2.5 py-0.5 rounded-full bg-emerald-500/10 text-emerald-500 border border-emerald-500/20">
+            <Flag className="w-3 h-3" />
+            <span>{dict.achievements.tabNational}</span>
+          </span>
+        )
+      case "academic":
+        return (
+          <span className="inline-flex items-center gap-1 text-[11px] font-mono font-semibold px-2.5 py-0.5 rounded-full bg-purple-500/10 text-purple-500 border border-purple-500/20">
+            <GraduationCap className="w-3 h-3" />
+            <span>{dict.achievements.tabAcademic}</span>
+          </span>
+        )
+      case "hki":
+        return (
+          <span className="inline-flex items-center gap-1 text-[11px] font-mono font-semibold px-2.5 py-0.5 rounded-full bg-amber-500/10 text-amber-500 border border-amber-500/20">
+            <ShieldCheck className="w-3 h-3" />
+            <span>{dict.achievements.tabHki}</span>
+          </span>
+        )
+    }
+  }
+
+  const tabs = [
+    { id: "all", label: `${dict.achievements.tabAll} (${countAll})` },
+    { id: "international", label: `${dict.achievements.tabInternational} (${countInternational})` },
+    { id: "national", label: `${dict.achievements.tabNational} (${countNational})` },
+    { id: "academic", label: `${dict.achievements.tabAcademic} (${countAcademic})` },
+    { id: "hki", label: `${dict.achievements.tabHki} (${countHki})` },
+  ] as const
 
   return (
     <section id="achievements" className="py-24 relative border-t border-border">
       <div className="container mx-auto px-4 max-w-6xl">
         {/* Section Header */}
-        <div className="flex flex-col items-center text-center mb-14">
+        <div className="flex flex-col items-center text-center mb-12">
           <div className="flex items-center gap-2 font-mono text-xs text-primary uppercase tracking-wider mb-2">
             <Trophy className="w-3.5 h-3.5" />
             <span>{dict.achievements.badge}</span>
@@ -37,196 +108,165 @@ export default function Achievements() {
           </p>
         </div>
 
-        {/* Editorial Two-Column Layout (Desktop) / Stacked (Mobile) */}
-        {/* Strictly items-start, natural height, zero items-stretch, zero h-full */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start">
-          {/* Left Column: International Spotlight + Academic Honors (lg:col-span-5) */}
-          <div className="lg:col-span-5 space-y-6">
-            {/* International Achievement: Compact Editorial Feature */}
-            {internationalItem && (
-              <motion.div
-                initial={{ opacity: 0, y: 15 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.3 }}
-                className="rounded-2xl border border-border bg-card p-6 sm:p-7 shadow-xs hover:border-primary transition-all"
-              >
-                {/* Editorial Category Header */}
-                <div className="flex items-center justify-between pb-4 mb-4 border-b border-border/80">
-                  <div className="flex items-center gap-2.5">
-                    <div className="p-2 rounded-lg border border-border bg-surface-secondary text-primary">
-                      <Globe className="w-4 h-4" />
-                    </div>
-                    <div>
-                      <span className="text-[10px] font-mono uppercase tracking-widest text-primary font-bold block">
-                        {dict.achievements.internationalTitle}
-                      </span>
-                      <span className="text-xs font-mono text-muted-foreground">
-                        1 {dict.achievements.verifiedEntries}
-                      </span>
-                    </div>
-                  </div>
-                  <span className="text-xs font-mono px-2.5 py-0.5 rounded-full border border-border bg-surface text-primary font-bold">
-                    {internationalItem.year}
-                  </span>
-                </div>
-
-                {/* International Item Content */}
-                <div className="space-y-3">
-                  <div className="flex items-center gap-2">
-                    <span className="text-xs font-mono font-bold text-primary">#01</span>
-                    <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-surface-secondary border border-border text-foreground font-semibold">
-                      {internationalItem.type}
-                    </span>
-                  </div>
-
-                  <h3 className="text-base sm:text-lg font-bold text-foreground leading-snug">
-                    {internationalItem.title}
-                  </h3>
-
-                  <p className="text-xs text-muted-foreground font-sans">
-                    {internationalItem.description}
-                  </p>
-
-                  <div className="text-xs text-foreground/85 leading-relaxed font-sans pt-3 border-t border-border/60 flex items-start gap-2">
-                    <span className="text-primary mt-0.5 shrink-0 font-mono text-xs">↳</span>
-                    <span>{internationalItem.impact}</span>
-                  </div>
-                </div>
-              </motion.div>
-            )}
-
-            {/* Academic Honors & Institutional Distinctions */}
-            {academicItems.length > 0 && (
-              <motion.div
-                initial={{ opacity: 0, y: 15 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.3, delay: 0.08 }}
-                className="rounded-2xl border border-border bg-card p-6 sm:p-7 shadow-xs hover:border-primary transition-all"
-              >
-                {/* Academic Header */}
-                <div className="flex items-center justify-between pb-4 mb-4 border-b border-border/80">
-                  <div className="flex items-center gap-2.5">
-                    <div className="p-2 rounded-lg border border-border bg-surface-secondary text-primary">
-                      <Star className="w-4 h-4" />
-                    </div>
-                    <div>
-                      <span className="text-[10px] font-mono uppercase tracking-widest text-primary font-bold block">
-                        {dict.achievements.academicTitle}
-                      </span>
-                      <span className="text-xs font-mono text-muted-foreground">
-                        {academicItems.length} {dict.achievements.verifiedEntries}
-                      </span>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Academic Items List */}
-                <div className="divide-y divide-border/60">
-                  {academicItems.map((item, idx) => (
-                    <div
-                      key={idx}
-                      className={idx === 0 ? "pb-4" : "pt-4"}
-                    >
-                      <div className="flex items-center justify-between gap-2 mb-1.5">
-                        <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-surface-secondary border border-border text-foreground font-semibold">
-                          {item.type}
-                        </span>
-                        <span className="text-xs font-mono text-primary font-bold">{item.year}</span>
-                      </div>
-                      <h4 className="text-sm sm:text-base font-bold text-foreground mb-1 leading-snug">
-                        {item.title}
-                      </h4>
-                      <p className="text-xs text-muted-foreground font-sans mb-2">
-                        {item.description}
-                      </p>
-                      <div className="text-xs text-foreground/85 leading-relaxed font-sans flex items-start gap-2">
-                        <span className="text-primary mt-0.5 shrink-0 font-mono text-xs">↳</span>
-                        <span>{item.impact}</span>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </motion.div>
-            )}
+        {/* Category Tabs Filter Bar */}
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mb-10 pb-4 border-b border-border">
+          {/* Tabs */}
+          <div className="flex flex-wrap items-center justify-center gap-1.5 p-1 rounded-xl border border-border bg-surface text-xs font-mono">
+            {tabs.map((tab) => {
+              const isActive = activeTab === tab.id
+              return (
+                <button
+                  key={tab.id}
+                  onClick={() => setActiveTab(tab.id as any)}
+                  className={`relative px-3.5 py-1.5 rounded-lg transition-colors ${
+                    isActive
+                      ? "text-primary-foreground font-semibold"
+                      : "text-muted-foreground hover:text-foreground"
+                  }`}
+                >
+                  {isActive && (
+                    <motion.span
+                      layoutId="activeAchievementTabPill"
+                      className="absolute inset-0 rounded-lg bg-primary shadow-xs -z-10"
+                      transition={{ type: "spring", stiffness: 350, damping: 30 }}
+                    />
+                  )}
+                  <span className="relative z-10">{tab.label}</span>
+                </button>
+              )
+            })}
           </div>
 
-          {/* Right Column: National Achievements (Editorial Vertical List) (lg:col-span-7) */}
-          <div className="lg:col-span-7">
-            <motion.div
-              initial={{ opacity: 0, y: 15 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.3, delay: 0.05 }}
-              className="rounded-2xl border border-border bg-card p-6 sm:p-7 shadow-xs hover:border-primary transition-all"
-            >
-              {/* Category Header */}
-              <div className="flex items-center justify-between pb-4 mb-5 border-b border-border/80">
-                <div className="flex items-center gap-2.5">
-                  <div className="p-2 rounded-lg border border-border bg-surface-secondary text-primary">
-                    <Flag className="w-4 h-4" />
-                  </div>
-                  <div>
-                    <span className="text-[10px] font-mono uppercase tracking-widest text-primary font-bold block">
-                      {dict.achievements.nationalTitle}
-                    </span>
-                    <span className="text-xs font-mono text-muted-foreground">
-                      {nationalItems.length} {dict.achievements.verifiedEntries}
-                    </span>
-                  </div>
-                </div>
-                <span className="text-xs font-mono px-2.5 py-0.5 rounded-full border border-border bg-surface text-muted-foreground">
-                  2024 – 2026
-                </span>
-              </div>
+          <div className="flex items-center gap-2 text-xs font-mono text-muted-foreground">
+            <Filter className="w-3.5 h-3.5 text-primary" />
+            <span>
+              {dict.projects.showingCount}{" "}
+              <strong className="text-foreground">{filteredAchievements.length}</strong>{" "}
+              {dict.achievements.verifiedEntries}
+            </span>
+          </div>
+        </div>
 
-              {/* National Editorial Vertical List */}
-              <div className="divide-y divide-border/60">
-                {nationalItems.map((item, idx) => (
-                  <div
-                    key={idx}
-                    className={`group transition-colors ${
-                      idx === 0 ? "pb-5" : idx === nationalItems.length - 1 ? "pt-5" : "py-5"
-                    }`}
-                  >
-                    {/* Item Top Metadata */}
-                    <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
-                      <div className="flex items-center gap-2">
-                        <span className="text-xs font-mono font-bold text-primary">
-                          {String(idx + 1).padStart(2, "0")}
-                        </span>
-                        <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-surface-secondary border border-border text-foreground font-semibold">
-                          {item.type}
-                        </span>
-                      </div>
-                      <span className="text-xs font-mono font-semibold text-primary">
+        {/* Achievements Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <AnimatePresence mode="popLayout">
+            {filteredAchievements.map((item, idx) => {
+              const itemTitle = isEn && item.titleEn ? item.titleEn : item.title
+              const itemRank = isEn && item.rankEn ? item.rankEn : item.rank
+              const itemOrganizer =
+                isEn && item.organizerEn ? item.organizerEn : item.organizer
+              const itemDescription =
+                isEn && item.descriptionEn ? item.descriptionEn : item.description
+              const itemImpact = isEn && item.impactEn ? item.impactEn : item.impact
+
+              return (
+                <motion.div
+                  key={item.id || idx}
+                  layout
+                  initial={{ opacity: 0, y: 15 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, scale: 0.98 }}
+                  transition={{ duration: 0.25, delay: idx * 0.03 }}
+                  className="rounded-2xl border border-border bg-card p-6 sm:p-7 shadow-xs hover:border-primary transition-all flex flex-col justify-between group"
+                >
+                  <div>
+                    {/* Top Metadata Row: Category & Year */}
+                    <div className="flex items-center justify-between gap-2 mb-3">
+                      <div>{getCategoryBadge(item.category)}</div>
+                      <span className="text-xs font-mono px-2.5 py-0.5 rounded-full border border-border bg-surface text-primary font-bold">
                         {item.year}
                       </span>
                     </div>
 
-                    {/* Award Title */}
-                    <h4 className="text-sm sm:text-base font-bold text-foreground group-hover:text-primary transition-colors mb-1.5 leading-snug">
-                      {item.title}
-                    </h4>
+                    {/* Rank / Placement Badge */}
+                    {itemRank && (
+                      <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-primary/30 bg-primary/10 text-primary font-mono text-[11px] font-bold mb-3">
+                        <Award className="w-3.5 h-3.5" />
+                        <span>{itemRank}</span>
+                      </div>
+                    )}
 
-                    {/* Organizer / Description */}
-                    <p className="text-xs text-muted-foreground font-sans mb-2.5 leading-relaxed">
-                      {item.description}
+                    {/* Title */}
+                    <h3 className="text-base sm:text-lg font-bold text-foreground mb-1.5 leading-snug group-hover:text-primary transition-colors">
+                      {itemTitle}
+                    </h3>
+
+                    {/* Organizer / Institution */}
+                    {itemOrganizer && (
+                      <div className="text-xs sm:text-sm font-semibold text-accent mb-3 flex items-center gap-1.5 font-sans">
+                        <Building className="w-3.5 h-3.5 shrink-0" />
+                        <span>{itemOrganizer}</span>
+                      </div>
+                    )}
+
+                    {/* Short Description */}
+                    <p className="text-xs text-foreground/80 leading-relaxed font-sans mb-3 text-left sm:text-justify hyphens-auto line-clamp-3">
+                      {itemDescription}
                     </p>
 
-                    {/* Impact Note with Directional Indicator */}
-                    <div className="text-xs text-foreground/80 leading-relaxed font-sans pt-2 border-t border-border/40 flex items-start gap-2">
-                      <span className="text-primary mt-0.5 shrink-0 font-mono text-xs">↳</span>
-                      <span>{item.impact}</span>
+                    {/* HKI specific metadata badge */}
+                    {item.hkiNumber && (
+                      <div className="mb-3 px-3 py-1.5 rounded-lg border border-border bg-surface text-[11px] font-mono text-muted-foreground flex items-center justify-between">
+                        <span>No. Pencatatan:</span>
+                        <span className="font-bold text-primary">{item.hkiNumber}</span>
+                      </div>
+                    )}
+
+                    {/* Impact / Key Highlight */}
+                    {itemImpact && (
+                      <div className="text-xs text-muted-foreground leading-relaxed font-sans pt-3 border-t border-border/60 flex items-start gap-2">
+                        <span className="text-primary mt-0.5 shrink-0 font-mono text-xs">↳</span>
+                        <span className="line-clamp-2 text-left sm:text-justify hyphens-auto">
+                          {itemImpact}
+                        </span>
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Card Action Row */}
+                  <div className="pt-4 mt-4 border-t border-border/60 flex items-center justify-between gap-2">
+                    <button
+                      onClick={() => setSelectedAchievement(item)}
+                      className="inline-flex items-center gap-1.5 text-xs font-mono font-bold text-primary hover:underline group/btn"
+                    >
+                      <span>{dict.achievements.viewDetailBtn}</span>
+                      <ArrowUpRight className="w-3.5 h-3.5 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform" />
+                    </button>
+
+                    <div className="flex items-center gap-1.5">
+                      {/* Direct PDF link for HKI */}
+                      {item.certificateUrl && (
+                        <a
+                          href={item.certificateUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg border border-border bg-surface text-foreground hover:border-primary hover:text-primary text-[11px] font-mono transition-colors shadow-xs"
+                          title={isEn ? "Open Official PDF Document" : "Buka Dokumen Resmi (PDF)"}
+                        >
+                          <FileText className="w-3 h-3 text-primary" />
+                          <span>PDF</span>
+                        </a>
+                      )}
+
+                      {item.proposalTitle || item.solution || item.theme ? (
+                        <span className="text-[10px] font-mono text-muted-foreground">
+                          {isEn ? "Detailed Specs" : "Spesifikasi Lengkap"}
+                        </span>
+                      ) : null}
                     </div>
                   </div>
-                ))}
-              </div>
-            </motion.div>
-          </div>
+                </motion.div>
+              )
+            })}
+          </AnimatePresence>
         </div>
       </div>
+
+      {/* Achievement Detail Modal */}
+      <AchievementDetailModal
+        achievement={selectedAchievement}
+        onClose={() => setSelectedAchievement(null)}
+      />
     </section>
   )
 }

@@ -257,6 +257,21 @@ export default function CommandPalette() {
                       </span>
                       <span className="text-[10px] font-mono text-muted-foreground">LinkedIn</span>
                     </a>
+
+                    {profileData.contact.instagram && (
+                      <a
+                        href={profileData.contact.instagram}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="w-full flex items-center justify-between px-3 py-2 rounded-lg text-xs text-foreground/90 hover:text-foreground hover:bg-surface-secondary transition-colors text-left"
+                      >
+                        <span className="flex items-center gap-2.5">
+                          <ExternalLink className="w-4 h-4 text-primary" />
+                          <span>{isEn ? "Open Instagram Profile (@aldialf_)" : "Buka Profil Instagram (@aldialf_)"}</span>
+                        </span>
+                        <span className="text-[10px] font-mono text-muted-foreground">Instagram</span>
+                      </a>
+                    )}
                   </div>
                 </div>
 

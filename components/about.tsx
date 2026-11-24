@@ -7,6 +7,7 @@ import {
   GraduationCap,
   Download,
 } from "lucide-react"
+import { GlareCard } from "@/components/ui/glare-card"
 import { profileData } from "@/data/profile"
 import { useLanguage } from "@/contexts/language-context"
 
@@ -22,7 +23,7 @@ export default function About() {
 
   return (
     <section id="about" className="py-24 relative border-t border-border/60">
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
         {/* Section Header */}
         <div className="flex flex-col items-center text-center mb-16">
           <div className="flex items-center gap-2 font-mono text-xs text-primary uppercase tracking-wider mb-2">
@@ -45,22 +46,37 @@ export default function About() {
             transition={{ duration: 0.6 }}
             className="lg:col-span-5 flex flex-col items-center"
           >
-            {/* Professional Portrait Frame */}
-            <div className="relative w-64 h-64 sm:w-72 sm:h-72 rounded-2xl p-2 border border-border bg-card shadow-xl group">
-              <div className="relative w-full h-full rounded-xl overflow-hidden bg-surface-secondary">
-                <Image
-                  src="/pp-aldi.jpg"
-                  alt="Muhammad Aldi Alfatih, S.Kom."
-                  fill
-                  className="object-cover transition-transform duration-500 group-hover:scale-105"
-                  sizes="(max-width: 768px) 280px, 320px"
-                />
-              </div>
+            {/* Professional Portrait Frame with 3D Glare */}
+            <div className="relative group">
+              {/* Subtle ambient theme glow */}
+              <div
+                className="absolute -inset-2 rounded-3xl opacity-25 blur-xl pointer-events-none transition-opacity duration-500 group-hover:opacity-45"
+                style={{
+                  background: "radial-gradient(circle, var(--primary) 0%, transparent 70%)",
+                }}
+              />
+              <GlareCard
+                className="w-64 h-64 sm:w-72 sm:h-72 rounded-2xl border border-border bg-card shadow-xl"
+                tiltMaxAngleX={10}
+                tiltMaxAngleY={10}
+                glareOpacity={0.5}
+              >
+                <div className="relative w-full h-full rounded-xl overflow-hidden bg-surface-secondary">
+                  <Image
+                    src="/pp-aldi.jpg"
+                    alt="Muhammad Aldi Alfatih, S.Kom."
+                    fill
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    sizes="(max-width: 768px) 280px, 320px"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
+                </div>
+              </GlareCard>
 
               {/* Verified Degree Badge */}
-              <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full border border-border bg-surface text-foreground shadow-md flex items-center gap-1.5 whitespace-nowrap">
-                <GraduationCap className="w-3.5 h-3.5 text-primary" />
-                <span className="text-xs font-mono font-bold">{dict.about.degreePill}</span>
+              <div className="absolute -bottom-3.5 left-1/2 -translate-x-1/2 px-4 py-1.5 rounded-full border border-border bg-card text-foreground shadow-lg flex items-center gap-2 whitespace-nowrap z-30">
+                <GraduationCap className="w-4 h-4 text-primary shrink-0" />
+                <span className="text-xs font-mono font-bold text-foreground">{dict.about.degreePill}</span>
               </div>
             </div>
 
@@ -76,14 +92,12 @@ export default function About() {
                 <span className="font-mono text-muted-foreground">{dict.about.major}:</span>
                 <span className="font-semibold text-foreground">{dict.about.majorVal}</span>
               </div>
-              {profileData.education.awards && (
-                <div className="flex items-center justify-between pb-2 border-b border-border">
-                  <span className="font-mono text-muted-foreground">Kehormatan:</span>
-                  <span className="font-semibold text-primary text-right text-[11px]">
-                    {profileData.education.awards}
-                  </span>
-                </div>
-              )}
+              <div className="flex items-center justify-between pb-2 border-b border-border">
+                <span className="font-mono text-muted-foreground">{dict.about.honorsLabel}</span>
+                <span className="font-semibold text-primary text-right text-[11px]">
+                  {dict.about.honorsVal}
+                </span>
+              </div>
               <div className="flex items-center justify-between">
                 <span className="font-mono text-muted-foreground">{dict.about.status}:</span>
                 <span className="font-mono text-foreground font-semibold">{dict.about.statusVal}</span>
@@ -97,16 +111,16 @@ export default function About() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="lg:col-span-7"
+            className="lg:col-span-7 lg:pl-6 lg:pr-6 xl:pr-10"
           >
-            <h3 className="text-xl sm:text-2xl font-bold text-foreground mb-4">
+            <h3 className="text-xl sm:text-2xl font-bold text-foreground mb-5 tracking-tight">
               {dict.about.heading}
             </h3>
 
-            <div className="space-y-4 text-foreground/80 text-sm sm:text-base leading-relaxed mb-8">
-              <p>{dict.about.paragraph1}</p>
-              <p>{dict.about.paragraph2}</p>
-              <p>{dict.about.paragraph3}</p>
+            <div className="space-y-4 text-foreground/85 text-sm sm:text-base leading-relaxed mb-8 max-w-2xl">
+              <p className="text-left leading-relaxed">{dict.about.paragraph1}</p>
+              <p className="text-left leading-relaxed">{dict.about.paragraph2}</p>
+              <p className="text-left leading-relaxed">{dict.about.paragraph3}</p>
             </div>
 
             {/* Quick Stats Grid */}

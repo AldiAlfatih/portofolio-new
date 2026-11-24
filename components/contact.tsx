@@ -6,6 +6,7 @@ import {
   Mail,
   Github,
   Linkedin,
+  Instagram,
   MapPin,
   Download,
   Check,
@@ -142,7 +143,7 @@ export default function Contact() {
         </div>
 
         {/* Social Profiles & CV Row */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
           {/* GitHub Profile */}
           <a
             href={profileData.contact.github}
@@ -179,6 +180,27 @@ export default function Contact() {
                 <div className="text-xs font-mono text-muted-foreground">LinkedIn</div>
                 <div className="text-sm font-bold text-foreground group-hover:text-primary transition-colors">
                   in/aldialfatih
+                </div>
+              </div>
+            </div>
+            <ExternalLink className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors" />
+          </a>
+
+          {/* Instagram Profile */}
+          <a
+            href={profileData.contact.instagram || "https://instagram.com/aldialf_"}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="p-5 rounded-3xl border border-border bg-card shadow-xs hover:border-primary transition-all group flex items-center justify-between"
+          >
+            <div className="flex items-center gap-3">
+              <div className="p-2.5 rounded-xl border border-border bg-surface-secondary text-primary">
+                <Instagram className="w-5 h-5" />
+              </div>
+              <div>
+                <div className="text-xs font-mono text-muted-foreground">Instagram</div>
+                <div className="text-sm font-bold text-foreground group-hover:text-primary transition-colors">
+                  @aldialf_
                 </div>
               </div>
             </div>

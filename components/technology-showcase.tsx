@@ -6,91 +6,28 @@ import { TechLogo } from "@/components/tech-logo"
 import { useLanguage } from "@/contexts/language-context"
 
 const coreTechnologies = [
-  {
-    name: "Python",
-    category: "AI & Backend",
-    color: "#3776AB",
-  },
-  {
-    name: "TensorFlow",
-    category: "Deep Learning",
-    color: "#FF6F00",
-  },
-  {
-    name: "Keras",
-    category: "Neural Networks",
-    color: "#D00000",
-  },
-  {
-    name: "MediaPipe",
-    category: "Computer Vision",
-    color: "#0097A7",
-  },
-  {
-    name: "OpenCV",
-    category: "Image Processing",
-    color: "#5C3EE8",
-  },
-  {
-    name: "Scikit-Learn",
-    category: "Machine Learning",
-    color: "#F7931E",
-  },
-  {
-    name: "Laravel",
-    category: "Backend MVC",
-    color: "#FF2D20",
-  },
-  {
-    name: "PostgreSQL",
-    category: "Relational DB",
-    color: "#4169E1",
-  },
-  {
-    name: "Docker",
-    category: "Containerization",
-    color: "#2496ED",
-  },
-  {
-    name: "TypeScript",
-    category: "Type-Safe Web",
-    color: "#3178C6",
-  },
-  {
-    name: "React",
-    category: "Frontend UI",
-    color: "#61DAFB",
-  },
-  {
-    name: "Inertia.js",
-    category: "Fullstack Adapter",
-    color: "#9553E9",
-  },
-  {
-    name: "Vue.js",
-    category: "Reactive Frontend",
-    color: "#4FC08D",
-  },
-  {
-    name: "Git & GitHub",
-    category: "Version Control",
-    color: "#F05032",
-  },
-  {
-    name: "FastAPI",
-    category: "High-Perf API",
-    color: "#059669",
-  },
-  {
-    name: "Power BI",
-    category: "BI & Analytics",
-    color: "#D97706",
-  },
-  {
-    name: "ESP32",
-    category: "IoT Hardware",
-    color: "#E7352C",
-  },
+  { name: "Python", color: "#3776AB" },
+  { name: "TensorFlow", color: "#FF6F00" },
+  { name: "Keras", color: "#D00000" },
+  { name: "MediaPipe", color: "#0097A7" },
+  { name: "OpenCV", color: "#5C3EE8" },
+  { name: "Scikit-Learn", color: "#F7931E" },
+  { name: "Laravel", color: "#FF2D20" },
+  { name: "PHP", color: "#777BB4" },
+  { name: "FastAPI", color: "#059669" },
+  { name: "PostgreSQL", color: "#4169E1" },
+  { name: "MySQL", color: "#4479A1" },
+  { name: "Docker", color: "#2496ED" },
+  { name: "Git & GitHub", color: "#F05032" },
+  { name: "Power BI", color: "#D97706" },
+  { name: "TypeScript", color: "#3178C6" },
+  { name: "Flutter", color: "#02569B" },
+  { name: "Supabase", color: "#3FCF8E" },
+  { name: "React", color: "#087EA4" },
+  { name: "Vue.js", color: "#4FC08D" },
+  { name: "Inertia.js", color: "#9553E9" },
+  { name: "ESP32", color: "#E7352C" },
+  { name: "PuTTY", color: "#059669" },
 ]
 
 export default function TechnologyShowcase() {
@@ -99,9 +36,10 @@ export default function TechnologyShowcase() {
   return (
     <div className="py-12 border-y border-border bg-surface/40">
       <div className="container mx-auto px-4 max-w-6xl">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+        {/* Section Heading */}
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-6">
           <div>
-            <span className="text-xs font-mono uppercase tracking-wider text-muted-foreground">
+            <span className="text-[10px] font-mono uppercase tracking-wider text-primary font-bold">
               {dict.techStack.badge}
             </span>
             <h3 className="text-lg font-bold text-foreground">
@@ -113,31 +51,26 @@ export default function TechnologyShowcase() {
           </p>
         </div>
 
-        {/* Visual Technology Badges with official brand SVG logos (Judie Mosinabre style) */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3">
+        {/* Clean Logo Grid (No Generic Sub-Descriptions) */}
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3">
           {coreTechnologies.map((tech, idx) => (
             <motion.div
               key={tech.name}
               initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.25, delay: idx * 0.03 }}
-              className="flex items-center gap-3 p-3 rounded-xl border border-border bg-card shadow-xs hover:border-primary transition-all group"
+              transition={{ duration: 0.2, delay: idx * 0.02 }}
+              className="flex items-center gap-2.5 px-3.5 py-2.5 rounded-xl border border-border bg-card shadow-xs hover:border-primary transition-all group"
             >
               <div
-                className="w-8 h-8 rounded-lg flex items-center justify-center shrink-0 border border-border/80 shadow-xs transition-colors"
-                style={{ backgroundColor: `${tech.color}18`, color: tech.color }}
+                className="w-7 h-7 rounded-lg flex items-center justify-center shrink-0 border border-border/60 transition-colors"
+                style={{ backgroundColor: `${tech.color}15`, color: tech.color }}
               >
                 <TechLogo name={tech.name} className="w-4 h-4" />
               </div>
-              <div className="truncate">
-                <div className="text-xs font-bold text-foreground truncate group-hover:text-primary transition-colors">
-                  {tech.name}
-                </div>
-                <div className="text-[10px] font-mono text-muted-foreground truncate">
-                  {tech.category}
-                </div>
-              </div>
+              <span className="text-xs font-semibold text-foreground truncate group-hover:text-primary transition-colors font-sans">
+                {tech.name}
+              </span>
             </motion.div>
           ))}
         </div>

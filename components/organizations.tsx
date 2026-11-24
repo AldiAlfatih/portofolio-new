@@ -8,7 +8,8 @@ import { organizationsData } from "@/data/organizations"
 import { useLanguage } from "@/contexts/language-context"
 
 export default function Organizations() {
-  const { dict } = useLanguage()
+  const { dict, language } = useLanguage()
+  const isEn = language === "en"
 
   return (
     <section id="organizations" className="py-24 relative border-t border-border/60">
@@ -58,14 +59,14 @@ export default function Organizations() {
                   <div>
                     <div className="flex items-center gap-2 mb-1">
                       <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-surface-secondary border border-border text-foreground font-semibold">
-                        {org.type}
+                        {isEn && org.typeEn ? org.typeEn : org.type}
                       </span>
                     </div>
                     <h3 className="text-lg sm:text-xl font-bold text-foreground">
                       {org.name}
                     </h3>
                     <div className="text-xs sm:text-sm font-semibold text-primary font-sans mt-0.5">
-                      {org.role}
+                      {isEn && org.roleEn ? org.roleEn : org.role}
                     </div>
                   </div>
                 </div>
@@ -73,14 +74,14 @@ export default function Organizations() {
                 <div className="sm:text-right shrink-0">
                   <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg border border-border bg-surface text-xs font-mono text-muted-foreground">
                     <Calendar className="w-3.5 h-3.5 text-primary" />
-                    {org.period}
+                    {isEn && org.periodEn ? org.periodEn : org.period}
                   </span>
                 </div>
               </div>
 
               {/* Description */}
-              <p className="text-xs sm:text-sm text-foreground/80 leading-relaxed mb-4 font-sans">
-                {org.description}
+              <p className="text-xs sm:text-sm text-foreground/80 leading-relaxed mb-4 font-sans text-left sm:text-justify hyphens-auto">
+                {isEn && org.descriptionEn ? org.descriptionEn : org.description}
               </p>
 
               {/* Responsibilities & Programs */}
@@ -88,7 +89,7 @@ export default function Organizations() {
                 <div className="text-xs font-mono font-semibold uppercase tracking-wider text-muted-foreground mb-2">
                   {dict.organizations.activitiesLabel}:
                 </div>
-                {org.activities.map((act, aIdx) => (
+                {(isEn && org.activitiesEn ? org.activitiesEn : org.activities).map((act, aIdx) => (
                   <div key={aIdx} className="flex items-start gap-2 text-xs sm:text-sm text-foreground/85">
                     <span className="text-primary mt-0.5 shrink-0">•</span>
                     <span className="leading-relaxed">{act}</span>
@@ -97,13 +98,13 @@ export default function Organizations() {
               </div>
 
               {/* Achievements */}
-              {org.achievements.length > 0 && (
+              {(isEn && org.achievementsEn ? org.achievementsEn : org.achievements).length > 0 && (
                 <div className="pt-3 border-t border-border/60">
                   <div className="text-[11px] font-mono text-primary font-semibold mb-1">
                     {dict.organizations.achievementsLabel}:
                   </div>
                   <div className="space-y-1">
-                    {org.achievements.map((ach, acIdx) => (
+                    {(isEn && org.achievementsEn ? org.achievementsEn : org.achievements).map((ach, acIdx) => (
                       <div key={acIdx} className="text-xs text-muted-foreground flex items-center gap-2">
                         <span className="w-1.5 h-1.5 rounded-full bg-primary" />
                         <span>{ach}</span>

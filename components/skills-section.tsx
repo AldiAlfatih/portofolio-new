@@ -21,7 +21,8 @@ import { useLanguage } from "@/contexts/language-context"
 
 export default function SkillsSection() {
   const [activeTab, setActiveTab] = useState<"hard" | "soft" | "lang">("hard")
-  const { dict } = useLanguage()
+  const { dict, language } = useLanguage()
+  const isEn = language === "en"
 
   const getCategoryIcon = (category: string) => {
     switch (category) {
@@ -173,11 +174,11 @@ export default function SkillsSection() {
                         0{idx + 1}.
                       </span>
                       <h3 className="text-base font-bold text-foreground">
-                        {soft.title}
+                        {isEn && soft.titleEn ? soft.titleEn : soft.title}
                       </h3>
                     </div>
                     <p className="text-xs sm:text-sm text-foreground/80 leading-relaxed font-sans">
-                      {soft.description}
+                      {isEn && soft.descriptionEn ? soft.descriptionEn : soft.description}
                     </p>
                   </div>
                 </div>

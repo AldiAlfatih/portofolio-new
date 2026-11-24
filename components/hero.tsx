@@ -7,13 +7,17 @@ import {
   Download,
   Github,
   Linkedin,
+  Instagram,
   Mail,
   ArrowRight,
   Check,
-  GraduationCap,
+  MapPin,
 } from "lucide-react"
 import { profileData } from "@/data/profile"
 import { useLanguage } from "@/contexts/language-context"
+import InteractiveProfileImage from "@/components/motion/interactive-profile-image"
+import { Watercolor } from "@/components/ui/watercolor"
+import Spotlight from "@/components/ui/spotlight"
 
 export default function Hero() {
   const [copiedEmail, setCopiedEmail] = useState(false)
@@ -47,51 +51,52 @@ export default function Hero() {
       id="home"
       className="min-h-[85vh] flex items-center justify-center pt-28 pb-16 relative overflow-hidden"
     >
+      {/* Theatrical Spotlight Conical Stage Lamp (Dual-Beam Illumination) */}
+      <Spotlight
+        className="-top-40 left-0 md:left-60 md:-top-20"
+        fill="var(--primary)"
+        fillOpacity={0.45}
+      />
+      <Spotlight
+        className="-top-20 -right-20 md:right-10 md:-top-10 opacity-70"
+        fill="var(--secondary)"
+        fillOpacity={0.3}
+      />
+
+      {/* Theme-Adaptive Organic Watercolor Fluid Backdrop */}
+      <div className="absolute inset-0 z-0 pointer-events-auto opacity-35">
+        <Watercolor
+          themeAdaptive={true}
+          cursorInteraction={true}
+          cursorIntensity={1.0}
+          speed={0.35}
+          scale={0.7}
+          warpSpeed={0.06}
+          driftSpeed={0.03}
+          octaves={3}
+        />
+        {/* Soft radial vignette preserving typography legibility */}
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background:
+              "radial-gradient(ellipse at center, transparent 35%, var(--background) 90%)",
+          }}
+        />
+      </div>
+
       <div className="container mx-auto px-4 relative z-10 max-w-6xl">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
-          {/* Left Column: Judie-style Profile Photo (5 cols) */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5 }}
-            className="lg:col-span-5 flex flex-col items-center lg:items-start"
-          >
-            <div className="relative w-64 h-72 sm:w-80 sm:h-96 rounded-3xl overflow-hidden border-2 border-border bg-card shadow-2xl group">
-              <Image
-                src="/pp-aldi.jpg"
-                alt="Muhammad Aldi Alfatih, S.Kom."
-                fill
-                priority
-                className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
-                sizes="(max-width: 768px) 320px, 400px"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent opacity-60" />
-
-              {/* Status Badge overlay */}
-              <div className="absolute bottom-4 left-4 right-4 p-3 rounded-2xl bg-card/90 backdrop-blur-md border border-border/80 shadow-lg">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2">
-                    <span className="relative flex h-2 w-2">
-                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-                      <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
-                    </span>
-                    <span className="text-xs font-mono font-medium text-foreground">
-                      {profileData.availability}
-                    </span>
-                  </div>
-                  <span className="text-[10px] font-mono text-muted-foreground">
-                    {dict.hero.parepareMakassar}
-                  </span>
-                </div>
-              </div>
-            </div>
-
-            {/* Academic pill below photo */}
-            <div className="mt-4 flex items-center gap-2 px-3 py-1.5 rounded-xl border border-border bg-surface text-xs font-mono text-muted-foreground">
-              <GraduationCap className="w-3.5 h-3.5 text-primary" />
-              <span>S1 Ilmu Komputer ITH • IPK 3.93 • Wisudawan Terbaik</span>
-            </div>
-          </motion.div>
+          {/* Left Column: 3D Perspective Tilt & Specular Glare Profile Photo (5 cols) */}
+          <div className="lg:col-span-5 flex flex-col items-center lg:items-start">
+            <InteractiveProfileImage
+              imageSrc="/pp-aldi.jpg"
+              alt="Muhammad Aldi Alfatih, S.Kom."
+              availabilityText={profileData.availability}
+              locationText={dict.hero.parepareMakassar}
+              academicPillText={dict.hero.academicPill}
+            />
+          </div>
 
           {/* Right Column: Identity, Narrative & Quick Actions (7 cols) */}
           <motion.div
@@ -182,6 +187,18 @@ export default function Hero() {
                 <Linkedin className="w-3.5 h-3.5 text-primary" />
                 <span>LinkedIn</span>
               </a>
+
+              {profileData.contact.instagram && (
+                <a
+                  href={profileData.contact.instagram}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-border bg-surface hover:border-primary hover:text-primary transition-colors text-foreground"
+                >
+                  <Instagram className="w-3.5 h-3.5 text-primary" />
+                  <span>Instagram</span>
+                </a>
+              )}
 
               <button
                 onClick={handleCopyEmail}

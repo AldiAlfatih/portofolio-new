@@ -1,14 +1,15 @@
 import type React from "react"
 import { Inter, Space_Grotesk, JetBrains_Mono } from "next/font/google"
 import type { Metadata } from "next"
-import FloatingElements from "@/components/floating-elements"
 import Footer from "@/components/footer"
 import Header from "@/components/header"
 import ScrollProgress from "@/components/scroll-progress"
 import BackToTop from "@/components/back-to-top"
 import CommandPalette from "@/components/command-palette"
+import SmoothScrollProvider from "@/components/motion/smooth-scroll"
 import { LanguageProvider } from "@/contexts/language-context"
 import { ThemeProvider } from "@/contexts/theme-context"
+import GlobalCursor from "@/components/global-cursor"
 import "./globals.css"
 
 const inter = Inter({
@@ -30,12 +31,13 @@ const jetbrainsMono = JetBrains_Mono({
 })
 
 export const metadata: Metadata = {
-  title: "Muhammad Aldi Alfatih, S.Kom. | AI Engineer & Backend Developer",
+  title: "Muhammad Aldi Alfatih, S.Kom. | AI Engineer & Software Engineer",
   description:
-    "Personal engineering portfolio of Muhammad Aldi Alfatih, S.Kom. — AI Engineer & Backend Developer with deep expertise in Computer Vision, Machine Learning, Deep Learning, and Enterprise Backend Systems.",
+    "Personal engineering portfolio of Muhammad Aldi Alfatih, S.Kom. — AI Engineer & Software Engineer with deep expertise in Computer Vision, Machine Learning, Deep Learning, and Enterprise Software Systems.",
   keywords: [
     "Muhammad Aldi Alfatih",
     "AI Engineer",
+    "Software Engineer",
     "Backend Developer",
     "Computer Vision",
     "Machine Learning",
@@ -53,9 +55,9 @@ export const metadata: Metadata = {
     apple: "/favicon_aldi_256_new.svg",
   },
   openGraph: {
-    title: "Muhammad Aldi Alfatih, S.Kom. | AI Engineer & Backend Developer",
+    title: "Muhammad Aldi Alfatih, S.Kom. | AI Engineer & Software Engineer",
     description:
-      "Bridging Intelligent Systems with Robust Backend Architectures. Explore engineering projects, AI research models, and enterprise software.",
+      "Bridging Intelligent Systems with Robust Software Architectures. Explore engineering projects, AI research models, and enterprise software.",
     url: "https://aldialfatih.dev",
     siteName: "Muhammad Aldi Alfatih Portfolio",
     locale: "id_ID",
@@ -63,9 +65,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Muhammad Aldi Alfatih, S.Kom. | AI Engineer & Backend Developer",
+    title: "Muhammad Aldi Alfatih, S.Kom. | AI Engineer & Software Engineer",
     description:
-      "Bridging Intelligent Systems with Robust Backend Architectures.",
+      "Bridging Intelligent Systems with Robust Software Architectures.",
   },
 }
 
@@ -104,15 +106,17 @@ export default function RootLayout({
       <body className="font-sans min-h-screen flex flex-col bg-background text-foreground antialiased selection:bg-accent/20 selection:text-accent">
         <ThemeProvider>
           <LanguageProvider>
-            <ScrollProgress />
-            <div className="relative overflow-hidden min-h-screen flex flex-col justify-between">
-              <FloatingElements />
-              <Header />
-              <div className="flex-1">{children}</div>
-              <Footer />
-              <BackToTop />
-              <CommandPalette />
-            </div>
+            <SmoothScrollProvider>
+              <GlobalCursor />
+              <ScrollProgress />
+              <div className="relative overflow-hidden min-h-screen flex flex-col justify-between">
+                <Header />
+                <div className="flex-1">{children}</div>
+                <Footer />
+                <BackToTop />
+                <CommandPalette />
+              </div>
+            </SmoothScrollProvider>
           </LanguageProvider>
         </ThemeProvider>
       </body>

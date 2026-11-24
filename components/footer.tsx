@@ -1,7 +1,7 @@
 "use client"
 
 import React from "react"
-import { ArrowUp, Github, Linkedin, Mail } from "lucide-react"
+import { ArrowUp, Github, Linkedin, Instagram, Mail } from "lucide-react"
 import { profileData } from "@/data/profile"
 import { useLanguage } from "@/contexts/language-context"
 
@@ -29,19 +29,14 @@ export default function Footer() {
     <footer className="border-t border-border bg-card/80 text-foreground pt-16 pb-12 relative">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-10 pb-12 border-b border-border">
-          {/* Brand & Wordmark (5 cols) */}
+          {/* Brand & Wordmark (Clean Typography) */}
           <div className="md:col-span-5">
-            <div className="flex items-center gap-2.5 mb-4">
-              <div className="w-9 h-9 rounded-xl border border-border bg-surface flex items-center justify-center font-sans font-black text-xs text-foreground shadow-xs">
-                <span className="text-primary tracking-tight">AA</span>
+            <div className="mb-4">
+              <div className="font-extrabold text-lg text-foreground font-sans tracking-tight mb-1">
+                Muhammad Aldi Alfatih, S.Kom<span className="text-primary">.</span>
               </div>
-              <div>
-                <div className="font-bold text-base text-foreground font-sans tracking-tight">
-                  {profileData.fullNameWithDegree}
-                </div>
-                <div className="text-xs font-mono text-primary">
-                  {profileData.title}
-                </div>
+              <div className="text-xs font-mono text-muted-foreground">
+                AI Engineer & Software Engineer
               </div>
             </div>
 
@@ -69,6 +64,17 @@ export default function Footer() {
               >
                 <Linkedin className="w-4 h-4" />
               </a>
+              {profileData.contact.instagram && (
+                <a
+                  href={profileData.contact.instagram}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-2 rounded-lg border border-border bg-surface text-muted-foreground hover:text-foreground hover:border-primary transition-colors"
+                  aria-label="Instagram"
+                >
+                  <Instagram className="w-4 h-4" />
+                </a>
+              )}
               <a
                 href={`mailto:${profileData.contact.email}`}
                 className="p-2 rounded-lg border border-border bg-surface text-muted-foreground hover:text-foreground hover:border-primary transition-colors"
