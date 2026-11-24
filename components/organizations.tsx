@@ -1,181 +1,111 @@
 "use client"
 
+import React from "react"
 import { motion } from "framer-motion"
 import Image from "next/image"
-import { Users, Calendar, Award, Heart, Lightbulb } from "lucide-react"
-
-const organizations = [
-  {
-    name: "Habibie Engineering Robotic of Organization (HERO)",
-    role: "Anggota Bidang Riset dan Pengembangan",
-    period: "September 2023 – Desember 2024",
-    type: "Organisasi Kampus",
-    description:
-      "Aktif dalam bidang riset dan pengembangan robotika di lingkungan kampus serta mendukung program edukasi robotika.",
-    activities: [
-      "Berpartisipasi dalam riset dan pengembangan robot untuk persiapan lomba tingkat regional dan nasional.",
-      "Terlibat dalam perancangan, perakitan, dan pemrograman robot sesuai kategori lomba yang diikuti.",
-      "Membantu menyusun dan menjalankan program kerja seperti HERO Goes to School dan seminar robotika.",
-      "Mengadakan sesi pelatihan dasar robotika dan pemrograman untuk calon anggota dan anggota aktif.",
-    ],
-    achievements: [
-      "Ikut berkontribusi dalam tim pengembangan robot yang mewakili kampus pada ajang kompetisi robotika.",
-    ],
-    image: "/hero-logo.png",
-    icon: Lightbulb,
-  },
-  {
-    name: "Habibie Coding Club (HCC)",
-    role: "Ketua",
-    period: "Oktober 2022 – Desember 2024",
-    type: "Organisasi Kampus",
-    description:
-      "Memimpin komunitas pemrograman kampus, serta memfasilitasi pengembangan kemampuan teknis anggota.",
-    activities: [
-      "Menginisiasi dan membangun komunitas pemrograman di lingkungan kampus.",
-      "Menyusun kurikulum internal dan mengorganisir pelatihan rutin untuk mahasiswa, mulai dari dasar hingga proyek kecil.",
-      "Membimbing anggota dalam persiapan kompetisi seperti GEMASTIK, PKM, dan lomba pengembangan aplikasi lainnya.",
-      "Berkoordinasi dengan dosen dan organisasi kampus lain untuk mendukung kegiatan pelatihan dan event teknologi.",
-    ],
-    achievements: [
-      "Meningkatkan jumlah anggota aktif dan partisipasi dalam kegiatan pelatihan dan proyek internal HCC.",
-      "Mendorong lahirnya beberapa proyek aplikasi dari anggota yang dipresentasikan di forum kampus dan kompetisi.",
-    ],
-    image: "/hcc-logo.jpg",
-    icon: Heart,
-  },
-  {
-    name: "Badan Eksekutif Mahasiswa Institut Teknologi B.J. Habibie (BEM ITH)",
-    role: "Koordinator Divisi Olahraga",
-    period: "Januari 2024 – Desember 2024",
-    type: "Organisasi Kampus",
-    description:
-      "Mengkoordinasi program kerja bidang olahraga di tingkat institusi dan mempromosikan budaya hidup sehat di kalangan mahasiswa.",
-    activities: [
-      "Menyusun dan mengelola program kerja bidang olahraga tingkat institusi.",
-      "Mengorganisir kegiatan seperti Habibie E-Sport Championship, mulai dari perencanaan format, pendaftaran, hingga pelaksanaan acara.",
-      "Berkoordinasi dengan panitia, sponsor, dan peserta untuk memastikan kegiatan berjalan lancar.",
-      "Mengevaluasi pelaksanaan kegiatan olahraga sebagai bahan perbaikan program di periode berikutnya.",
-    ],
-    achievements: [
-      "Berhasil menyelenggarakan kegiatan Habibie E-Sport Championship.",
-    ],
-    image: "bem ith logo",
-    icon: Users,
-  },
-]
+import { Users, Calendar, Award, CheckCircle2, Building, Heart, Sparkles } from "lucide-react"
+import { organizationsData } from "@/data/organizations"
 
 export default function Organizations() {
   return (
-    <section id="organizations" className="py-20 relative border-t border-terminal-text/10">
+    <section id="organizations" className="py-24 relative border-t border-border/60">
       <div className="container mx-auto px-4">
-        <motion.h2
-          className="text-4xl font-bold text-center mb-16 text-terminal-text"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-        >
-          <span className="text-python-light font-mono mr-2"></span>
-          Riwayat Organisasi & Komunitas
-        </motion.h2>
+        {/* Section Header */}
+        <div className="flex flex-col items-center text-center mb-14">
+          <div className="flex items-center gap-2 font-mono text-xs text-accent uppercase tracking-wider mb-2">
+            <span>07 // KOMUNITAS & KEPEMIMPINAN</span>
+          </div>
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-foreground tracking-tight">
+            Pengalaman Organisasi
+          </h2>
+          <p className="text-sm text-muted-foreground max-w-xl mt-2 font-mono">
+            Kiprah kepemimpinan, kontribusi riset robotika, dan pembangunan komunitas teknologi mahasiswa.
+          </p>
+        </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-7xl mx-auto">
-          {organizations.map((org, index) => (
+        {/* Organizations Grid */}
+        <div className="max-w-4xl mx-auto space-y-6">
+          {organizationsData.map((org, idx) => (
             <motion.div
-              key={index}
-              className="group relative"
-              initial={{ opacity: 0, y: 30 }}
+              key={idx}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
+              transition={{ duration: 0.35, delay: idx * 0.08 }}
+              className="p-6 sm:p-8 rounded-2xl border border-border bg-card shadow-xs hover:border-interactive-hover transition-all"
             >
-              <div className="bg-[#0a0a0a] rounded-2xl p-8 border border-terminal-text/15 hover:border-python-blue transition-colors duration-200 h-full">
-                {/* Header */}
-                <div className="flex items-start space-x-4 mb-6">
-                  {/* Organization Logo */}
-                  <div className="relative w-16 h-16 rounded-xl overflow-hidden border-2 border-terminal-text/20 group-hover:border-python-blue transition-colors duration-200 flex-shrink-0">
-                    <Image
-                      src={org.image && org.image.startsWith("/") ? org.image : "/placeholder-logo.png"}
-                      alt={org.name}
-                      fill
-                      className="object-cover"
-                    />
-                  </div>
+              {/* Header: Logo, Name, Role, Period */}
+              <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4 mb-4 pb-4 border-b border-border/70">
+                <div className="flex items-start gap-4">
+                  {org.image ? (
+                    <div className="relative w-12 h-12 rounded-xl overflow-hidden border border-border bg-surface shrink-0">
+                      <Image
+                        src={org.image}
+                        alt={org.name}
+                        fill
+                        className="object-cover"
+                      />
+                    </div>
+                  ) : (
+                    <div className="w-12 h-12 rounded-xl border border-border bg-surface-secondary flex items-center justify-center text-accent shrink-0">
+                      <Users className="w-6 h-6" />
+                    </div>
+                  )}
 
-                  <div className="flex-1">
-                    <h3 className="text-xl font-bold text-terminal-text mb-2 group-hover:text-python-light transition-colors duration-200">
+                  <div>
+                    <div className="flex items-center gap-2 mb-1">
+                      <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-surface-secondary border border-border text-foreground font-semibold">
+                        {org.type}
+                      </span>
+                    </div>
+                    <h3 className="text-lg sm:text-xl font-bold text-foreground">
                       {org.name}
                     </h3>
-                    <div className="flex flex-col space-y-1 mb-3">
-                      <span className="text-python-light font-semibold">{org.role}</span>
-                      <div className="flex items-center space-x-4 text-terminal-text/40 text-sm">
-                        <div className="flex items-center space-x-1">
-                          <Calendar className="w-4 h-4" />
-                          <span>{org.period}</span>
-                        </div>
-                        <span className="px-2 py-1 bg-python-blue/15 border border-python-blue/30 rounded-full text-python-light text-xs font-mono">
-                          {org.type}
-                        </span>
-                      </div>
+                    <div className="text-xs sm:text-sm font-semibold text-accent font-sans mt-0.5">
+                      {org.role}
                     </div>
                   </div>
-
-                  {/* Icon */}
-                  <div className="p-3 bg-python-blue rounded-xl border border-python-blue/50">
-                    <org.icon className="w-6 h-6 text-terminal-text" />
-                  </div>
                 </div>
 
-                {/* Description */}
-                <p className="text-terminal-text/60 mb-6 leading-relaxed">{org.description}</p>
-
-                {/* Activities */}
-                <div className="mb-6">
-                  <h4 className="text-lg font-semibold text-terminal-text mb-3 flex items-center">
-                    <Users className="w-5 h-5 mr-2 text-python-light" />
-                    Aktivitas Utama
-                  </h4>
-                  <ul className="space-y-2">
-                    {org.activities.map((activity, actIndex) => (
-                      <motion.li
-                        key={actIndex}
-                        className="flex items-start space-x-3 text-terminal-text/60"
-                        initial={{ opacity: 0, x: -20 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.4, delay: index * 0.1 + actIndex * 0.05 }}
-                      >
-                        <div className="w-2 h-2 bg-python-light rounded-full mt-2 flex-shrink-0" />
-                        <span className="text-sm leading-relaxed">{activity}</span>
-                      </motion.li>
-                    ))}
-                  </ul>
-                </div>
-
-                {/* Achievements */}
-                <div>
-                  <h4 className="text-lg font-semibold text-terminal-text mb-3 flex items-center">
-                    <Award className="w-5 h-5 mr-2 text-python-light" />
-                    Pencapaian Utama
-                  </h4>
-                  <ul className="space-y-2">
-                    {org.achievements.map((achievement, achIndex) => (
-                      <motion.li
-                        key={achIndex}
-                        className="flex items-start space-x-3 text-terminal-text/60"
-                        initial={{ opacity: 0, x: -20 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.4, delay: index * 0.1 + achIndex * 0.05 }}
-                      >
-                        <div className="w-2 h-2 bg-python-blue rounded-full mt-2 flex-shrink-0" />
-                        <span className="text-sm leading-relaxed font-medium">{achievement}</span>
-                      </motion.li>
-                    ))}
-                  </ul>
+                <div className="sm:text-right shrink-0">
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg border border-border bg-surface text-xs font-mono text-muted-foreground">
+                    <Calendar className="w-3.5 h-3.5 text-accent" />
+                    {org.period}
+                  </span>
                 </div>
               </div>
+
+              {/* Description */}
+              <p className="text-xs sm:text-sm text-foreground/80 leading-relaxed mb-4 font-sans">
+                {org.description}
+              </p>
+
+              {/* Responsibilities & Programs */}
+              <div className="mb-4 space-y-1.5">
+                <div className="text-xs font-mono font-semibold uppercase tracking-wider text-muted-foreground mb-2">
+                  Program Kerja & Aktivitas Utama:
+                </div>
+                {org.activities.map((act, aIdx) => (
+                  <div key={aIdx} className="flex items-start gap-2 text-xs sm:text-sm text-foreground/85">
+                    <span className="text-accent mt-0.5 shrink-0">•</span>
+                    <span className="leading-relaxed">{act}</span>
+                  </div>
+                ))}
+              </div>
+
+              {/* Achievements */}
+              {org.achievements.length > 0 && (
+                <div className="pt-3 border-t border-border/60">
+                  <div className="text-[11px] font-mono text-accent font-semibold mb-1">
+                    Capaian Organisasi:
+                  </div>
+                  {org.achievements.map((ach, cIdx) => (
+                    <div key={cIdx} className="text-xs text-muted-foreground font-sans leading-relaxed">
+                      ↳ {ach}
+                    </div>
+                  ))}
+                </div>
+              )}
             </motion.div>
           ))}
         </div>

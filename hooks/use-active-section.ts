@@ -14,7 +14,7 @@ export function useActiveSection() {
       (entries) => {
         // Find the entry with the largest intersection ratio
         let maxRatio = 0
-        let activeEntry = null
+        let activeEntry: IntersectionObserverEntry | null = null
 
         entries.forEach((entry) => {
           if (entry.intersectionRatio > maxRatio) {
@@ -25,7 +25,7 @@ export function useActiveSection() {
 
         // If we have an active entry with significant intersection, set it as active
         if (activeEntry && maxRatio > 0.3) {
-          setActiveSection(activeEntry.target.id)
+          setActiveSection((activeEntry as IntersectionObserverEntry).target.id)
         }
       },
       {

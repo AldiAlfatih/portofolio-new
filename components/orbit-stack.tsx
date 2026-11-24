@@ -66,9 +66,9 @@ export default function OrbitStack() {
                                 ["--duration" as any]: "20s",
                             }}
                         >
-                            <div className="bg-[#0a0a0a] p-3 rounded-xl border border-terminal-text/15 group hover:border-python-blue hover:scale-110 transition-all duration-200 cursor-pointer">
-                                <item.icon className="w-6 h-6 text-python-light" />
-                                <span className="absolute left-1/2 -bottom-6 -translate-x-1/2 text-xs text-terminal-text/50 opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap font-mono">
+                            <div className="bg-card p-3 rounded-xl border border-border group hover:border-primary hover:scale-110 transition-all duration-200 cursor-pointer">
+                                <item.icon className="w-6 h-6 text-primary" />
+                                <span className="absolute left-1/2 -bottom-6 -translate-x-1/2 text-xs text-foreground/60 opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap font-mono">
                                     {item.label}
                                 </span>
                             </div>
@@ -92,9 +92,9 @@ export default function OrbitStack() {
                                 ["--duration" as any]: "30s",
                             }}
                         >
-                            <div className="bg-[#0a0a0a] p-3 rounded-xl border border-terminal-text/15 group hover:border-python-blue hover:scale-110 transition-all duration-200 cursor-pointer">
-                                <item.icon className="w-6 h-6 text-python-light" />
-                                <span className="absolute left-1/2 -bottom-6 -translate-x-1/2 text-xs text-terminal-text/50 opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap font-mono">
+                            <div className="bg-card p-3 rounded-xl border border-border group hover:border-primary hover:scale-110 transition-all duration-200 cursor-pointer">
+                                <item.icon className="w-6 h-6 text-primary" />
+                                <span className="absolute left-1/2 -bottom-6 -translate-x-1/2 text-xs text-foreground/60 opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap font-mono">
                                     {item.label}
                                 </span>
                             </div>

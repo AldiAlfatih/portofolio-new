@@ -1,77 +1,141 @@
 "use client"
 
-import type React from "react"
+import React, { useState, useEffect, useRef } from "react"
+import { motion, AnimatePresence } from "framer-motion"
+import {
+  Mail,
+  Send,
+  MessageSquare,
+  Check,
+  Copy,
+  ExternalLink,
+  Github,
+  Linkedin,
+  MapPin,
+  AlertCircle,
+  Clock,
+  User,
+} from "lucide-react"
+import { profileData } from "@/data/profile"
 
-import { motion } from "framer-motion"
-import { Mail, MessageSquare, Calendar, Brain, Send, User, MessageCircle } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { useEffect, useRef, useState } from "react"
+const topics = [
+  "General Inquiry",
+  "Collaboration",
+  "AI Consultation",
+  "Project Inquiry",
+]
 
 export default function Contact() {
+  // Contact Form State
   const [contactForm, setContactForm] = useState({
     name: "",
     email: "",
+    subject: "",
+    topic: "General Inquiry",
     message: "",
-    topic: "General",
   })
-
   const [isSubmittingContact, setIsSubmittingContact] = useState(false)
+  const [contactStatus, setContactStatus] = useState<"idle" | "success" | "error">("idle")
+  const [contactFeedback, setContactFeedback] = useState("")
 
+  // Quick Action Email Copy
+  const [copiedEmail, setCopiedEmail] = useState(false)
+
+  // Guestbook State
   const [commentForm, setCommentForm] = useState({
     name: "",
     comment: "",
   })
-
+  const [isSubmittingComment, setIsSubmittingComment] = useState(false)
   const [comments, setComments] = useState<Array<{ name: string; comment: string; time: string }>>([])
+  const [commentError, setCommentError] = useState("")
 
-  const contactRef = useRef<HTMLDivElement | null>(null)
+  const formRef = useRef<HTMLFormElement>(null)
 
+  // Load comments
   useEffect(() => {
-    const raw = typeof window !== "undefined" ? localStorage.getItem("comments") : null
-    if (raw) {
-      try {
-        const parsed = JSON.parse(raw) as Array<{ name: string; comment: string; time: string }>
-        setComments(parsed)
-      } catch {}
-    } else {
-      setComments([
-        { name: "Alex Johnson", comment: "Amazing AI portfolio! The projects showcase incredible technical depth.", time: "2 jam yang lalu" },
-        { name: "Maria Santos", comment: "Impressed by the machine learning implementations. Great work!", time: "5 jam yang lalu" },
-      ])
+    try {
+      const stored = localStorage.getItem("portfolio_comments")
+      if (stored) {
+        setComments(JSON.parse(stored))
+      } else {
+        setComments([
+          {
+            name: "Alex Pratama",
+            comment: "Implementasi Computer Vision pada proyek ISARA sangat inspiratif untuk aksesibilitas inklusif. Sukses selalu!",
+            time: "Baru saja",
+          },
+          {
+            name: "Dian Wahyudi",
+            comment: "Arsitektur backend E-Monev sangat terstruktur dan rapi. Portofolio engineering yang sangat komprehensif.",
+            time: "1 hari yang lalu",
+          },
+        ])
+      }
+    } catch {
+      // ignore
     }
   }, [])
 
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      localStorage.setItem("comments", JSON.stringify(comments))
-    }
-  }, [comments])
-
-  const smoothScrollToForm = () => {
-    contactRef.current?.scrollIntoView({ behavior: "smooth", block: "start" })
+  const handleCopyEmail = () => {
+    navigator.clipboard.writeText(profileData.contact.email)
+    setCopiedEmail(true)
+    setTimeout(() => setCopiedEmail(false), 2000)
   }
 
-  const handleQuickAction = (topic: string) => {
-    setContactForm((prev) => ({ ...prev, topic }))
-    setContactForm((prev) => ({ ...prev, message: prev.message || `Halo, saya ingin ${topic.toLowerCase()} mengenai ...` }))
-    smoothScrollToForm()
+  const handleQuickTopic = (topic: string) => {
+    setContactForm((prev) => ({
+      ...prev,
+      topic,
+      subject: `[${topic}] Diskusi bersama Muhammad Aldi Alfatih`,
+      message: prev.message || `Halo Aldi,\n\nSaya ingin berdiskusi mengenai ${topic.toLowerCase()} terkait ...`,
+    }))
+    formRef.current?.scrollIntoView({ behavior: "smooth", block: "start" })
   }
 
   const handleContactSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+    if (!contactForm.name.trim() || !contactForm.email.trim() || !contactForm.message.trim()) {
+      setContactStatus("error")
+      setContactFeedback("Harap isi seluruh kolom wajib (Nama, Email, dan Pesan).")
+      return
+    }
+
     try {
       setIsSubmittingContact(true)
+      setContactStatus("idle")
+      setContactFeedback("")
+
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(contactForm),
+        body: JSON.stringify({
+          name: contactForm.name,
+          email: contactForm.email,
+          topic: contactForm.topic,
+          message: `${contactForm.subject ? `Subjek: ${contactForm.subject}\n\n` : ""}${contactForm.message}`,
+        }),
       })
+
       const data = await res.json()
-      if (!res.ok || !data.ok) throw new Error(data.error || "Gagal mengirim")
-      alert("Terima kasih! Pesan Anda sudah terkirim.")
-      setContactForm({ name: "", email: "", message: "", topic: "General" })
-    } catch (err) {
-      alert("Maaf, terjadi kesalahan saat mengirim. Coba lagi nanti.")
+      if (res.ok && data.ok) {
+        setContactStatus("success")
+        setContactFeedback("Terima kasih! Pesan Anda telah berhasil dikirim ke email Aldi.")
+        setContactForm({
+          name: "",
+          email: "",
+          subject: "",
+          topic: "General Inquiry",
+          message: "",
+        })
+      } else {
+        throw new Error(data.error || "Gagal mengirim pesan")
+      }
+    } catch {
+      setContactStatus("error")
+      setContactFeedback(
+        "Maaf, terjadi kendala saat mengirim pesan melalui server. Anda juga dapat menghubungi langsung ke aldialfatih016@gmail.com."
+      )
     } finally {
       setIsSubmittingContact(false)
     }
@@ -79,198 +143,312 @@ export default function Contact() {
 
   const handleCommentSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+    if (!commentForm.name.trim() || !commentForm.comment.trim()) {
+      setCommentError("Nama dan pesan komentar wajib diisi.")
+      return
+    }
+
     try {
-      const res = await fetch("/api/comments", {
+      setIsSubmittingComment(true)
+      setCommentError("")
+
+      await fetch("/api/comments", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(commentForm),
       })
-      const data = await res.json()
-      if (!res.ok || !data.ok) throw new Error(data.error || "Gagal menambah komentar")
+
       const now = new Date()
-      const time = now.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })
-      setComments((prev) => [{ name: commentForm.name, comment: commentForm.comment, time }, ...prev])
+      const formattedTime = now.toLocaleDateString("id-ID", {
+        day: "numeric",
+        month: "short",
+        year: "numeric",
+      })
+
+      const updated = [
+        { name: commentForm.name.trim(), comment: commentForm.comment.trim(), time: formattedTime },
+        ...comments,
+      ]
+
+      setComments(updated)
+      localStorage.setItem("portfolio_comments", JSON.stringify(updated))
       setCommentForm({ name: "", comment: "" })
-    } catch (err) {
-      alert("Maaf, komentar gagal dikirim. Coba lagi nanti.")
+    } catch {
+      setCommentError("Gagal mengirim komentar. Silakan coba kembali.")
+    } finally {
+      setIsSubmittingComment(false)
     }
   }
 
   return (
-    <section id="contact" className="py-20 relative">
+    <section id="contact" className="py-24 relative border-t border-border/60">
       <div className="container mx-auto px-4">
-        <motion.h2
-          className="text-4xl font-bold text-center mb-8 text-terminal-text"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-        >
-          <span className="text-python-light font-mono mr-2">@</span>
-          Mari Berkolaborasi dalam AI
-        </motion.h2>
-
-        <motion.p
-          className="text-terminal-text/40 text-center mb-12 max-w-2xl mx-auto text-lg"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-        >
-          Tertarik untuk mengembangkan solusi AI yang inovatif? Mari diskusikan bagaimana teknologi kecerdasan buatan
-          dapat mentransformasi bisnis Anda.
-        </motion.p>
-
-        {/* Quick Contact Options */}
-        <div className="max-w-4xl mx-auto mb-16">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-            {[
-              { icon: MessageSquare, title: "Konsultasi", description: "Diskusi strategi implementasi proyek", action: "Mulai Diskusi" },
-              { icon: Brain, title: "Proyek", description: "Kolaborasi pengembangan proyek", action: "Proposal Proyek" },
-              { icon: Calendar, title: "Pertemuan", description: "Jadwalkan pertemuan virtual", action: "Jadwalkan Pertemuan" },
-            ].map((item, index) => (
-              <motion.div
-                key={item.title}
-                className="bg-[#0a0a0a] rounded-2xl p-6 border border-terminal-text/15 hover:border-python-blue transition-colors duration-200 text-center group"
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.4 + index * 0.1 }}
-              >
-                <div className="inline-flex p-4 bg-python-blue rounded-2xl border border-python-blue/50 mb-4">
-                  <item.icon className="w-8 h-8 text-terminal-text" />
-                </div>
-                <h3 className="text-xl font-bold text-terminal-text mb-2">{item.title}</h3>
-                <p className="text-terminal-text/40 mb-4">{item.description}</p>
-                <Button
-                  variant="outline"
-                  className="border-python-blue/50 text-python-light hover:bg-python-blue/10 hover:border-python-blue transition-colors duration-200 bg-transparent"
-                  onClick={() => handleQuickAction(item.title)}
-                >
-                  {item.action}
-                </Button>
-              </motion.div>
-            ))}
+        {/* Section Header */}
+        <div className="flex flex-col items-center text-center mb-14">
+          <div className="flex items-center gap-2 font-mono text-xs text-accent uppercase tracking-wider mb-2">
+            <span>09 // KOMUNIKASI & BUKU TAMU</span>
           </div>
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-foreground tracking-tight">
+            Hubungi & Kolaborasi
+          </h2>
+          <p className="text-sm text-muted-foreground max-w-xl mt-2 font-mono">
+            Terbuka untuk peluang kerja sama rekayasa AI, pengembangan backend, proyek riset, maupun diskusi teknis.
+          </p>
         </div>
 
-        {/* Contact Forms */}
-        <div className="max-w-6xl mx-auto" ref={contactRef}>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            {/* Contact Me Form */}
-            <motion.div className="bg-[#0a0a0a] rounded-2xl p-8 border border-terminal-text/15 hover:border-python-blue transition-colors duration-200" initial={{ opacity: 0, x: -50 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
-              <div className="flex items-center space-x-3 mb-6">
-                <div className="p-3 bg-python-blue rounded-full border border-python-blue/50">
-                  <Send className="w-6 h-6 text-terminal-text" />
-                </div>
-                <div>
-                  <h3 className="text-2xl font-bold text-terminal-text">Hubungi Saya</h3>
-                  <p className="text-terminal-text/40">Ada yang ingin didiskusikan? Kirim pesan ke saya!</p>
-                </div>
-              </div>
+        {/* Quick Topic Action Badges */}
+        <div className="flex flex-wrap items-center justify-center gap-2 mb-12">
+          <span className="text-xs font-mono text-muted-foreground mr-1">Pilih Topik Cepat:</span>
+          {topics.map((t) => (
+            <button
+              key={t}
+              onClick={() => handleQuickTopic(t)}
+              className="px-3 py-1 rounded-lg border border-border bg-surface text-xs font-mono text-foreground hover:border-interactive-hover hover:text-accent transition-colors shadow-xs"
+            >
+              + {t}
+            </button>
+          ))}
+        </div>
 
-              <form onSubmit={handleContactSubmit} className="space-y-6">
-                <div className="relative">
-                  <User className="absolute left-4 top-4 w-5 h-5 text-terminal-text/30" />
-                  <input type="text" placeholder="Nama Anda" value={contactForm.name} onChange={(e) => setContactForm({ ...contactForm, name: e.target.value })} className="w-full pl-12 pr-4 py-4 bg-terminal-bg border border-terminal-text/15 rounded-xl text-terminal-text placeholder-terminal-text/30 focus:border-python-light focus:outline-none transition-colors duration-200" required />
-                </div>
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 max-w-6xl mx-auto">
+          {/* Left Column: Contact Form (7 cols) */}
+          <div className="lg:col-span-7">
+            <div className="p-6 sm:p-8 rounded-2xl border border-border bg-card shadow-xs">
+              <h3 className="text-xl font-bold text-foreground mb-1">Kirim Pesan Langsung</h3>
+              <p className="text-xs text-muted-foreground mb-6 font-sans">
+                Formulir terhubung langsung dengan inbox email. Saya akan merespons dalam waktu 1×24 jam.
+              </p>
 
-                <div className="relative">
-                  <Mail className="absolute left-4 top-4 w-5 h-5 text-terminal-text/30" />
-                  <input type="email" placeholder="Email Anda" value={contactForm.email} onChange={(e) => setContactForm({ ...contactForm, email: e.target.value })} className="w-full pl-12 pr-4 py-4 bg-terminal-bg border border-terminal-text/15 rounded-xl text-terminal-text placeholder-terminal-text/30 focus:border-python-light focus:outline-none transition-colors duration-200" required />
-                </div>
-
-                <div className="relative">
-                  <MessageCircle className="absolute left-4 top-4 w-5 h-5 text-terminal-text/30" />
-                  <textarea placeholder="Pesan Anda" rows={4} value={contactForm.message} onChange={(e) => setContactForm({ ...contactForm, message: e.target.value })} className="w-full pl-12 pr-4 py-4 bg-terminal-bg border border-terminal-text/15 rounded-xl text-terminal-text placeholder-terminal-text/30 focus:border-python-light focus:outline-none transition-colors duration-200 resize-none" required />
-                </div>
-
-                <div className="relative">
-                  <input type="text" placeholder="Topik (mis. Konsultasi / Proyek / Meeting)" value={contactForm.topic} onChange={(e) => setContactForm({ ...contactForm, topic: e.target.value })} className="w-full px-4 py-3 bg-terminal-bg border border-terminal-text/15 rounded-xl text-terminal-text placeholder-terminal-text/30 focus:border-python-light focus:outline-none transition-colors duration-200" />
-                </div>
-
-                <Button type="submit" disabled={isSubmittingContact} className="w-full bg-python-blue hover:bg-python-blue/80 text-terminal-text py-4 rounded-xl font-semibold transition-colors duration-200 border border-python-blue/50">
-                  <Send className="w-5 h-5 mr-2" />
-                  {isSubmittingContact ? "Mengirim..." : "Kirim Pesan"}
-                </Button>
-              </form>
-            </motion.div>
-
-            {/* Leave a Comment Form */}
-            <motion.div className="bg-[#0a0a0a] rounded-2xl p-8 border border-terminal-text/15 hover:border-python-blue transition-colors duration-200" initial={{ opacity: 0, x: 50 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.2 }}>
-              <div className="flex items-center space-x-3 mb-6">
-                <div className="p-3 bg-python-blue rounded-full border border-python-blue/50">
-                  <MessageSquare className="w-6 h-6 text-terminal-text" />
-                </div>
-                <div>
-                  <h3 className="text-2xl font-bold text-terminal-text">Tinggalkan Komentar</h3>
-                  <p className="text-terminal-text/40">Share pengalaman Anda!</p>
-                </div>
-              </div>
-
-              <form onSubmit={handleCommentSubmit} className="space-y-6 mb-8">
-                <div className="flex items-center space-x-4">
-                  <div className="w-12 h-12 bg-python-blue rounded-full flex items-center justify-center border border-python-blue/50">
-                    <User className="w-6 h-6 text-terminal-text" />
+              <form ref={formRef} onSubmit={handleContactSubmit} className="space-y-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-xs font-mono text-foreground mb-1.5 font-medium">
+                      Nama Lengkap *
+                    </label>
+                    <input
+                      type="text"
+                      required
+                      placeholder="Nama Anda"
+                      value={contactForm.name}
+                      onChange={(e) => setContactForm({ ...contactForm, name: e.target.value })}
+                      className="w-full px-3.5 py-2.5 rounded-xl border border-border bg-surface text-xs text-foreground placeholder:text-muted-foreground outline-none focus:border-interactive-hover transition-colors"
+                    />
                   </div>
-                  <input type="text" placeholder="Nama Anda" value={commentForm.name} onChange={(e) => setCommentForm({ ...commentForm, name: e.target.value })} className="flex-1 px-4 py-3 bg-terminal-bg border border-terminal-text/15 rounded-xl text-terminal-text placeholder-terminal-text/30 focus:border-python-light focus:outline-none transition-colors duration-200" required />
+
+                  <div>
+                    <label className="block text-xs font-mono text-foreground mb-1.5 font-medium">
+                      Alamat Email *
+                    </label>
+                    <input
+                      type="email"
+                      required
+                      placeholder="email@domain.com"
+                      value={contactForm.email}
+                      onChange={(e) => setContactForm({ ...contactForm, email: e.target.value })}
+                      className="w-full px-3.5 py-2.5 rounded-xl border border-border bg-surface text-xs text-foreground placeholder:text-muted-foreground outline-none focus:border-interactive-hover transition-colors"
+                    />
+                  </div>
                 </div>
 
-                <textarea placeholder="Tinggalkan komentar Anda..." rows={4} value={commentForm.comment} onChange={(e) => setCommentForm({ ...commentForm, comment: e.target.value })} className="w-full px-4 py-4 bg-terminal-bg border border-terminal-text/15 rounded-xl text-terminal-text placeholder-terminal-text/30 focus:border-python-light focus:outline-none transition-colors duration-200 resize-none" required />
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-xs font-mono text-foreground mb-1.5 font-medium">
+                      Topik Diskusi
+                    </label>
+                    <select
+                      value={contactForm.topic}
+                      onChange={(e) => setContactForm({ ...contactForm, topic: e.target.value })}
+                      className="w-full px-3.5 py-2.5 rounded-xl border border-border bg-surface text-xs text-foreground outline-none focus:border-interactive-hover transition-colors"
+                    >
+                      {topics.map((top) => (
+                        <option key={top} value={top} className="bg-card text-foreground">
+                          {top}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
 
-                <Button type="submit" className="w-full bg-python-blue hover:bg-python-blue/80 text-terminal-text py-4 rounded-xl font-semibold transition-colors duration-200 border border-python-blue/50">
-                  <MessageSquare className="w-5 h-5 mr-2" />
-                  Post Komentar
-                </Button>
+                  <div>
+                    <label className="block text-xs font-mono text-foreground mb-1.5 font-medium">
+                      Subjek Pesan
+                    </label>
+                    <input
+                      type="text"
+                      placeholder="Misal: Peluang Kolaborasi Proyek"
+                      value={contactForm.subject}
+                      onChange={(e) => setContactForm({ ...contactForm, subject: e.target.value })}
+                      className="w-full px-3.5 py-2.5 rounded-xl border border-border bg-surface text-xs text-foreground placeholder:text-muted-foreground outline-none focus:border-interactive-hover transition-colors"
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <label className="block text-xs font-mono text-foreground mb-1.5 font-medium">
+                    Isi Pesan *
+                  </label>
+                  <textarea
+                    rows={5}
+                    required
+                    placeholder="Tuliskan detail kebutuhan, pertanyaan teknis, atau proposal kolaborasi Anda di sini..."
+                    value={contactForm.message}
+                    onChange={(e) => setContactForm({ ...contactForm, message: e.target.value })}
+                    className="w-full px-3.5 py-2.5 rounded-xl border border-border bg-surface text-xs text-foreground placeholder:text-muted-foreground outline-none focus:border-interactive-hover transition-colors resize-none font-sans"
+                  />
+                </div>
+
+                {/* Feedback Alert */}
+                {contactFeedback && (
+                  <div
+                    className={`p-3 rounded-xl text-xs flex items-start gap-2 ${
+                      contactStatus === "success"
+                        ? "bg-emerald-500/10 border border-emerald-500/30 text-emerald-500"
+                        : "bg-red-500/10 border border-red-500/30 text-red-500"
+                    }`}
+                  >
+                    {contactStatus === "success" ? (
+                      <Check className="w-4 h-4 shrink-0 mt-0.5" />
+                    ) : (
+                      <AlertCircle className="w-4 h-4 shrink-0 mt-0.5" />
+                    )}
+                    <span>{contactFeedback}</span>
+                  </div>
+                )}
+
+                <button
+                  type="submit"
+                  disabled={isSubmittingContact}
+                  className="w-full sm:w-auto px-6 py-3 rounded-xl bg-primary text-primary-foreground font-medium text-xs hover:opacity-90 transition-opacity disabled:opacity-50 inline-flex items-center justify-center gap-2 shadow-xs"
+                >
+                  {isSubmittingContact ? (
+                    <span>Sedang Mengirim Pesan...</span>
+                  ) : (
+                    <>
+                      <Send className="w-3.5 h-3.5" />
+                      <span>Kirim Pesan Sekarang</span>
+                    </>
+                  )}
+                </button>
               </form>
+            </div>
+          </div>
 
-              {/* Comments Section */}
-              <div>
-                <h4 className="text-lg font-semibold text-terminal-text mb-4 flex items-center">
-                  <MessageSquare className="w-5 h-5 mr-2 text-python-light" />
-                  Komentar ({comments.length})
-                </h4>
+          {/* Right Column: Channels & Guestbook (5 cols) */}
+          <div className="lg:col-span-5 space-y-6">
+            {/* Direct Channels Card */}
+            <div className="p-6 rounded-2xl border border-border bg-card shadow-xs">
+              <h3 className="text-base font-bold text-foreground mb-4">Saluran Komunikasi Langsung</h3>
 
-                <div className="space-y-4">
-                  {comments.map((comment, index) => (
-                    <motion.div key={index} className="bg-terminal-bg rounded-xl p-4 border border-terminal-text/10" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.4, delay: index * 0.1 }}>
-                      <div className="flex items-start space-x-3">
-                        <div className="w-8 h-8 bg-python-blue/30 rounded-full flex items-center justify-center flex-shrink-0 border border-python-blue/40">
-                          <User className="w-4 h-4 text-python-light" />
-                        </div>
-                        <div className="flex-1">
-                          <div className="flex items-center space-x-2 mb-1">
-                            <span className="font-semibold text-terminal-text text-sm">{comment.name}</span>
-                            <span className="text-terminal-text/30 text-xs">{comment.time}</span>
-                          </div>
-                          <p className="text-terminal-text/60 text-sm">{comment.comment}</p>
-                        </div>
-                      </div>
-                    </motion.div>
-                  ))}
+              <div className="space-y-3 text-xs">
+                {/* Email with copy button */}
+                <div className="p-3 rounded-xl border border-border bg-surface flex items-center justify-between">
+                  <div className="flex items-center gap-2.5 truncate mr-2">
+                    <Mail className="w-4 h-4 text-accent shrink-0" />
+                    <span className="font-mono text-foreground truncate">{profileData.contact.email}</span>
+                  </div>
+                  <button
+                    onClick={handleCopyEmail}
+                    className="px-2 py-1 rounded-md border border-border bg-surface-secondary text-[10px] font-mono hover:text-accent transition-colors shrink-0"
+                    title="Salin email"
+                  >
+                    {copiedEmail ? "Tersalin!" : "Salin"}
+                  </button>
+                </div>
+
+                {/* Location */}
+                <div className="p-3 rounded-xl border border-border bg-surface flex items-center gap-2.5">
+                  <MapPin className="w-4 h-4 text-accent shrink-0" />
+                  <span className="text-muted-foreground font-sans">{profileData.contact.location}</span>
+                </div>
+
+                {/* Social buttons */}
+                <div className="grid grid-cols-2 gap-2 pt-2">
+                  <a
+                    href={profileData.contact.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-2.5 rounded-xl border border-border bg-surface hover:border-interactive-hover transition-colors flex items-center justify-center gap-2 text-foreground font-mono"
+                  >
+                    <Github className="w-4 h-4 text-accent" />
+                    <span>GitHub</span>
+                  </a>
+
+                  <a
+                    href={profileData.contact.linkedin}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-2.5 rounded-xl border border-border bg-surface hover:border-interactive-hover transition-colors flex items-center justify-center gap-2 text-foreground font-mono"
+                  >
+                    <Linkedin className="w-4 h-4 text-accent" />
+                    <span>LinkedIn</span>
+                  </a>
                 </div>
               </div>
-            </motion.div>
-          </div>
-        </div>
-
-        {/* Email CTA */}
-        <motion.div className="text-center mt-16" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.8 }}>
-          <div className="bg-[#0a0a0a] rounded-2xl p-8 border border-terminal-text/15 hover:border-python-blue transition-colors duration-200">
-            <div className="inline-flex p-4 bg-python-blue rounded-full border border-python-blue/50 mb-6">
-              <Mail className="w-8 h-8 text-terminal-text" />
             </div>
 
-            <h3 className="text-2xl font-bold text-terminal-text mb-4">Ingin Berkolaborasi? atau ingin tanya lebih lanjut?</h3>
+            {/* Guestbook Card */}
+            <div className="p-6 rounded-2xl border border-border bg-card shadow-xs">
+              <div className="flex items-center gap-2 mb-1">
+                <MessageSquare className="w-4 h-4 text-accent" />
+                <h3 className="text-base font-bold text-foreground">Buku Tamu Pengunjung</h3>
+              </div>
+              <p className="text-xs text-muted-foreground mb-4 font-sans">
+                Tinggalkan jejak, impresi, atau salam singkat di portofolio ini.
+              </p>
 
-            <Button asChild className="bg-python-blue hover:bg-python-blue/80 text-terminal-text px-8 py-3 text-lg font-semibold rounded-full border border-python-blue/50 transition-colors duration-200">
-              <motion.a href="mailto:aldialfatih016@gmail.com" whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                <Mail size={20} className="mr-2" />
-                aldialfatih016@gmail.com
-              </motion.a>
-            </Button>
+              {/* Guestbook Form */}
+              <form onSubmit={handleCommentSubmit} className="space-y-2.5 mb-5 pb-4 border-b border-border">
+                <input
+                  type="text"
+                  placeholder="Nama Pengunjung"
+                  value={commentForm.name}
+                  onChange={(e) => setCommentForm({ ...commentForm, name: e.target.value })}
+                  className="w-full px-3 py-2 rounded-lg border border-border bg-surface text-xs text-foreground placeholder:text-muted-foreground outline-none focus:border-interactive-hover"
+                />
+                <textarea
+                  rows={2}
+                  placeholder="Tuliskan ulasan atau apresiasi singkat..."
+                  value={commentForm.comment}
+                  onChange={(e) => setCommentForm({ ...commentForm, comment: e.target.value })}
+                  className="w-full px-3 py-2 rounded-lg border border-border bg-surface text-xs text-foreground placeholder:text-muted-foreground outline-none focus:border-interactive-hover resize-none"
+                />
+                {commentError && (
+                  <p className="text-[11px] text-red-500 font-mono">{commentError}</p>
+                )}
+                <button
+                  type="submit"
+                  disabled={isSubmittingComment}
+                  className="px-4 py-1.5 rounded-lg border border-border bg-surface-secondary text-foreground text-xs font-mono hover:border-interactive-hover transition-colors"
+                >
+                  {isSubmittingComment ? "Mengirim..." : "Kirim Komentar"}
+                </button>
+              </form>
+
+              {/* Comments Stream */}
+              <div className="space-y-2.5 max-h-56 overflow-y-auto pr-1">
+                {comments.length === 0 ? (
+                  <p className="text-xs text-muted-foreground text-center py-4 font-mono">
+                    Belum ada komentar. Jadilah yang pertama!
+                  </p>
+                ) : (
+                  comments.map((c, idx) => (
+                    <div
+                      key={idx}
+                      className="p-3 rounded-xl border border-border/70 bg-surface-secondary/40 text-xs"
+                    >
+                      <div className="flex items-center justify-between gap-2 mb-1">
+                        <span className="font-semibold text-foreground truncate">{c.name}</span>
+                        <span className="text-[10px] font-mono text-muted-foreground shrink-0">{c.time}</span>
+                      </div>
+                      <p className="text-foreground/80 font-sans leading-relaxed text-[11px]">
+                        {c.comment}
+                      </p>
+                    </div>
+                  ))
+                )}
+              </div>
+            </div>
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   )

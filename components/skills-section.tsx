@@ -1,222 +1,225 @@
 "use client"
 
-import { Progress } from "@/components/ui/progress"
-import { AnimatePresence, motion } from "framer-motion"
+import React, { useState } from "react"
+import { motion, AnimatePresence } from "framer-motion"
 import {
-    BookOpen,
-    Brain, Code2, Database,
-    Layers, Mic,
-    Terminal, Cpu,
-    Users,
-    Video,
-    Wrench
+  Code2,
+  Cpu,
+  Layers,
+  Database,
+  Wrench,
+  Wifi,
+  Users,
+  Mic,
+  Brain,
+  BookOpen,
+  Languages as LangIcon,
+  CheckCircle2,
 } from "lucide-react"
-import { useState } from "react"
-
-const tabs = [
-    { id: "tech", label: "Hardskills" },
-    { id: "soft", label: "Softskills" },
-    { id: "lang", label: "Languages" },
-]
-
-const techSkills = [
-    {
-        category: "Bahasa Pemrograman",
-        icon: Code2,
-        items: ["Python", "Java", "PHP", "JavaScript"]
-    },
-    {
-        category: "AI/ML & Data",
-        icon: Brain,
-        items: ["Machine Learning", "Deep Learning", "Computer Vision", "NLP", "Data Mining", "EDA", "Data Visualization", "Model Deployment", "TensorFlow", "Keras", "scikit-learn", "MediaPipe"]
-    },
-    {
-        category: "Web Development & Backend",
-        icon: Layers,
-        items: ["PHP Native", "Laravel", "CodeIgniter 4", "Vue.js", "React", "Inertia.js", "RESTful API", "Arsitektur MVC"]
-    },
-    {
-        category: "Database",
-        icon: Database,
-        items: ["MySQL", "PostgreSQL", "SQL"]
-    },
-    {
-        category: "Tools & Platforms",
-        icon: Wrench,
-        items: ["Git", "GitHub", "Docker", "Jupyter Notebook", "Google Colab", "Android Studio", "VS Code", "Figma", "Microsoft Office", "Roboflow", "CVAT", "Arduino IDE"]
-    },
-    {
-        category: "IoT & Embedded",
-        icon: Cpu,
-        items: ["Internet of Things", "Embedded System", "Wireless Sensor Network"]
-    }
-]
-
-const softSkills = [
-    {
-        title: "Leadership",
-        description: "Ketua Habibie Coding Club, Koordinator Divisi Olahraga BEM ITH, memimpin tim teknis lintas disiplin.",
-        icon: Users
-    },
-    {
-        title: "Public Speaking",
-        description: "Pengalaman presentasi proyek di kompetisi internasional dan nasional.",
-        icon: Mic
-    },
-    {
-        title: "Teamwork & Kolaborasi",
-        description: "Terbiasa bekerja dalam tim lintas disiplin, baik di proyek riset maupun proyek pemerintah.",
-        icon: Users
-    },
-    {
-        title: "Problem Solving",
-        description: "Menganalisis masalah teknis kompleks dan merancang solusi yang efisien dan skalabel.",
-        icon: Brain
-    },
-    {
-        title: "Project Management",
-        description: "Mengelola proyek dari perencanaan hingga deployment dengan timeline dan milestone yang jelas.",
-        icon: BookOpen
-    },
-    {
-        title: "Adaptif & Inovatif",
-        description: "Cepat beradaptasi dengan teknologi baru dan terus berinovasi dalam setiap proyek.",
-        icon: Video
-    },
-]
-
-const languages = [
-    { language: "Bahasa Indonesia", level: 100, label: "Fasih (Native)" },
-    { language: "English", level: 55, label: "Elementary – Intermediate" },
-]
+import {
+  technicalSkillCategories,
+  softSkillsData,
+  languageSkillsData,
+} from "@/data/skills"
 
 export default function SkillsSection() {
-    const [activeTab, setActiveTab] = useState("tech")
+  const [activeTab, setActiveTab] = useState<"hard" | "soft" | "lang">("hard")
 
-    return (
-        <section id="skills" className="py-24 relative overflow-hidden">
-            <div className="container mx-auto px-4 relative z-10">
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    className="text-center mb-16"
-                >
-                    <h2 className="text-3xl md:text-5xl font-bold mb-4 text-terminal-text">
-                        <span className="text-python-light font-mono mr-2"></span>
-                        Keahlian & Keterampilan
-                        <span className="text-python-light font-mono ml-1"></span>
-                    </h2>
-                    <p className="text-terminal-text/50 max-w-2xl mx-auto">
-                        Keterampilan teknis, soft skills, dan kemampuan bahasa yang mendukung pengembangan solusi AI dan backend development.
-                    </p>
-                </motion.div>
+  const getCategoryIcon = (category: string) => {
+    switch (category) {
+      case "Programming Languages":
+        return Code2
+      case "AI, Machine Learning & Deep Learning":
+        return Cpu
+      case "Web & Backend Engineering":
+        return Layers
+      case "Database & Storage":
+        return Database
+      case "Tools, Platforms & AI Data Labeling":
+        return Wrench
+      case "IoT & Embedded Systems":
+        return Wifi
+      default:
+        return Code2
+    }
+  }
 
-                {/* Custom Tabs */}
-                <div className="flex justify-center mb-12">
-                    <div className="flex space-x-2 bg-[#0a0a0a] p-1.5 rounded-full border border-terminal-text/15">
-                        {tabs.map((tab) => (
-                            <button
-                                key={tab.id}
-                                onClick={() => setActiveTab(tab.id)}
-                                className={`relative px-6 py-2 rounded-full text-sm font-medium transition-colors duration-200 ${activeTab === tab.id ? "text-terminal-text" : "text-terminal-text/40 hover:text-terminal-text/70"
-                                    }`}
-                            >
-                                {activeTab === tab.id && (
-                                    <motion.div
-                                        layoutId="activeTab"
-                                        className="absolute inset-0 bg-python-blue/20 border border-python-blue/30 rounded-full"
-                                        transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
-                                    />
-                                )}
-                                <span className="relative z-10">{tab.label}</span>
-                            </button>
-                        ))}
+  return (
+    <section id="skills" className="py-24 relative border-t border-border/60">
+      <div className="container mx-auto px-4">
+        {/* Section Header */}
+        <div className="flex flex-col items-center text-center mb-14">
+          <div className="flex items-center gap-2 font-mono text-xs text-accent uppercase tracking-wider mb-2">
+            <span>02 // KOMPETENSI & TEKNOLOGI</span>
+          </div>
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-foreground tracking-tight">
+            Keahlian & Stack Teknologi
+          </h2>
+          <p className="text-sm text-muted-foreground max-w-xl mt-2 font-mono">
+            Instrumen teknis yang dikuasai untuk merancang solusi komputasi cerdas dan scalable.
+          </p>
+        </div>
+
+        {/* Tab Switcher */}
+        <div className="flex justify-center mb-12">
+          <div className="inline-flex p-1.5 rounded-2xl border border-border bg-surface-secondary/70 backdrop-blur-md">
+            <button
+              onClick={() => setActiveTab("hard")}
+              className={`px-5 py-2 rounded-xl text-xs font-mono font-medium transition-all ${
+                activeTab === "hard"
+                  ? "bg-card text-foreground shadow-sm border border-border"
+                  : "text-muted-foreground hover:text-foreground"
+              }`}
+            >
+              Hard Skills ({technicalSkillCategories.length} Kategori)
+            </button>
+            <button
+              onClick={() => setActiveTab("soft")}
+              className={`px-5 py-2 rounded-xl text-xs font-mono font-medium transition-all ${
+                activeTab === "soft"
+                  ? "bg-card text-foreground shadow-sm border border-border"
+                  : "text-muted-foreground hover:text-foreground"
+              }`}
+            >
+              Soft Skills ({softSkillsData.length})
+            </button>
+            <button
+              onClick={() => setActiveTab("lang")}
+              className={`px-5 py-2 rounded-xl text-xs font-mono font-medium transition-all ${
+                activeTab === "lang"
+                  ? "bg-card text-foreground shadow-sm border border-border"
+                  : "text-muted-foreground hover:text-foreground"
+              }`}
+            >
+              Languages ({languageSkillsData.length})
+            </button>
+          </div>
+        </div>
+
+        {/* Content based on Active Tab */}
+        <AnimatePresence mode="wait">
+          {activeTab === "hard" && (
+            <motion.div
+              key="hard"
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -15 }}
+              transition={{ duration: 0.25 }}
+              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+            >
+              {technicalSkillCategories.map((cat, idx) => {
+                const IconComponent = getCategoryIcon(cat.category)
+                return (
+                  <div
+                    key={idx}
+                    className="p-6 rounded-2xl border border-border bg-card shadow-xs hover:border-interactive-hover transition-all flex flex-col justify-between"
+                  >
+                    <div>
+                      <div className="flex items-center gap-3 mb-3">
+                        <div className="p-2.5 rounded-xl border border-border bg-surface-secondary text-accent">
+                          <IconComponent className="w-5 h-5" />
+                        </div>
+                        <div>
+                          <h3 className="text-base font-bold text-foreground">
+                            {cat.category}
+                          </h3>
+                        </div>
+                      </div>
+
+                      {cat.description && (
+                        <p className="text-xs text-muted-foreground mb-4 leading-relaxed font-sans">
+                          {cat.description}
+                        </p>
+                      )}
                     </div>
+
+                    <div className="flex flex-wrap gap-1.5 pt-4 border-t border-border/70">
+                      {cat.skills.map((skill, sIdx) => (
+                        <div
+                          key={sIdx}
+                          className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg border border-border bg-surface text-xs font-mono text-foreground hover:border-interactive-hover transition-colors"
+                        >
+                          <span className="font-medium">{skill.name}</span>
+                          {skill.badge && (
+                            <span className="text-[9px] text-muted-foreground opacity-75">
+                              • {skill.badge}
+                            </span>
+                          )}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )
+              })}
+            </motion.div>
+          )}
+
+          {activeTab === "soft" && (
+            <motion.div
+              key="soft"
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -15 }}
+              transition={{ duration: 0.25 }}
+              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+            >
+              {softSkillsData.map((soft, idx) => (
+                <div
+                  key={idx}
+                  className="p-6 rounded-2xl border border-border bg-card shadow-xs hover:border-interactive-hover transition-colors flex flex-col justify-between"
+                >
+                  <div>
+                    <div className="flex items-center gap-2 mb-3">
+                      <span className="text-xs font-mono font-bold text-accent">
+                        0{idx + 1}.
+                      </span>
+                      <h3 className="text-base font-bold text-foreground">
+                        {soft.title}
+                      </h3>
+                    </div>
+                    <p className="text-xs sm:text-sm text-foreground/80 leading-relaxed font-sans">
+                      {soft.description}
+                    </p>
+                  </div>
                 </div>
+              ))}
+            </motion.div>
+          )}
 
-                {/* Content Area */}
-                <div className="min-h-[400px]">
-                    <AnimatePresence mode="wait">
+          {activeTab === "lang" && (
+            <motion.div
+              key="lang"
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -15 }}
+              transition={{ duration: 0.25 }}
+              className="max-w-2xl mx-auto grid grid-cols-1 sm:grid-cols-2 gap-6"
+            >
+              {languageSkillsData.map((lang, idx) => (
+                <div
+                  key={idx}
+                  className="p-6 rounded-2xl border border-border bg-card shadow-xs hover:border-interactive-hover transition-colors"
+                >
+                  <div className="flex items-center gap-2 mb-2">
+                    <LangIcon className="w-4 h-4 text-accent" />
+                    <h3 className="text-lg font-bold text-foreground font-sans">
+                      {lang.language}
+                    </h3>
+                  </div>
 
-                        {/* Tech Skills Tab */}
-                        {activeTab === "tech" && (
-                            <motion.div
-                                key="tech"
-                                initial={{ opacity: 0, y: 20 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                exit={{ opacity: 0, y: -20 }}
-                                transition={{ duration: 0.3 }}
-                                className="grid grid-cols-1 md:grid-cols-2 gap-6"
-                            >
-                                {techSkills.map((cat, idx) => (
-                                    <div key={idx} className="bg-[#0a0a0a] border border-terminal-text/15 rounded-2xl p-6 hover:border-python-blue transition-colors duration-200">
-                                        <div className="flex items-center gap-3 mb-4">
-                                            <cat.icon size={24} className="text-python-light" />
-                                            <h3 className="text-xl font-bold text-terminal-text">{cat.category}</h3>
-                                        </div>
-                                        <div className="flex flex-wrap gap-2">
-                                            {cat.items.map((item) => (
-                                                <span key={item} className="px-3 py-1 bg-terminal-bg rounded-full text-sm text-terminal-text/70 border border-terminal-text/15 hover:border-python-blue hover:text-python-light transition-colors duration-200 cursor-default font-mono">
-                                                    {item}
-                                                </span>
-                                            ))}
-                                        </div>
-                                    </div>
-                                ))}
-                            </motion.div>
-                        )}
+                  <div className="inline-block px-2.5 py-1 rounded-md bg-surface-secondary text-accent font-mono text-xs font-semibold mb-3 border border-border">
+                    {lang.proficiency}
+                  </div>
 
-                        {/* Soft Skills Tab */}
-                        {activeTab === "soft" && (
-                            <motion.div
-                                key="soft"
-                                initial={{ opacity: 0, y: 20 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                exit={{ opacity: 0, y: -20 }}
-                                transition={{ duration: 0.3 }}
-                                className="grid grid-cols-1 md:grid-cols-2 gap-6"
-                            >
-                                {softSkills.map((skill, idx) => (
-                                    <div key={idx} className="bg-[#0a0a0a] border border-terminal-text/15 rounded-2xl p-6 flex gap-4 hover:border-python-blue transition-colors duration-200 group">
-                                        <div className="w-12 h-12 bg-python-blue/15 border border-python-blue/30 rounded-full flex items-center justify-center shrink-0 group-hover:bg-python-blue/25 transition-colors duration-200">
-                                            <skill.icon className="text-python-light" size={24} />
-                                        </div>
-                                        <div>
-                                            <h3 className="text-lg font-bold text-terminal-text mb-2">{skill.title}</h3>
-                                            <p className="text-terminal-text/50 text-sm leading-relaxed">{skill.description}</p>
-                                        </div>
-                                    </div>
-                                ))}
-                            </motion.div>
-                        )}
-
-                        {/* Languages Tab */}
-                        {activeTab === "lang" && (
-                            <motion.div
-                                key="lang"
-                                initial={{ opacity: 0, y: 20 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                exit={{ opacity: 0, y: -20 }}
-                                transition={{ duration: 0.3 }}
-                                className="max-w-2xl mx-auto bg-[#0a0a0a] border border-terminal-text/15 rounded-2xl p-8 space-y-8"
-                            >
-                                {languages.map((lang, idx) => (
-                                    <div key={idx}>
-                                        <div className="flex justify-between mb-2">
-                                            <span className="font-bold text-terminal-text">{lang.language}</span>
-                                            <span className="text-sm text-terminal-text/50">{lang.label}</span>
-                                        </div>
-                                        <Progress value={lang.level} className="h-2" />
-                                    </div>
-                                ))}
-                            </motion.div>
-                        )}
-
-                    </AnimatePresence>
+                  <p className="text-xs text-muted-foreground leading-relaxed font-sans">
+                    {lang.description}
+                  </p>
                 </div>
-
-            </div>
-        </section>
-    )
+              ))}
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
+    </section>
+  )
 }

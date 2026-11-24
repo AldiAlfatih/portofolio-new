@@ -2,63 +2,179 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-    :root {
-        /* Terminal/Coder Theme */
-        --background: 0 0% 0%;
-        --foreground: 50 38% 87%;
+/* ==========================================================================
+   FOUR-THEME SYSTEM (CSS CUSTOM PROPERTIES)
+   ========================================================================== */
 
-        --card: 0 0% 4%;
-        --card-foreground: 50 38% 87%;
-
-        --popover: 0 0% 4%;
-        --popover-foreground: 50 38% 87%;
-
-        --primary: 204 88% 37%;
-        /* Python Blue #0B60B0 */
-        --primary-foreground: 50 38% 87%;
-
-        --secondary: 0 0% 8%;
-        --secondary-foreground: 50 38% 87%;
-
-        --muted: 0 0% 12%;
-        --muted-foreground: 50 20% 65%;
-
-        --accent: 200 66% 55%;
-        /* Python Light #40A2D8 */
-        --accent-foreground: 0 0% 0%;
-
-        --destructive: 0 62.8% 30.6%;
-        --destructive-foreground: 50 38% 87%;
-
-        --border: 50 38% 87%;
-        --input: 0 0% 15%;
-        --ring: 204 88% 37%;
-
-        --radius: 0.5rem;
-    }
+:root,
+[data-theme="midnight-blue"],
+.theme-midnight-blue {
+  --background: #000000;
+  --foreground: #F0EDCF;
+  --surface: #111111;
+  --surface-secondary: #1a1a1a;
+  --primary: #0B60B0;
+  --secondary: #40A2D8;
+  --accent: #F0EDCF;
+  --border: rgba(240, 237, 207, 0.15);
+  --card: #111111;
+  --card-foreground: #F0EDCF;
+  --navbar: rgba(0, 0, 0, 0.9);
+  --button-primary: #0B60B0;
+  --button-primary-foreground: #F0EDCF;
+  --button-secondary: rgba(64, 162, 216, 0.12);
+  --button-secondary-foreground: #40A2D8;
+  --button-secondary-border: rgba(64, 162, 216, 0.3);
+  --interactive-hover: #40A2D8;
+  --focus-ring: #40A2D8;
+  --muted: #1e1e1e;
+  --muted-foreground: #a3a18a;
+  --radius: 0.625rem;
 }
 
-@layer base {
-    * {
-        @apply border-border/20;
-    }
-
-    body {
-        @apply bg-background text-foreground;
-    }
+[data-theme="sky-blue"],
+.theme-sky-blue {
+  --background: #E3F2FD;
+  --foreground: #0D47A1;
+  --surface: #FFFFFF;
+  --surface-secondary: #F0F7FE;
+  --primary: #2196F3;
+  --secondary: #90CAF9;
+  --accent: #0D47A1;
+  --border: rgba(13, 71, 161, 0.18);
+  --card: #FFFFFF;
+  --card-foreground: #0D47A1;
+  --navbar: rgba(227, 242, 253, 0.92);
+  --button-primary: #2196F3;
+  --button-primary-foreground: #FFFFFF;
+  --button-secondary: #E3F2FD;
+  --button-secondary-foreground: #0D47A1;
+  --button-secondary-border: #90CAF9;
+  --interactive-hover: #1976D2;
+  --focus-ring: #2196F3;
+  --muted: #E1F0FA;
+  --muted-foreground: #47688f;
+  --radius: 0.625rem;
 }
 
-/* Terminal-style card */
-.terminal-card {
-    @apply bg-[#0a0a0a] border border-[#F0EDCF]/20 transition-colors duration-200;
+[data-theme="burgundy"],
+.theme-burgundy {
+  --background: #2C2C2C;
+  --foreground: #F3F4F4;
+  --surface: #383838;
+  --surface-secondary: #444444;
+  --primary: #853953;
+  --secondary: #612D53;
+  --accent: #F3F4F4;
+  --border: rgba(243, 244, 244, 0.18);
+  --card: #383838;
+  --card-foreground: #F3F4F4;
+  --navbar: rgba(44, 44, 44, 0.92);
+  --button-primary: #853953;
+  --button-primary-foreground: #FFFFFF;
+  --button-secondary: rgba(133, 57, 83, 0.25);
+  --button-secondary-foreground: #F3F4F4;
+  --button-secondary-border: #853953;
+  --interactive-hover: #9c4362;
+  --focus-ring: #853953;
+  --muted: #484848;
+  --muted-foreground: #b8b8b8;
+  --radius: 0.625rem;
 }
 
-.terminal-card:hover {
-    @apply border-[#0B60B0];
+[data-theme="arctic-red"],
+.theme-arctic-red {
+  --background: #F5F5F5;
+  --foreground: #2C2C2C;
+  --surface: #FFFFFF;
+  --surface-secondary: #DFF1F1;
+  --primary: #FF0000;
+  --secondary: #DFF1F1;
+  --accent: #2C2C2C;
+  --border: rgba(187, 213, 218, 0.6);
+  --card: #FFFFFF;
+  --card-foreground: #2C2C2C;
+  --navbar: rgba(245, 245, 245, 0.92);
+  --button-primary: #FF0000;
+  --button-primary-foreground: #FFFFFF;
+  --button-secondary: rgba(255, 0, 0, 0.08);
+  --button-secondary-foreground: #FF0000;
+  --button-secondary-border: rgba(255, 0, 0, 0.35);
+  --interactive-hover: #CC0000;
+  --focus-ring: #FF0000;
+  --muted: #E2ECEE;
+  --muted-foreground: #667072;
+  --radius: 0.625rem;
 }
 
-/* Code accent for decorative elements */
-.code-accent {
-    @apply text-[#40A2D8] font-mono;
+/* ==========================================================================
+   BASE RESETS & SMOOTH SCROLLING
+   ========================================================================== */
+
+* {
+  border-color: var(--border);
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: var(--background);
+  color: var(--foreground);
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  transition: background-color 0.25s ease, color 0.25s ease;
+  min-height: 100vh;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--background);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--interactive-hover);
+}
+
+/* ==========================================================================
+   JUDIE MOSINABRE-STYLE TECH TAGS & CARDS
+   ========================================================================== */
+
+.tech-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-family: var(--font-jetbrains-mono), monospace;
+  font-size: 0.75rem;
+  padding: 0.25rem 0.65rem;
+  border-radius: 9999px;
+  background-color: var(--surface-secondary);
+  color: var(--foreground);
+  border: 1px solid var(--border);
+  transition: all 0.2s ease;
+}
+
+.tech-tag:hover {
+  border-color: var(--interactive-hover);
+  color: var(--interactive-hover);
+}
+
+.eng-card {
+  background-color: var(--card);
+  color: var(--card-foreground);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  transition: all 0.2s ease;
+}
+
+.eng-card:hover {
+  border-color: var(--interactive-hover);
 }

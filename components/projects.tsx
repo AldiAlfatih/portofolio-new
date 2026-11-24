@@ -1,225 +1,234 @@
 "use client"
 
-import { motion } from "framer-motion"
+import React, { useState, useMemo } from "react"
+import { motion, AnimatePresence } from "framer-motion"
 import Image from "next/image"
-import { ExternalLink, Github, Brain, Eye, Code2, Server } from "lucide-react"
-import { Button } from "@/components/ui/button"
+import {
+  ExternalLink,
+  Github,
+  Search,
+  ArrowRight,
+  FolderGit2,
+  Layers,
+  ArrowUpRight,
+  CheckCircle2,
+} from "lucide-react"
+import { projectsData } from "@/data/projects"
+import { ProjectItem } from "@/types/portfolio"
+import ProjectDetailModal from "@/components/projects/project-detail-modal"
+import ArchitectureViewer from "@/components/technical-showcase/architecture-viewer"
+import ModelDatasetShowcase from "@/components/technical-showcase/model-dataset-showcase"
 
-const projects = [
-  {
-    title: "ISARA: Inovasi Komunikasi Dua Arah",
-    role: "Co-Founder & Computer Vision Engineer",
-    description:
-      "Merancang arsitektur Computer Vision untuk pengenalan Bahasa Isyarat Indonesia (BISINDO) secara near real-time menggunakan TensorFlow dan MediaPipe yang berhasil meraih pendanaan nasional PKM-KC 2025. Mengembangkan pipeline vision-to-text dan text-to-sign.",
-    image: "isara-sign-language-app",
-    icon: Brain,
-    tech: [
-      "Python",
-      "TensorFlow",
-      "Keras",
-      "MediaPipe",
-      "TFLite",
-      "OpenCV",
-      "Android",
-      "CameraX",
-      "Java",
-    ],
-    demoUrl: "#",
-    codeUrl: "#",
-  },
-  {
-    title: "Proyek Sistem E-Monev Bappeda",
-    role: "Lead Back-End Developer",
-    description:
-      "Merancang dan bertanggung jawab penuh atas arsitektur server-side menggunakan Laravel dan Inertia.js untuk efisiensi monitoring anggaran daerah. Mengimplementasikan logika bisnis inti termasuk sistem otentikasi, otorisasi, dan validasi data ketat.",
-    image: "e-monev-dashboard",
-    icon: Server,
-    tech: [
-      "Laravel",
-      "PHP",
-      "PostgreSQL",
-      "Inertia.js",
-      "Vue.js",
-      "Tailwind CSS",
-      "JavaScript",
-      "RESTful API",
-    ],
-    demoUrl: "https://drive.google.com/file/d/1x3zWwVp6C_xoth3EjXX6TPY1R3l5-QrL/view?usp=drive_link",
-    codeUrl: "#",
-  },
-  {
-    title: "Monitoring Hidroponik Cerdas",
-    role: "AI Engineer",
-    description:
-      "Mengembangkan model ANN dan LSTM untuk memprediksi kualitas panen selada berdasarkan data sensor IoT (suhu, kelembapan, TDS) yang diintegrasikan ke aplikasi Android.",
-    image: "hydroponic-ai-system",
-    icon: Brain,
-    tech: [
-      "Python",
-      "TensorFlow",
-      "ANN",
-      "LSTM",
-      "IoT",
-      "ESP32",
-      "Android",
-    ],
-    demoUrl: "#",
-    codeUrl: "#",
-  },
-  {
-    title: "Sistem Klasifikasi Gulma",
-    role: "Peneliti Pembantu",
-    description:
-      "Membangun dataset primer melalui pengumpulan ratusan citra di lapangan (Enrekang) dan melakukan anotasi data menggunakan Roboflow untuk klasifikasi gulma.",
-    image: "weed-classification-system",
-    icon: Eye,
-    tech: [
-      "Python",
-      "TensorFlow",
-      "Keras",
-      "OpenCV",
-      "Roboflow",
-      "Image Processing",
-    ],
-    demoUrl: "#",
-    codeUrl: "#",
-  },
-  {
-    title: "Dataset Mitigasi Bencana",
-    role: "Peneliti Pembantu",
-    description:
-      "Melakukan ekstraksi ribuan frame dari video amatir dan anotasi segmentasi semantik pada area banjir menggunakan platform CVAT.",
-    image: "flood-dataset-segmentation",
-    icon: Eye,
-    tech: ["CVAT", "Segmentation", "Computer Vision", "Python"],
-    demoUrl: "#",
-    codeUrl: "#",
-  },
+const categories = [
+  "All",
+  "AI / Machine Learning",
+  "Computer Vision",
+  "Backend Development",
+  "IoT",
 ]
 
 export default function Projects() {
-  return (
-    <section id="projects" className="py-20 relative">
-      <div className="container mx-auto px-4">
-        <motion.h2
-          className="text-4xl font-bold text-center mb-16 text-terminal-text"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-        >
-          <span className="text-python-light font-mono mr-2"></span>
-          Proyek
-        </motion.h2>
+  const [selectedCategory, setSelectedCategory] = useState("All")
+  const [searchQuery, setSearchQuery] = useState("")
+  const [selectedProject, setSelectedProject] = useState<ProjectItem | null>(null)
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {projects.map((project, index) => {
-            const IconComponent = project.icon ?? Brain
-            return (
+  const filteredProjects = useMemo(() => {
+    return projectsData.filter((project) => {
+      const matchCategory =
+        selectedCategory === "All" ||
+        project.category === selectedCategory ||
+        (selectedCategory === "AI / Machine Learning" &&
+          (project.category === "AI / Machine Learning" || project.category === "Computer Vision"))
+
+      const query = searchQuery.toLowerCase().trim()
+      const matchSearch =
+        query === "" ||
+        project.title.toLowerCase().includes(query) ||
+        project.description.toLowerCase().includes(query) ||
+        project.role.toLowerCase().includes(query) ||
+        project.technologies.some((t) => t.toLowerCase().includes(query))
+
+      return matchCategory && matchSearch
+    })
+  }, [selectedCategory, searchQuery])
+
+  return (
+    <section id="projects" className="py-24 relative border-t border-border">
+      <div className="container mx-auto px-4 max-w-6xl">
+        {/* Section Header (Judie Mosinabre style) */}
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10 pb-4 border-b border-border">
+          <div>
+            <div className="text-xs font-mono uppercase tracking-wider text-muted-foreground mb-1">
+              Featured Work & Implementations
+            </div>
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-foreground tracking-tight">
+              Proyek Rekayasa & Sistem AI
+            </h2>
+          </div>
+
+          {/* Search Box */}
+          <div className="relative w-full sm:w-64">
+            <Search className="w-4 h-4 text-muted-foreground absolute left-3 top-1/2 -translate-y-1/2" />
+            <input
+              type="text"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              placeholder="Cari proyek atau stack..."
+              className="w-full pl-9 pr-3.5 py-1.5 rounded-xl border border-border bg-surface text-xs text-foreground placeholder:text-muted-foreground outline-none focus:border-primary transition-colors font-sans"
+            />
+          </div>
+        </div>
+
+        {/* Category Filters */}
+        <div className="flex flex-wrap items-center justify-between gap-3 mb-10">
+          <div className="flex flex-wrap gap-1.5">
+            {categories.map((cat) => {
+              const isActive = selectedCategory === cat
+              return (
+                <button
+                  key={cat}
+                  onClick={() => setSelectedCategory(cat)}
+                  className={`px-3.5 py-1.5 rounded-full text-xs font-mono transition-all border ${
+                    isActive
+                      ? "bg-primary text-primary-foreground border-primary font-semibold shadow-xs"
+                      : "bg-surface text-foreground/80 hover:text-foreground border-border hover:border-primary"
+                  }`}
+                >
+                  {cat}
+                </button>
+              )
+            })}
+          </div>
+
+          <span className="text-xs font-mono text-muted-foreground">
+            Menampilkan <strong className="text-foreground">{filteredProjects.length}</strong> proyek
+          </span>
+        </div>
+
+        {/* Project Cards (Judie Mosinabre Dominant Visual Preview Pattern) */}
+        {filteredProjects.length === 0 ? (
+          <div className="text-center py-16 border border-dashed border-border rounded-2xl bg-surface/40">
+            <FolderGit2 className="w-10 h-10 text-muted-foreground mx-auto mb-3 opacity-60" />
+            <h4 className="text-base font-bold text-foreground">Tidak ada proyek yang sesuai</h4>
+            <p className="text-xs text-muted-foreground mt-1 max-w-sm mx-auto">
+              Silakan sesuaikan kata kunci atau pilih filter kategori lainnya.
+            </p>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-20">
+            {filteredProjects.map((project, idx) => (
               <motion.div
-                key={index}
-                className="group relative"
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
+                key={project.id}
+                layout
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.3, delay: idx * 0.05 }}
+                className="group flex flex-col justify-between rounded-3xl border border-border bg-card shadow-sm hover:border-primary transition-all overflow-hidden"
               >
-                <div className="bg-[#0a0a0a] rounded-2xl overflow-hidden border border-terminal-text/15 hover:border-python-blue transition-colors duration-200 h-full">
-                  {/* Project Image */}
-                  <div className="relative h-48 overflow-hidden">
+                <div>
+                  {/* Dominant Project Preview Banner */}
+                  <div className="relative h-56 sm:h-64 w-full bg-surface-secondary overflow-hidden border-b border-border">
                     <Image
-                      src="/ai-project-showcase.png"
+                      src={project.image}
                       alt={project.title}
                       fill
-                      className="object-cover transition-transform duration-500 group-hover:scale-110"
+                      className="object-cover transition-transform duration-500 group-hover:scale-105"
+                      sizes="(max-width: 768px) 100vw, 50vw"
                     />
+                    <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/20 to-transparent" />
 
-                    {/* Floating Icon */}
-                    <div className="absolute top-4 right-4 p-3 bg-python-blue rounded-full border border-python-blue/50">
-                      <IconComponent className="w-5 h-5 text-terminal-text" />
-                    </div>
-
-                    {/* Role Badge */}
-                    <div className="absolute bottom-4 left-4">
-                      <span className="px-3 py-1 bg-terminal-bg/90 border border-terminal-text/20 rounded-full text-python-light text-xs font-mono">
-                        {project.role}
+                    {/* Category pill & Role */}
+                    <div className="absolute top-4 left-4 z-10 flex flex-wrap gap-2">
+                      <span className="px-3 py-1 rounded-full bg-card/90 backdrop-blur-md border border-border text-[11px] font-mono font-bold text-primary shadow-xs">
+                        {project.category}
                       </span>
                     </div>
 
-                    {/* Overlay */}
-                    <div className="absolute inset-0 bg-terminal-bg/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                    <div className="absolute bottom-4 left-4 right-4 z-10">
+                      <span className="px-3 py-1 rounded-full bg-background/90 backdrop-blur-md border border-border text-xs font-mono text-foreground font-medium">
+                        Peran: {project.role}
+                      </span>
+                    </div>
                   </div>
 
-                  {/* Project Content */}
-                  <div className="p-6">
-                    <h3 className="text-lg font-bold text-terminal-text mb-3 group-hover:text-python-light transition-colors duration-200">
+                  {/* Body Content */}
+                  <div className="p-6 sm:p-7">
+                    <h3 className="text-xl font-bold text-foreground mb-2 group-hover:text-primary transition-colors leading-snug">
                       {project.title}
                     </h3>
-                    <p className="text-terminal-text/50 mb-4 text-sm leading-relaxed">{project.description}</p>
+                    <p className="text-xs sm:text-sm text-foreground/80 leading-relaxed font-sans mb-6">
+                      {project.description}
+                    </p>
 
-                    {/* Tech Stack */}
-                    <div className="flex flex-wrap gap-2 mb-6">
-                      {project.tech.map((tech, techIndex) => (
-                        <motion.span
-                          key={tech}
-                          className="px-3 py-1 bg-terminal-bg text-python-light text-xs rounded-full border border-terminal-text/15 font-mono"
-                          initial={{ opacity: 0, scale: 0 }}
-                          whileInView={{ opacity: 1, scale: 1 }}
-                          viewport={{ once: true }}
-                          transition={{
-                            duration: 0.3,
-                            delay: index * 0.1 + techIndex * 0.05,
-                          }}
-                        >
-                          {tech}
-                        </motion.span>
-                      ))}
-                    </div>
-
-                    {/* Action Buttons */}
-                    <div className="flex space-x-3">
-                      <Button
-                        variant="outline"
-                        size="sm"
-                        asChild
-                        className="flex-1 border-python-blue/50 text-python-light hover:bg-python-blue/10 hover:border-python-blue bg-transparent transition-colors duration-200"
-                      >
-                        <motion.a
-                          href={project.demoUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          whileHover={{ scale: 1.05 }}
-                          whileTap={{ scale: 0.95 }}
-                        >
-                          <ExternalLink size={14} className="mr-2" />
-                          Lihat Proyek
-                        </motion.a>
-                      </Button>
-                      <Button
-                        variant="outline"
-                        size="sm"
-                        asChild
-                        className="flex-1 border-terminal-text/20 text-terminal-text/70 hover:bg-python-blue/10 hover:border-python-blue hover:text-python-light bg-transparent transition-colors duration-200"
-                      >
-                        <motion.a
-                          href={project.codeUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          whileHover={{ scale: 1.05 }}
-                          whileTap={{ scale: 0.95 }}
-                        >
-                          <Github size={14} className="mr-2" />
-                          Kode
-                        </motion.a>
-                      </Button>
+                    {/* Judie-style "Technologies Used" Block */}
+                    <div className="space-y-2 mb-2">
+                      <div className="text-[11px] font-mono uppercase tracking-wider text-muted-foreground font-semibold">
+                        Technologies Used:
+                      </div>
+                      <div className="flex flex-wrap gap-1.5">
+                        {project.technologies.map((tech) => (
+                          <span key={tech} className="tech-tag text-[10px]">
+                            {tech}
+                          </span>
+                        ))}
+                      </div>
                     </div>
                   </div>
                 </div>
+
+                {/* Footer Action Links */}
+                <div className="px-6 sm:px-7 py-4 border-t border-border bg-surface/50 flex items-center justify-between">
+                  <button
+                    onClick={() => setSelectedProject(project)}
+                    className="inline-flex items-center gap-1.5 text-xs font-mono font-bold text-primary hover:underline"
+                  >
+                    <span>Studi Kasus Detail</span>
+                    <ArrowUpRight className="w-4 h-4" />
+                  </button>
+
+                  <div className="flex items-center gap-2">
+                    {project.demoUrl && project.demoUrl !== "#" && (
+                      <a
+                        href={project.demoUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-border bg-surface text-foreground hover:border-primary hover:text-primary text-xs font-mono transition-colors"
+                        title="Buka Demo / Tautan Hasil"
+                      >
+                        <ExternalLink className="w-3.5 h-3.5" />
+                        <span>Demo</span>
+                      </a>
+                    )}
+                    {project.codeUrl && project.codeUrl !== "#" && (
+                      <a
+                        href={project.codeUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="p-2 rounded-lg border border-border bg-surface text-foreground hover:border-primary hover:text-primary transition-colors"
+                        title="Lihat Repositori Kode"
+                      >
+                        <Github className="w-4 h-4" />
+                      </a>
+                    )}
+                  </div>
+                </div>
               </motion.div>
-            )
-          })}
+            ))}
+          </div>
+        )}
+
+        {/* Supporting Technical Viewers (Furkan Keskin reference) */}
+        <div className="space-y-12">
+          <ArchitectureViewer />
+          <ModelDatasetShowcase />
         </div>
       </div>
+
+      {/* Case Study Detail Modal */}
+      <ProjectDetailModal
+        project={selectedProject}
+        onClose={() => setSelectedProject(null)}
+      />
     </section>
   )
 }
