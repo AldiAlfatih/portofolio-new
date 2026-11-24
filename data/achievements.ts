@@ -10,7 +10,7 @@ export const achievementsData: AchievementCategory[] = [
         year: "2024",
         type: "Kompetisi Bisnis Internasional",
         impact:
-          "Berhasil menembus 10 besar finalis dalam ajang kompetisi rencana bisnis tingkat internasional antar mahasiswa dengan proposal solusi berbasis teknologi.",
+          "Berhasil menembus 10 besar finalis dalam ajang kompetisi rencana bisnis tingkat internasional antar perguruan tinggi dengan proposal inovasi solusi teknologi berkelanjutan.",
       },
     ],
   },
@@ -18,20 +18,28 @@ export const achievementsData: AchievementCategory[] = [
     category: "Nasional",
     items: [
       {
-        title: "Peraih Pendanaan PKM-KC 2025",
-        description: "Program Kreativitas Mahasiswa Karsa Cipta (Kemendikbudristek DIKTI)",
+        title: "Penerima Pendanaan PKM-KC 2025 (Kemendikbudristek DIKTI)",
+        description: "Program Kreativitas Mahasiswa Karsa Cipta — Proyek ISARA",
         year: "2025",
         type: "Pendanaan Riset Teknologi Nasional",
         impact:
-          "Meraih pendanaan kompetitif tingkat nasional dari DIKTI untuk proyek rekayasa kecerdasan buatan ISARA (penerjemah Bahasa Isyarat Indonesia).",
+          "Meraih pendanaan kompetitif tingkat nasional dari Direktorat Pembelajaran dan Kemahasiswaan (Belmawa) DIKTI untuk pengembangan rekayasa AI sistem komunikasi BISINDO.",
       },
       {
-        title: "5th Place (Top 10 Finalist) Hasanuddin Techno Fest #9",
+        title: "Juara 4 / Top 10 Finalis Hasanuddin Techno Fest #9",
         description: "Innovation Idea Competition — Universitas Hasanuddin",
         year: "2026",
         type: "Kompetisi Inovasi Nasional",
         impact:
-          "Meraih peringkat ke-5 nasional dalam kompetisi gagasan inovasi teknologi terapan antar perguruan tinggi se-Indonesia.",
+          "Meraih posisi Juara 4 dan masuk dalam Top 10 Finalis nasional dalam kompetisi gagasan inovasi teknologi terapan antar mahasiswa se-Indonesia.",
+      },
+      {
+        title: "Juara 2 Lomba Esai Habibie Competition Vol.4",
+        description: "Kompetisi Gagasan Ilmiah Nasional — Habibie Center / ITH",
+        year: "2024",
+        type: "Kompetisi Ilmiah Nasional",
+        impact:
+          "Meraih Juara 2 tingkat nasional atas penulisan esai ilmiah strategis mengenai penerapan teknologi cerdas dan transformasi digital berkelanjutan.",
       },
       {
         title: "1st Gold Medal Kategori Matematika",
@@ -39,65 +47,36 @@ export const achievementsData: AchievementCategory[] = [
         year: "2026",
         type: "Olimpiade Akademik Nasional",
         impact:
-          "Meraih medali emas (peringkat 1) bidang matematika tingkat perguruan tinggi nasional, mencerminkan fondasi kuantitatif dan logika komputasi yang kuat.",
+          "Meraih medali emas (peringkat 1 nasional) bidang matematika tingkat perguruan tinggi se-Indonesia, menegaskan fondasi logika analitis dan matematis yang kuat.",
       },
       {
         title: "Juara Favorit Lomba Esai Perbenihan Tanaman Hutan 2024",
-        description: "UPT Perbenihan Tanaman Hutan Dinas Kehutanan Jawa Timur",
+        description: "UPT Perbenihan Tanaman Hutan Dinas Kehutanan Provinsi Jawa Timur",
         year: "2024",
         type: "Kompetisi Gagasan Ilmiah Nasional",
         impact:
-          "Gagasan pemanfaatan teknologi komputasi untuk pelestarian hutan terpilih sebagai Juara Favorit tingkat nasional.",
+          "Gagasan komputasi presisi untuk konservasi dan monitoring persemaian benih terpilih sebagai karya terfavorit tingkat nasional.",
       },
     ],
   },
   {
-    category: "Keunggulan Akademik",
+    category: "Keunggulan Akademik & Kehormatan",
     items: [
       {
-        title: "IPK 3.93 / 4.00 (Kelulusan Cum Laude)",
+        title: "Wisudawan Terbaik Jurusan Teknologi Produksi dan Industri",
         description: "Institut Teknologi Bacharuddin Jusuf Habibie (ITH)",
+        year: "2026",
+        type: "Penghargaan Wisuda Institusional",
+        impact:
+          "Dianugerahi penghargaan kehormatan tertinggi sebagai Wisudawan Terbaik Jurusan Teknologi Produksi dan Industri atas capaian akademik, rekam jejak riset, dan keaktifan organisasi.",
+      },
+      {
+        title: "Lulusan Angkatan Pertama S1 Ilmu Komputer (IPK 3.93/4.00)",
+        description: "Predikat Kelulusan Dengan Pujian (Cum Laude) — ITH",
         year: "2022 – 2026",
         type: "Pencapaian Akademik Sarjana",
         impact:
-          "Menyelesaikan studi Sarjana Ilmu Komputer (S.Kom.) dengan prestasi akademik istimewa serta konsistensi penguasaan teori dan rekayasa perangkat lunak.",
-      },
-    ],
-  },
-  {
-    category: "Pencapaian Teknis & Rekayasa",
-    items: [
-      {
-        title: "Pengembangan Prototipe Fungsional ISARA",
-        description: "Aplikasi Mobile AI Penerjemah BISINDO Dua Arah",
-        year: "2025",
-        type: "Produk Teknologi Inklusif",
-        impact:
-          "Mengintegrasikan model Computer Vision dan NLP ke dalam aplikasi Android mandiri (on-device) dengan inferensi cepat tanpa ketergantungan cloud terus-menerus.",
-      },
-      {
-        title: "Kurasi Dataset Primer BISINDO",
-        description: "Dataset Gesture Isyarat Tangan & Pose Tubuh",
-        year: "2025",
-        type: "Dataset AI Rekayasa",
-        impact:
-          "Menghasilkan ribuan sampel sekuensial koordinat keypoint terstruktur sebagai fondasi pelatihan model klasifikasi isyarat.",
-      },
-      {
-        title: "Implementasi Sistem E-Monev di Bappeda Kota Parepare",
-        description: "Sistem Pemantauan dan Evaluasi Realisasi Anggaran Daerah",
-        year: "2025",
-        type: "Deployment Sistem Pemerintahan",
-        impact:
-          "Sistem berhasil beroperasi penuh dan digunakan oleh seluruh dinas/organisasi perangkat daerah di lingkungan Pemkot Parepare.",
-      },
-      {
-        title: "Pengembangan Model Prediksi Panen Hidroponik",
-        description: "Integrasi Telemetri Sensor ESP32 dengan Model LSTM",
-        year: "2024",
-        type: "Proyek AI / IoT Presisi",
-        impact:
-          "Berhasil menghubungkan sensor lingkungan real-time dengan model machine learning prediktif untuk memprediksi mutu panen selada.",
+          "Menyelesaikan studi Sarjana Ilmu Komputer (S.Kom.) sebagai lulusan angkatan pertama program studi dengan indeks prestasi kumulatif 3.93 dari skala 4.00.",
       },
     ],
   },

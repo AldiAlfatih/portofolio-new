@@ -15,7 +15,6 @@ import {
   Mail,
   Copy,
   ExternalLink,
-  Palette,
   Check,
   Download,
   X,
@@ -24,12 +23,14 @@ import { usePortfolioTheme } from "@/contexts/theme-context"
 import { ThemeId } from "@/lib/theme-config"
 import { projectsData } from "@/data/projects"
 import { profileData } from "@/data/profile"
+import { useLanguage } from "@/contexts/language-context"
 
 export default function CommandPalette() {
   const [isOpen, setIsOpen] = useState(false)
   const [query, setQuery] = useState("")
   const [copied, setCopied] = useState(false)
   const { theme, setTheme, themes } = usePortfolioTheme()
+  const { dict, language } = useLanguage()
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -64,15 +65,15 @@ export default function CommandPalette() {
   }
 
   const navItems = [
-    { label: "Beranda", icon: Home, id: "home", category: "Navigasi" },
-    { label: "Tentang Saya", icon: User, id: "about", category: "Navigasi" },
-    { label: "Keahlian & Hard Skills", icon: Cpu, id: "skills", category: "Navigasi" },
-    { label: "Pengalaman Kerja & Riset", icon: Briefcase, id: "experience", category: "Navigasi" },
-    { label: "Proyek Rekayasa AI & Web", icon: FolderGit2, id: "projects", category: "Navigasi" },
-    { label: "Prestasi & Pencapaian", icon: Trophy, id: "achievements", category: "Navigasi" },
-    { label: "Sertifikasi Resmi", icon: Award, id: "certifications", category: "Navigasi" },
-    { label: "Organisasi & Kepemimpinan", icon: Users, id: "organizations", category: "Navigasi" },
-    { label: "Kontak & Pesan", icon: Mail, id: "contact", category: "Navigasi" },
+    { label: dict.nav.home, icon: Home, id: "home" },
+    { label: dict.nav.about, icon: User, id: "about" },
+    { label: dict.nav.skills, icon: Cpu, id: "skills" },
+    { label: dict.nav.experience, icon: Briefcase, id: "experience" },
+    { label: dict.nav.projects, icon: FolderGit2, id: "projects" },
+    { label: dict.nav.achievements, icon: Trophy, id: "achievements" },
+    { label: dict.nav.certifications, icon: Award, id: "certifications" },
+    { label: dict.nav.organizations, icon: Users, id: "organizations" },
+    { label: dict.nav.contact, icon: Mail, id: "contact" },
   ]
 
   const filteredNav = navItems.filter((i) =>
@@ -89,6 +90,8 @@ export default function CommandPalette() {
   const filteredThemes = themes.filter((t) =>
     t.name.toLowerCase().includes(query.toLowerCase())
   )
+
+  const isEn = language === "en"
 
   return (
     <>
@@ -117,7 +120,11 @@ export default function CommandPalette() {
                 <Search className="w-5 h-5 text-muted-foreground shrink-0" />
                 <input
                   type="text"
-                  placeholder="Ketik tujuan, proyek, perintah, atau tema... (Esc untuk tutup)"
+                  placeholder={
+                    isEn
+                      ? "Type a destination, project, action, or theme... (Esc to close)"
+                      : "Ketik tujuan, proyek, perintah, atau tema... (Esc untuk tutup)"
+                  }
                   value={query}
                   onChange={(e) => setQuery(e.target.value)}
                   autoFocus
@@ -133,11 +140,11 @@ export default function CommandPalette() {
 
               {/* Scrollable List */}
               <div className="max-h-96 overflow-y-auto p-2 space-y-4">
-                {/* Navigasi */}
+                {/* Navigation */}
                 {filteredNav.length > 0 && (
                   <div>
                     <div className="px-3 py-1 text-[11px] font-mono text-muted-foreground uppercase tracking-wider">
-                      Navigasi Halaman
+                      {isEn ? "Page Navigation" : "Navigasi Halaman"}
                     </div>
                     <div className="space-y-0.5 mt-1">
                       {filteredNav.map((item) => (
@@ -147,7 +154,7 @@ export default function CommandPalette() {
                           className="w-full flex items-center justify-between px-3 py-2 rounded-lg text-xs text-foreground/90 hover:text-foreground hover:bg-surface-secondary transition-colors text-left"
                         >
                           <span className="flex items-center gap-2.5">
-                            <item.icon className="w-4 h-4 text-accent" />
+                            <item.icon className="w-4 h-4 text-primary" />
                             <span>{item.label}</span>
                           </span>
                           <span className="text-[10px] font-mono text-muted-foreground">#{item.id}</span>
@@ -157,11 +164,11 @@ export default function CommandPalette() {
                   </div>
                 )}
 
-                {/* Proyek */}
+                {/* Projects */}
                 {filteredProjects.length > 0 && (
                   <div>
                     <div className="px-3 py-1 text-[11px] font-mono text-muted-foreground uppercase tracking-wider">
-                      Proyek Rekayasa
+                      {isEn ? "Engineering Projects" : "Proyek Rekayasa"}
                     </div>
                     <div className="space-y-0.5 mt-1">
                       {filteredProjects.map((p) => (
@@ -171,7 +178,7 @@ export default function CommandPalette() {
                           className="w-full flex items-center justify-between px-3 py-2 rounded-lg text-xs text-foreground/90 hover:text-foreground hover:bg-surface-secondary transition-colors text-left"
                         >
                           <span className="flex items-center gap-2.5 truncate">
-                            <FolderGit2 className="w-4 h-4 text-accent shrink-0" />
+                            <FolderGit2 className="w-4 h-4 text-primary shrink-0" />
                             <span className="truncate">{p.title}</span>
                           </span>
                           <span className="text-[10px] font-mono text-muted-foreground px-2 py-0.5 rounded-full bg-surface shrink-0">
@@ -183,10 +190,10 @@ export default function CommandPalette() {
                   </div>
                 )}
 
-                {/* Aksi & Kontak */}
+                {/* Quick Actions */}
                 <div>
                   <div className="px-3 py-1 text-[11px] font-mono text-muted-foreground uppercase tracking-wider">
-                    Aksi Cepat
+                    {isEn ? "Quick Actions" : "Aksi Cepat"}
                   </div>
                   <div className="space-y-0.5 mt-1">
                     <button
@@ -197,9 +204,17 @@ export default function CommandPalette() {
                         {copied ? (
                           <Check className="w-4 h-4 text-emerald-500" />
                         ) : (
-                          <Copy className="w-4 h-4 text-accent" />
+                          <Copy className="w-4 h-4 text-primary" />
                         )}
-                        <span>{copied ? "Email berhasil disalin!" : `Salin Email (${profileData.contact.email})`}</span>
+                        <span>
+                          {copied
+                            ? isEn
+                              ? "Email copied to clipboard!"
+                              : "Email berhasil disalin!"
+                            : isEn
+                            ? `Copy Email (${profileData.contact.email})`
+                            : `Salin Email (${profileData.contact.email})`}
+                        </span>
                       </span>
                       <span className="text-[10px] font-mono text-muted-foreground">Action</span>
                     </button>
@@ -211,8 +226,8 @@ export default function CommandPalette() {
                       className="w-full flex items-center justify-between px-3 py-2 rounded-lg text-xs text-foreground/90 hover:text-foreground hover:bg-surface-secondary transition-colors text-left"
                     >
                       <span className="flex items-center gap-2.5">
-                        <Download className="w-4 h-4 text-accent" />
-                        <span>Unduh Curriculum Vitae (PDF)</span>
+                        <Download className="w-4 h-4 text-primary" />
+                        <span>{isEn ? "Download Curriculum Vitae (PDF)" : "Unduh Curriculum Vitae (PDF)"}</span>
                       </span>
                       <ExternalLink className="w-3.5 h-3.5 text-muted-foreground" />
                     </a>
@@ -224,8 +239,8 @@ export default function CommandPalette() {
                       className="w-full flex items-center justify-between px-3 py-2 rounded-lg text-xs text-foreground/90 hover:text-foreground hover:bg-surface-secondary transition-colors text-left"
                     >
                       <span className="flex items-center gap-2.5">
-                        <ExternalLink className="w-4 h-4 text-accent" />
-                        <span>Buka Profil GitHub</span>
+                        <ExternalLink className="w-4 h-4 text-primary" />
+                        <span>{isEn ? "Open GitHub Profile" : "Buka Profil GitHub"}</span>
                       </span>
                       <span className="text-[10px] font-mono text-muted-foreground">GitHub</span>
                     </a>
@@ -237,19 +252,19 @@ export default function CommandPalette() {
                       className="w-full flex items-center justify-between px-3 py-2 rounded-lg text-xs text-foreground/90 hover:text-foreground hover:bg-surface-secondary transition-colors text-left"
                     >
                       <span className="flex items-center gap-2.5">
-                        <ExternalLink className="w-4 h-4 text-accent" />
-                        <span>Buka Profil LinkedIn</span>
+                        <ExternalLink className="w-4 h-4 text-primary" />
+                        <span>{isEn ? "Open LinkedIn Profile" : "Buka Profil LinkedIn"}</span>
                       </span>
                       <span className="text-[10px] font-mono text-muted-foreground">LinkedIn</span>
                     </a>
                   </div>
                 </div>
 
-                {/* Ganti Tema */}
+                {/* Switch Theme */}
                 {filteredThemes.length > 0 && (
                   <div>
                     <div className="px-3 py-1 text-[11px] font-mono text-muted-foreground uppercase tracking-wider">
-                      Ubah Tema Warna
+                      {isEn ? "Color Theme Preset" : "Ubah Tema Warna"}
                     </div>
                     <div className="grid grid-cols-2 gap-1 mt-1">
                       {filteredThemes.map((t) => (
@@ -261,7 +276,7 @@ export default function CommandPalette() {
                           }}
                           className={`flex items-center gap-2 px-3 py-2 rounded-lg text-xs text-left transition-colors border ${
                             theme === t.id
-                              ? "border-interactive-hover bg-surface-secondary text-foreground font-semibold"
+                              ? "border-primary bg-surface-secondary text-foreground font-semibold"
                               : "border-transparent text-foreground/80 hover:bg-surface-secondary"
                           }`}
                         >
@@ -270,7 +285,7 @@ export default function CommandPalette() {
                             style={{ backgroundColor: t.previewAccent }}
                           />
                           <span className="truncate">{t.name}</span>
-                          {theme === t.id && <Check className="w-3.5 h-3.5 text-accent ml-auto shrink-0" />}
+                          {theme === t.id && <Check className="w-3.5 h-3.5 text-primary ml-auto shrink-0" />}
                         </button>
                       ))}
                     </div>
@@ -280,9 +295,10 @@ export default function CommandPalette() {
 
               {/* Footer hint */}
               <div className="px-4 py-2.5 border-t border-border bg-surface-secondary text-[11px] text-muted-foreground flex justify-between items-center font-mono">
-                <span>Navigasi Cepat Portfolio</span>
+                <span>{isEn ? "Quick Portfolio Navigation" : "Navigasi Cepat Portfolio"}</span>
                 <span className="flex items-center gap-1.5">
-                  <kbd className="px-1.5 py-0.5 rounded-sm border border-border bg-card">Esc</kbd> Tutup
+                  <kbd className="px-1.5 py-0.5 rounded-sm border border-border bg-card">Esc</kbd>{" "}
+                  {isEn ? "Close" : "Tutup"}
                 </span>
               </div>
             </motion.div>

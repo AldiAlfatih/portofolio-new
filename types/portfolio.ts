@@ -11,9 +11,12 @@ export interface ProfileData {
     institution: string
     gpa: string
     period: string
+    awards?: string
+    cohort?: string
   }
   contact: {
     email: string
+    phone?: string
     github: string
     linkedin: string
     location: string
@@ -58,11 +61,12 @@ export interface ExperienceItem {
   company: string
   location: string
   period: string
+  startDate?: string
   type: string
   description: string
   achievements: string[]
   technologies: string[]
-  category: "professional" | "academic_project"
+  category: "professional" | "academic_project" | "leadership"
 }
 
 export interface ProjectArchitectureStep {

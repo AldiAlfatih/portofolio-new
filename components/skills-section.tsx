@@ -9,21 +9,19 @@ import {
   Database,
   Wrench,
   Wifi,
-  Users,
-  Mic,
-  Brain,
-  BookOpen,
   Languages as LangIcon,
-  CheckCircle2,
 } from "lucide-react"
 import {
   technicalSkillCategories,
   softSkillsData,
   languageSkillsData,
 } from "@/data/skills"
+import { TechLogo } from "@/components/tech-logo"
+import { useLanguage } from "@/contexts/language-context"
 
 export default function SkillsSection() {
   const [activeTab, setActiveTab] = useState<"hard" | "soft" | "lang">("hard")
+  const { dict } = useLanguage()
 
   const getCategoryIcon = (category: string) => {
     switch (category) {
@@ -49,14 +47,14 @@ export default function SkillsSection() {
       <div className="container mx-auto px-4">
         {/* Section Header */}
         <div className="flex flex-col items-center text-center mb-14">
-          <div className="flex items-center gap-2 font-mono text-xs text-accent uppercase tracking-wider mb-2">
-            <span>02 // KOMPETENSI & TEKNOLOGI</span>
+          <div className="flex items-center gap-2 font-mono text-xs text-primary uppercase tracking-wider mb-2">
+            <span>{dict.skills.badge}</span>
           </div>
           <h2 className="text-3xl sm:text-4xl font-extrabold text-foreground tracking-tight">
-            Keahlian & Stack Teknologi
+            {dict.skills.title}
           </h2>
           <p className="text-sm text-muted-foreground max-w-xl mt-2 font-mono">
-            Instrumen teknis yang dikuasai untuk merancang solusi komputasi cerdas dan scalable.
+            {dict.skills.subtitle}
           </p>
         </div>
 
@@ -71,7 +69,7 @@ export default function SkillsSection() {
                   : "text-muted-foreground hover:text-foreground"
               }`}
             >
-              Hard Skills ({technicalSkillCategories.length} Kategori)
+              {dict.skills.tabHard} ({technicalSkillCategories.length})
             </button>
             <button
               onClick={() => setActiveTab("soft")}
@@ -81,7 +79,7 @@ export default function SkillsSection() {
                   : "text-muted-foreground hover:text-foreground"
               }`}
             >
-              Soft Skills ({softSkillsData.length})
+              {dict.skills.tabSoft} ({softSkillsData.length})
             </button>
             <button
               onClick={() => setActiveTab("lang")}
@@ -91,7 +89,7 @@ export default function SkillsSection() {
                   : "text-muted-foreground hover:text-foreground"
               }`}
             >
-              Languages ({languageSkillsData.length})
+              {dict.skills.tabLang} ({languageSkillsData.length})
             </button>
           </div>
         </div>
@@ -112,11 +110,11 @@ export default function SkillsSection() {
                 return (
                   <div
                     key={idx}
-                    className="p-6 rounded-2xl border border-border bg-card shadow-xs hover:border-interactive-hover transition-all flex flex-col justify-between"
+                    className="p-6 rounded-2xl border border-border bg-card shadow-xs hover:border-primary transition-all flex flex-col justify-between"
                   >
                     <div>
                       <div className="flex items-center gap-3 mb-3">
-                        <div className="p-2.5 rounded-xl border border-border bg-surface-secondary text-accent">
+                        <div className="p-2.5 rounded-xl border border-border bg-surface-secondary text-primary">
                           <IconComponent className="w-5 h-5" />
                         </div>
                         <div>
@@ -137,8 +135,9 @@ export default function SkillsSection() {
                       {cat.skills.map((skill, sIdx) => (
                         <div
                           key={sIdx}
-                          className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg border border-border bg-surface text-xs font-mono text-foreground hover:border-interactive-hover transition-colors"
+                          className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg border border-border bg-surface text-xs font-mono text-foreground hover:border-primary transition-colors"
                         >
+                          <TechLogo name={skill.name} className="w-3.5 h-3.5 text-primary shrink-0" />
                           <span className="font-medium">{skill.name}</span>
                           {skill.badge && (
                             <span className="text-[9px] text-muted-foreground opacity-75">
@@ -166,11 +165,11 @@ export default function SkillsSection() {
               {softSkillsData.map((soft, idx) => (
                 <div
                   key={idx}
-                  className="p-6 rounded-2xl border border-border bg-card shadow-xs hover:border-interactive-hover transition-colors flex flex-col justify-between"
+                  className="p-6 rounded-2xl border border-border bg-card shadow-xs hover:border-primary transition-colors flex flex-col justify-between"
                 >
                   <div>
                     <div className="flex items-center gap-2 mb-3">
-                      <span className="text-xs font-mono font-bold text-accent">
+                      <span className="text-xs font-mono font-bold text-primary">
                         0{idx + 1}.
                       </span>
                       <h3 className="text-base font-bold text-foreground">
@@ -198,16 +197,16 @@ export default function SkillsSection() {
               {languageSkillsData.map((lang, idx) => (
                 <div
                   key={idx}
-                  className="p-6 rounded-2xl border border-border bg-card shadow-xs hover:border-interactive-hover transition-colors"
+                  className="p-6 rounded-2xl border border-border bg-card shadow-xs hover:border-primary transition-colors"
                 >
                   <div className="flex items-center gap-2 mb-2">
-                    <LangIcon className="w-4 h-4 text-accent" />
+                    <LangIcon className="w-4 h-4 text-primary" />
                     <h3 className="text-lg font-bold text-foreground font-sans">
                       {lang.language}
                     </h3>
                   </div>
 
-                  <div className="inline-block px-2.5 py-1 rounded-md bg-surface-secondary text-accent font-mono text-xs font-semibold mb-3 border border-border">
+                  <div className="inline-block px-2.5 py-1 rounded-md bg-surface-secondary text-primary font-mono text-xs font-semibold mb-3 border border-border">
                     {lang.proficiency}
                   </div>
 

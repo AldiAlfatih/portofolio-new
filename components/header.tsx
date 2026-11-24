@@ -14,10 +14,10 @@ import {
   Users,
   Cpu,
   FolderGit2,
-  Mail,
-  ExternalLink,
 } from "lucide-react"
 import ThemeSwitcher from "@/components/theme-switcher"
+import LanguageToggle from "@/components/language-toggle"
+import { useLanguage } from "@/contexts/language-context"
 import { useActiveSection } from "@/hooks/use-active-section"
 
 export default function Header() {
@@ -28,6 +28,7 @@ export default function Header() {
   const [mobileProfileOpen, setMobileProfileOpen] = useState(false)
   const [mobileProjectsOpen, setMobileProjectsOpen] = useState(false)
   const activeSection = useActiveSection()
+  const { dict } = useLanguage()
 
   useEffect(() => {
     const handleScroll = () => {
@@ -58,16 +59,16 @@ export default function Header() {
   }
 
   const profileMenuItems = [
-    { name: "Tentang Saya", href: "#about", id: "about", icon: User },
-    { name: "Prestasi & Penghargaan", href: "#achievements", id: "achievements", icon: Trophy },
-    { name: "Pengalaman Kerja & Riset", href: "#experience", id: "experience", icon: Briefcase },
-    { name: "Organisasi & Kepemimpinan", href: "#organizations", id: "organizations", icon: Users },
-    { name: "Sertifikasi Resmi", href: "#certifications", id: "certifications", icon: Award },
+    { name: dict.nav.about, href: "#about", id: "about", icon: User },
+    { name: dict.nav.achievements, href: "#achievements", id: "achievements", icon: Trophy },
+    { name: dict.nav.experience, href: "#experience", id: "experience", icon: Briefcase },
+    { name: dict.nav.organizations, href: "#organizations", id: "organizations", icon: Users },
+    { name: dict.nav.certifications, href: "#certifications", id: "certifications", icon: Award },
   ]
 
   const projectMenuItems = [
-    { name: "Keahlian & Hard Skills", href: "#skills", id: "skills", icon: Cpu },
-    { name: "Proyek Rekayasa & Portofolio", href: "#projects", id: "projects", icon: FolderGit2 },
+    { name: dict.nav.skills, href: "#skills", id: "skills", icon: Cpu },
+    { name: dict.nav.projects, href: "#projects", id: "projects", icon: FolderGit2 },
   ]
 
   const isProfileActive = profileMenuItems.some((item) => activeSection === item.id)
@@ -85,7 +86,7 @@ export default function Header() {
       transition={{ duration: 0.5, ease: "easeOut" }}
     >
       <div className="container mx-auto px-4 flex items-center justify-between">
-        {/* Brand Monogram */}
+        {/* Brand Personal Wordmark without code placeholder */}
         <a
           href="#home"
           onClick={(e) => {
@@ -93,36 +94,36 @@ export default function Header() {
             handleLinkClick("#home")
           }}
           className="flex items-center gap-2.5 group"
-          aria-label="Ke beranda Muhammad Aldi Alfatih"
+          aria-label="Muhammad Aldi Alfatih Portfolio"
         >
-          <div className="w-9 h-9 rounded-lg border border-border bg-card flex items-center justify-center font-mono font-bold text-xs text-foreground group-hover:border-interactive-hover transition-colors shadow-xs">
-            <span className="text-accent">&lt;</span>A<span className="text-accent">/&gt;</span>
+          <div className="w-9 h-9 rounded-xl border border-border bg-card flex items-center justify-center font-sans font-black text-xs text-foreground group-hover:border-primary transition-colors shadow-xs">
+            <span className="text-primary tracking-tight">AA</span>
           </div>
           <div className="flex flex-col">
-            <span className="font-bold text-sm text-foreground tracking-tight group-hover:text-accent transition-colors font-sans">
+            <span className="font-bold text-sm text-foreground tracking-tight group-hover:text-primary transition-colors font-sans">
               ALDI ALFATIH
             </span>
             <span className="text-[10px] font-mono text-muted-foreground uppercase tracking-wider">
-              S.Kom • AI & Backend
+              S.Kom • AI & Software
             </span>
           </div>
         </a>
 
         {/* Desktop Nav */}
         <nav className="hidden lg:flex items-center gap-1 font-sans text-xs">
-          {/* Beranda */}
+          {/* Home */}
           <button
             onClick={() => handleLinkClick("#home")}
             className={`px-3 py-1.5 rounded-lg font-medium transition-colors ${
               activeSection === "home" || !activeSection
-                ? "text-accent bg-surface-secondary border border-border/80"
+                ? "text-primary bg-surface-secondary border border-border/80"
                 : "text-foreground/80 hover:text-foreground hover:bg-surface-secondary/60"
             }`}
           >
-            Beranda
+            {dict.nav.home}
           </button>
 
-          {/* Dropdown Profil */}
+          {/* Profile Dropdown */}
           <div
             className="relative"
             onMouseEnter={() => setProfileDropdownOpen(true)}
@@ -132,11 +133,11 @@ export default function Header() {
               onClick={() => handleLinkClick("#about")}
               className={`flex items-center gap-1 px-3 py-1.5 rounded-lg font-medium transition-colors ${
                 isProfileActive
-                  ? "text-accent bg-surface-secondary border border-border/80"
+                  ? "text-primary bg-surface-secondary border border-border/80"
                   : "text-foreground/80 hover:text-foreground hover:bg-surface-secondary/60"
               }`}
             >
-              Profil
+              {dict.nav.profile}
               <ChevronDown className="w-3.5 h-3.5 opacity-70" />
             </button>
 
@@ -147,7 +148,7 @@ export default function Header() {
                   animate={{ opacity: 1, y: 0, scale: 1 }}
                   exit={{ opacity: 0, y: 8, scale: 0.96 }}
                   transition={{ duration: 0.15 }}
-                  className="absolute left-0 mt-1 w-56 rounded-xl border border-border bg-card p-1.5 shadow-xl z-50 backdrop-blur-xl"
+                  className="absolute left-0 mt-1 w-60 rounded-xl border border-border bg-card p-1.5 shadow-xl z-50 backdrop-blur-xl"
                 >
                   {profileMenuItems.map((sub) => (
                     <button
@@ -155,11 +156,11 @@ export default function Header() {
                       onClick={() => handleLinkClick(sub.href)}
                       className={`w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-xs transition-colors text-left ${
                         activeSection === sub.id
-                          ? "bg-surface-secondary text-accent font-semibold"
+                          ? "bg-surface-secondary text-primary font-semibold"
                           : "text-foreground/80 hover:text-foreground hover:bg-surface-secondary"
                       }`}
                     >
-                      <sub.icon className="w-3.5 h-3.5 text-accent shrink-0" />
+                      <sub.icon className="w-3.5 h-3.5 text-primary shrink-0" />
                       <span>{sub.name}</span>
                     </button>
                   ))}
@@ -168,7 +169,7 @@ export default function Header() {
             </AnimatePresence>
           </div>
 
-          {/* Dropdown Proyek & Keahlian */}
+          {/* Projects & Skills Dropdown */}
           <div
             className="relative"
             onMouseEnter={() => setProjectsDropdownOpen(true)}
@@ -178,11 +179,11 @@ export default function Header() {
               onClick={() => handleLinkClick("#projects")}
               className={`flex items-center gap-1 px-3 py-1.5 rounded-lg font-medium transition-colors ${
                 isProjectsActive
-                  ? "text-accent bg-surface-secondary border border-border/80"
+                  ? "text-primary bg-surface-secondary border border-border/80"
                   : "text-foreground/80 hover:text-foreground hover:bg-surface-secondary/60"
               }`}
             >
-              Proyek & Keahlian
+              {dict.nav.projectsAndSkills}
               <ChevronDown className="w-3.5 h-3.5 opacity-70" />
             </button>
 
@@ -193,7 +194,7 @@ export default function Header() {
                   animate={{ opacity: 1, y: 0, scale: 1 }}
                   exit={{ opacity: 0, y: 8, scale: 0.96 }}
                   transition={{ duration: 0.15 }}
-                  className="absolute left-0 mt-1 w-56 rounded-xl border border-border bg-card p-1.5 shadow-xl z-50 backdrop-blur-xl"
+                  className="absolute left-0 mt-1 w-60 rounded-xl border border-border bg-card p-1.5 shadow-xl z-50 backdrop-blur-xl"
                 >
                   {projectMenuItems.map((sub) => (
                     <button
@@ -201,11 +202,11 @@ export default function Header() {
                       onClick={() => handleLinkClick(sub.href)}
                       className={`w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-xs transition-colors text-left ${
                         activeSection === sub.id
-                          ? "bg-surface-secondary text-accent font-semibold"
+                          ? "bg-surface-secondary text-primary font-semibold"
                           : "text-foreground/80 hover:text-foreground hover:bg-surface-secondary"
                       }`}
                     >
-                      <sub.icon className="w-3.5 h-3.5 text-accent shrink-0" />
+                      <sub.icon className="w-3.5 h-3.5 text-primary shrink-0" />
                       <span>{sub.name}</span>
                     </button>
                   ))}
@@ -214,33 +215,36 @@ export default function Header() {
             </AnimatePresence>
           </div>
 
-          {/* Kontak */}
+          {/* Contact */}
           <button
             onClick={() => handleLinkClick("#contact")}
             className={`px-3 py-1.5 rounded-lg font-medium transition-colors ${
               activeSection === "contact"
-                ? "text-accent bg-surface-secondary border border-border/80"
+                ? "text-primary bg-surface-secondary border border-border/80"
                 : "text-foreground/80 hover:text-foreground hover:bg-surface-secondary/60"
             }`}
           >
-            Kontak
+            {dict.nav.contact}
           </button>
         </nav>
 
-        {/* Right Actions: Command Palette Hint & Theme Switcher */}
-        <div className="flex items-center gap-2 sm:gap-3">
+        {/* Right Actions: Command Palette Hint, Language Toggle & Theme Switcher */}
+        <div className="flex items-center gap-2 sm:gap-2.5">
           {/* Command Palette Trigger */}
           <button
             onClick={triggerCommandPalette}
-            className="hidden sm:flex items-center gap-2 px-2.5 py-1.5 rounded-lg border border-border bg-surface text-xs text-muted-foreground hover:text-foreground hover:border-interactive-hover transition-colors font-mono"
-            title="Buka Command Palette (Ctrl+K)"
+            className="hidden sm:flex items-center gap-2 px-2.5 py-1.5 rounded-lg border border-border bg-surface text-xs text-muted-foreground hover:text-foreground hover:border-primary transition-colors font-mono"
+            title={dict.nav.commandPalette}
           >
-            <Search className="w-3.5 h-3.5" />
-            <span className="hidden md:inline text-[11px]">Cari...</span>
+            <Search className="w-3.5 h-3.5 text-primary" />
+            <span className="hidden md:inline text-[11px]">{dict.nav.search}</span>
             <kbd className="px-1.5 py-0.5 rounded border border-border bg-surface-secondary text-[10px]">
               Ctrl K
             </kbd>
           </button>
+
+          {/* Bilingual Language Toggle */}
+          <LanguageToggle />
 
           {/* 4-Theme Switcher */}
           <ThemeSwitcher />
@@ -248,7 +252,7 @@ export default function Header() {
           {/* Mobile Menu Toggle */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="lg:hidden p-2 rounded-lg border border-border bg-card text-foreground hover:border-interactive-hover transition-colors"
+            className="lg:hidden p-2 rounded-lg border border-border bg-card text-foreground hover:border-primary transition-colors"
             aria-label="Menu navigasi mobile"
           >
             {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -270,7 +274,7 @@ export default function Header() {
                 onClick={() => handleLinkClick("#home")}
                 className="w-full flex items-center justify-between p-2.5 rounded-lg text-sm text-foreground/90 hover:bg-surface-secondary"
               >
-                <span>Beranda</span>
+                <span>{dict.nav.home}</span>
                 <span className="text-[10px] font-mono text-muted-foreground">#home</span>
               </button>
 
@@ -280,7 +284,7 @@ export default function Header() {
                   onClick={() => setMobileProfileOpen(!mobileProfileOpen)}
                   className="w-full flex items-center justify-between p-2.5 text-sm font-medium text-foreground"
                 >
-                  <span>Profil & Riwayat</span>
+                  <span>{dict.nav.profile}</span>
                   <ChevronDown
                     className={`w-4 h-4 transition-transform ${mobileProfileOpen ? "rotate-180" : ""}`}
                   />
@@ -293,7 +297,7 @@ export default function Header() {
                         onClick={() => handleLinkClick(sub.href)}
                         className="w-full flex items-center gap-2.5 p-2 rounded-lg text-xs text-foreground/80 hover:bg-surface"
                       >
-                        <sub.icon className="w-3.5 h-3.5 text-accent" />
+                        <sub.icon className="w-3.5 h-3.5 text-primary" />
                         <span>{sub.name}</span>
                       </button>
                     ))}
@@ -307,7 +311,7 @@ export default function Header() {
                   onClick={() => setMobileProjectsOpen(!mobileProjectsOpen)}
                   className="w-full flex items-center justify-between p-2.5 text-sm font-medium text-foreground"
                 >
-                  <span>Proyek & Keahlian</span>
+                  <span>{dict.nav.projectsAndSkills}</span>
                   <ChevronDown
                     className={`w-4 h-4 transition-transform ${mobileProjectsOpen ? "rotate-180" : ""}`}
                   />
@@ -320,7 +324,7 @@ export default function Header() {
                         onClick={() => handleLinkClick(sub.href)}
                         className="w-full flex items-center gap-2.5 p-2 rounded-lg text-xs text-foreground/80 hover:bg-surface"
                       >
-                        <sub.icon className="w-3.5 h-3.5 text-accent" />
+                        <sub.icon className="w-3.5 h-3.5 text-primary" />
                         <span>{sub.name}</span>
                       </button>
                     ))}
@@ -332,7 +336,7 @@ export default function Header() {
                 onClick={() => handleLinkClick("#contact")}
                 className="w-full flex items-center justify-between p-2.5 rounded-lg text-sm text-foreground/90 hover:bg-surface-secondary"
               >
-                <span>Kontak & Diskusi</span>
+                <span>{dict.nav.contact}</span>
                 <span className="text-[10px] font-mono text-muted-foreground">#contact</span>
               </button>
 
@@ -345,8 +349,8 @@ export default function Header() {
                   }}
                   className="w-full flex items-center justify-center gap-2 p-2.5 rounded-xl border border-border bg-surface text-xs font-mono text-foreground"
                 >
-                  <Search className="w-4 h-4 text-accent" />
-                  <span>Buka Command Palette (Pencarian Cepat)</span>
+                  <Search className="w-4 h-4 text-primary" />
+                  <span>{dict.nav.commandPalette}</span>
                 </button>
               </div>
             </div>

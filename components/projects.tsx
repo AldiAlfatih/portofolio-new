@@ -1,29 +1,29 @@
 "use client"
 
 import React, { useState, useMemo } from "react"
-import { motion, AnimatePresence } from "framer-motion"
+import { motion } from "framer-motion"
 import Image from "next/image"
 import {
   ExternalLink,
   Github,
   Search,
-  ArrowRight,
   FolderGit2,
-  Layers,
   ArrowUpRight,
-  CheckCircle2,
 } from "lucide-react"
 import { projectsData } from "@/data/projects"
 import { ProjectItem } from "@/types/portfolio"
 import ProjectDetailModal from "@/components/projects/project-detail-modal"
 import ArchitectureViewer from "@/components/technical-showcase/architecture-viewer"
 import ModelDatasetShowcase from "@/components/technical-showcase/model-dataset-showcase"
+import { TechLogo } from "@/components/tech-logo"
+import { useLanguage } from "@/contexts/language-context"
 
 const categories = [
   "All",
   "AI / Machine Learning",
   "Computer Vision",
   "Backend Development",
+  "Web Development",
   "IoT",
 ]
 
@@ -31,6 +31,7 @@ export default function Projects() {
   const [selectedCategory, setSelectedCategory] = useState("All")
   const [searchQuery, setSearchQuery] = useState("")
   const [selectedProject, setSelectedProject] = useState<ProjectItem | null>(null)
+  const { dict } = useLanguage()
 
   const filteredProjects = useMemo(() => {
     return projectsData.filter((project) => {
@@ -59,10 +60,10 @@ export default function Projects() {
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10 pb-4 border-b border-border">
           <div>
             <div className="text-xs font-mono uppercase tracking-wider text-muted-foreground mb-1">
-              Featured Work & Implementations
+              {dict.projects.badge}
             </div>
             <h2 className="text-2xl sm:text-3xl font-extrabold text-foreground tracking-tight">
-              Proyek Rekayasa & Sistem AI
+              {dict.projects.title}
             </h2>
           </div>
 
@@ -73,7 +74,7 @@ export default function Projects() {
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="Cari proyek atau stack..."
+              placeholder={dict.projects.searchPlaceholder}
               className="w-full pl-9 pr-3.5 py-1.5 rounded-xl border border-border bg-surface text-xs text-foreground placeholder:text-muted-foreground outline-none focus:border-primary transition-colors font-sans"
             />
           </div>
@@ -94,14 +95,14 @@ export default function Projects() {
                       : "bg-surface text-foreground/80 hover:text-foreground border-border hover:border-primary"
                   }`}
                 >
-                  {cat}
+                  {cat === "All" ? dict.projects.allFilter : cat}
                 </button>
               )
             })}
           </div>
 
           <span className="text-xs font-mono text-muted-foreground">
-            Menampilkan <strong className="text-foreground">{filteredProjects.length}</strong> proyek
+            {dict.projects.showingCount} <strong className="text-foreground">{filteredProjects.length}</strong> {dict.projects.ofCount}
           </span>
         </div>
 
@@ -109,9 +110,9 @@ export default function Projects() {
         {filteredProjects.length === 0 ? (
           <div className="text-center py-16 border border-dashed border-border rounded-2xl bg-surface/40">
             <FolderGit2 className="w-10 h-10 text-muted-foreground mx-auto mb-3 opacity-60" />
-            <h4 className="text-base font-bold text-foreground">Tidak ada proyek yang sesuai</h4>
+            <h4 className="text-base font-bold text-foreground">{dict.projects.emptyTitle}</h4>
             <p className="text-xs text-muted-foreground mt-1 max-w-sm mx-auto">
-              Silakan sesuaikan kata kunci atau pilih filter kategori lainnya.
+              {dict.projects.emptyDesc}
             </p>
           </div>
         ) : (
@@ -146,7 +147,7 @@ export default function Projects() {
 
                     <div className="absolute bottom-4 left-4 right-4 z-10">
                       <span className="px-3 py-1 rounded-full bg-background/90 backdrop-blur-md border border-border text-xs font-mono text-foreground font-medium">
-                        Peran: {project.role}
+                        {dict.projects.roleLabel}: {project.role}
                       </span>
                     </div>
                   </div>
@@ -160,15 +161,19 @@ export default function Projects() {
                       {project.description}
                     </p>
 
-                    {/* Judie-style "Technologies Used" Block */}
+                    {/* Judie-style "Technologies Used" Block with real SVG vector logos */}
                     <div className="space-y-2 mb-2">
                       <div className="text-[11px] font-mono uppercase tracking-wider text-muted-foreground font-semibold">
-                        Technologies Used:
+                        {dict.projects.techUsed}:
                       </div>
                       <div className="flex flex-wrap gap-1.5">
                         {project.technologies.map((tech) => (
-                          <span key={tech} className="tech-tag text-[10px]">
-                            {tech}
+                          <span
+                            key={tech}
+                            className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-border bg-surface text-[11px] font-mono text-foreground hover:border-primary transition-colors"
+                          >
+                            <TechLogo name={tech} className="w-3.5 h-3.5 text-primary shrink-0" />
+                            <span>{tech}</span>
                           </span>
                         ))}
                       </div>
@@ -182,7 +187,7 @@ export default function Projects() {
                     onClick={() => setSelectedProject(project)}
                     className="inline-flex items-center gap-1.5 text-xs font-mono font-bold text-primary hover:underline"
                   >
-                    <span>Studi Kasus Detail</span>
+                    <span>{dict.projects.caseStudyBtn}</span>
                     <ArrowUpRight className="w-4 h-4" />
                   </button>
 
@@ -196,7 +201,7 @@ export default function Projects() {
                         title="Buka Demo / Tautan Hasil"
                       >
                         <ExternalLink className="w-3.5 h-3.5" />
-                        <span>Demo</span>
+                        <span>{dict.projects.demoBtn}</span>
                       </a>
                     )}
                     {project.codeUrl && project.codeUrl !== "#" && (

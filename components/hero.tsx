@@ -11,15 +11,13 @@ import {
   ArrowRight,
   Check,
   GraduationCap,
-  Sparkles,
-  MapPin,
-  ExternalLink,
 } from "lucide-react"
-import AvailabilityWidget from "@/components/availability-widget"
 import { profileData } from "@/data/profile"
+import { useLanguage } from "@/contexts/language-context"
 
 export default function Hero() {
   const [copiedEmail, setCopiedEmail] = useState(false)
+  const { dict } = useLanguage()
 
   const handleCopyEmail = () => {
     navigator.clipboard.writeText(profileData.contact.email)
@@ -28,12 +26,12 @@ export default function Hero() {
   }
 
   const quickNavLinks = [
-    { label: "Tentang", href: "#about" },
-    { label: "Keahlian", href: "#skills" },
-    { label: "Pengalaman", href: "#experience" },
-    { label: "Proyek", href: "#projects" },
-    { label: "Prestasi", href: "#achievements" },
-    { label: "Sertifikasi", href: "#certifications" },
+    { label: dict.nav.about, href: "#about" },
+    { label: dict.nav.skills, href: "#skills" },
+    { label: dict.nav.experience, href: "#experience" },
+    { label: dict.nav.projects, href: "#projects" },
+    { label: dict.nav.achievements, href: "#achievements" },
+    { label: dict.nav.certifications, href: "#certifications" },
   ]
 
   const handleScrollTo = (e: React.MouseEvent, href: string) => {
@@ -82,7 +80,7 @@ export default function Hero() {
                     </span>
                   </div>
                   <span className="text-[10px] font-mono text-muted-foreground">
-                    Parepare / Makassar
+                    {dict.hero.parepareMakassar}
                   </span>
                 </div>
               </div>
@@ -91,7 +89,7 @@ export default function Hero() {
             {/* Academic pill below photo */}
             <div className="mt-4 flex items-center gap-2 px-3 py-1.5 rounded-xl border border-border bg-surface text-xs font-mono text-muted-foreground">
               <GraduationCap className="w-3.5 h-3.5 text-primary" />
-              <span>S1 Ilmu Komputer ITH • IPK 3.93/4.00</span>
+              <span>S1 Ilmu Komputer ITH • IPK 3.93 • Wisudawan Terbaik</span>
             </div>
           </motion.div>
 
@@ -103,8 +101,8 @@ export default function Hero() {
             className="lg:col-span-7 text-center lg:text-left"
           >
             {/* Top Tagline */}
-            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full border border-border bg-surface text-xs font-mono text-accent mb-4">
-              <span>👋 Halo, salam kenal</span>
+            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full border border-border bg-surface text-xs font-mono text-primary mb-4">
+              <span>{dict.hero.greeting}</span>
             </div>
 
             {/* Name & Academic Title */}
@@ -113,24 +111,19 @@ export default function Hero() {
             </h1>
 
             {/* Professional Positioning */}
-            <div className="text-lg sm:text-xl font-bold text-accent font-sans mb-4">
-              AI Engineer & Backend Developer
+            <div className="text-lg sm:text-xl font-bold text-primary font-sans mb-4">
+              {dict.hero.title}
             </div>
 
             {/* Concrete Professional Description (Judie Mosinabre style) */}
             <p className="text-sm sm:text-base text-foreground/80 leading-relaxed font-sans mb-6 max-w-2xl mx-auto lg:mx-0">
-              Lulusan Sarjana Komputer dari Institut Teknologi Bacharuddin Jusuf Habibie (ITH).
-              Berspesialisasi dalam rekayasa <strong className="text-foreground">Computer Vision</strong>,{" "}
-              <strong className="text-foreground">Deep Learning</strong>, dan{" "}
-              <strong className="text-foreground">Machine Learning</strong> (TensorFlow, MediaPipe, OpenCV),
-              yang dipadukan secara harmonis dengan perancangan arsitektur backend enterprise{" "}
-              (<strong className="text-foreground">Laravel</strong>, <strong className="text-foreground">PostgreSQL</strong>, RESTful API).
+              {dict.hero.bio}
             </p>
 
             {/* Judie-style Quick Action Navigation Pills */}
             <div className="mb-8">
               <div className="text-xs font-mono uppercase tracking-wider text-muted-foreground mb-2.5">
-                Jelajahi Profil:
+                {dict.hero.exploreProfile}:
               </div>
               <div className="flex flex-wrap items-center justify-center lg:justify-start gap-2">
                 {quickNavLinks.map((item) => (
@@ -153,7 +146,7 @@ export default function Hero() {
                 onClick={(e) => handleScrollTo(e, "#projects")}
                 className="px-6 py-3 rounded-xl bg-primary text-primary-foreground font-medium text-xs sm:text-sm transition-all duration-200 hover:opacity-90 shadow-md inline-flex items-center gap-2"
               >
-                <span>Lihat Proyek Rekayasa</span>
+                <span>{dict.hero.viewProjects}</span>
                 <ArrowRight className="w-4 h-4" />
               </a>
 
@@ -164,7 +157,7 @@ export default function Hero() {
                 className="px-6 py-3 rounded-xl border border-border bg-surface text-foreground font-medium text-xs sm:text-sm transition-all duration-200 hover:border-primary hover:text-primary shadow-xs inline-flex items-center gap-2"
               >
                 <Download className="w-4 h-4 text-primary" />
-                <span>Unduh CV (PDF)</span>
+                <span>{dict.hero.downloadCV}</span>
               </a>
             </div>
 
@@ -198,12 +191,12 @@ export default function Hero() {
                 {copiedEmail ? (
                   <>
                     <Check className="w-3.5 h-3.5 text-emerald-500" />
-                    <span className="text-emerald-500 font-semibold">Tersalin!</span>
+                    <span className="text-emerald-500 font-semibold">{dict.hero.copied}</span>
                   </>
                 ) : (
                   <>
                     <Mail className="w-3.5 h-3.5 text-primary" />
-                    <span>Salin Email</span>
+                    <span>{dict.hero.copyEmail}</span>
                   </>
                 )}
               </button>

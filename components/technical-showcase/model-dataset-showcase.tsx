@@ -21,10 +21,11 @@ const items: ShowcaseItem[] = [
     title: "Dataset Gesture Keypoint Alfabet & Kata BISINDO",
     associatedProject: "ISARA Language (PKM-KC 2025)",
     parameters: [
-      { label: "Format Fitur", value: "21 Koordinat Keypoint 3D (X, Y, Z per tangan)" },
-      { label: "Dimensi Input", value: "30 Timesteps × 126 Fitur per sampel" },
-      { label: "Ruang Lingkup", value: "Alfabet dan Kosakata Dasar Komunikasi Sehari-hari" },
-      { label: "Target Inferensi", value: "On-Device Mobile Android (TFLite)" },
+      { label: "Format Fitur", value: "270 Fitur (258 Landmark Spasial + 12 Fitur Sudut & Jarak)" },
+      { label: "Dimensi Input", value: "30 Timesteps × 270 Fitur per sampel sekuensial" },
+      { label: "Ruang Lingkup", value: "73 Label Alfabet dan Kosakata Isyarat Dasar BISINDO" },
+      { label: "Ukuran & Akurasi", value: "17.138 Sampel Dataset (Akurasi Test-Set 96,06%)" },
+      { label: "Target Inferensi", value: "On-Device Mobile Android (TensorFlow Lite)" },
     ],
     curationTools: ["MediaPipe Hands", "Python", "NumPy", "OpenCV"],
     notes:

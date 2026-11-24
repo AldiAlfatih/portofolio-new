@@ -4,6 +4,8 @@ import React, { useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { X, ExternalLink, Github, Layers, Target, CheckCircle2, Cpu } from "lucide-react"
 import { ProjectItem } from "@/types/portfolio"
+import { TechLogo } from "@/components/tech-logo"
+import { useLanguage } from "@/contexts/language-context"
 
 interface ProjectDetailModalProps {
   project: ProjectItem | null
@@ -11,6 +13,9 @@ interface ProjectDetailModalProps {
 }
 
 export default function ProjectDetailModal({ project, onClose }: ProjectDetailModalProps) {
+  const { language } = useLanguage()
+  const isEn = language === "en"
+
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose()
@@ -50,8 +55,8 @@ export default function ProjectDetailModal({ project, onClose }: ProjectDetailMo
           {/* Close button */}
           <button
             onClick={onClose}
-            className="absolute top-5 right-5 p-2 rounded-full border border-border bg-surface text-muted-foreground hover:text-foreground hover:border-interactive-hover transition-colors"
-            aria-label="Tutup modal"
+            className="absolute top-5 right-5 p-2 rounded-full border border-border bg-surface text-muted-foreground hover:text-foreground hover:border-primary transition-colors"
+            aria-label={isEn ? "Close modal" : "Tutup modal"}
           >
             <X className="w-5 h-5" />
           </button>
@@ -59,11 +64,11 @@ export default function ProjectDetailModal({ project, onClose }: ProjectDetailMo
           {/* Header */}
           <div className="mb-6 pr-10">
             <div className="flex flex-wrap items-center gap-2 mb-2">
-              <span className="text-xs font-mono font-semibold px-2.5 py-0.5 rounded-full bg-accent/15 text-accent border border-accent/30">
+              <span className="text-xs font-mono font-semibold px-2.5 py-0.5 rounded-full bg-primary/15 text-primary border border-primary/30">
                 {project.category}
               </span>
               <span className="text-xs font-mono text-muted-foreground px-2.5 py-0.5 rounded-full bg-surface-secondary border border-border">
-                Peran: {project.role}
+                {isEn ? "Role" : "Peran"}: {project.role}
               </span>
             </div>
             <h2 className="text-2xl sm:text-3xl font-bold text-foreground tracking-tight">
@@ -71,11 +76,15 @@ export default function ProjectDetailModal({ project, onClose }: ProjectDetailMo
             </h2>
           </div>
 
-          {/* Tech Stack Chips */}
+          {/* Tech Stack Chips with real vector logos */}
           <div className="flex flex-wrap gap-1.5 mb-8 pb-6 border-b border-border">
             {project.technologies.map((t) => (
-              <span key={t} className="tech-tag">
-                {t}
+              <span
+                key={t}
+                className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-border bg-surface text-xs font-mono text-foreground"
+              >
+                <TechLogo name={t} className="w-3.5 h-3.5 text-primary shrink-0" />
+                <span>{t}</span>
               </span>
             ))}
           </div>
@@ -85,8 +94,8 @@ export default function ProjectDetailModal({ project, onClose }: ProjectDetailMo
             {/* Overview */}
             <div>
               <h3 className="text-xs font-mono uppercase tracking-wider text-muted-foreground mb-2 flex items-center gap-2">
-                <Layers className="w-3.5 h-3.5 text-accent" />
-                Gambaran Umum & Konteks Rekayasa
+                <Layers className="w-3.5 h-3.5 text-primary" />
+                {isEn ? "Overview & Engineering Context" : "Gambaran Umum & Konteks Rekayasa"}
               </h3>
               <p className="leading-relaxed text-foreground/80">
                 {project.longDescription || project.description}
@@ -97,8 +106,8 @@ export default function ProjectDetailModal({ project, onClose }: ProjectDetailMo
             {project.problemStatement && (
               <div className="p-4 rounded-xl border border-border/80 bg-surface-secondary/60">
                 <h3 className="text-xs font-mono uppercase tracking-wider text-muted-foreground mb-2 flex items-center gap-2">
-                  <Target className="w-3.5 h-3.5 text-accent" />
-                  Problem Statement & Tantangan
+                  <Target className="w-3.5 h-3.5 text-primary" />
+                  {isEn ? "Problem Statement & Challenges" : "Problem Statement & Tantangan"}
                 </h3>
                 <p className="leading-relaxed text-foreground/80">
                   {project.problemStatement}
@@ -110,8 +119,8 @@ export default function ProjectDetailModal({ project, onClose }: ProjectDetailMo
             {project.technicalApproach && (
               <div>
                 <h3 className="text-xs font-mono uppercase tracking-wider text-muted-foreground mb-2 flex items-center gap-2">
-                  <Cpu className="w-3.5 h-3.5 text-accent" />
-                  Pendekatan Teknis & Arsitektur
+                  <Cpu className="w-3.5 h-3.5 text-primary" />
+                  {isEn ? "Technical Approach & Architecture" : "Pendekatan Teknis & Arsitektur"}
                 </h3>
                 <p className="leading-relaxed text-foreground/80">
                   {project.technicalApproach}
@@ -123,16 +132,16 @@ export default function ProjectDetailModal({ project, onClose }: ProjectDetailMo
             {project.architecture && project.architecture.length > 0 && (
               <div className="mt-4">
                 <h4 className="text-xs font-mono uppercase tracking-wider text-muted-foreground mb-3">
-                  Tahapan Alur Arsitektur (Pipeline Flow):
+                  {isEn ? "Architecture Pipeline Flow:" : "Tahapan Alur Arsitektur (Pipeline Flow):"}
                 </h4>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   {project.architecture.map((step, idx) => (
                     <div
                       key={idx}
-                      className="p-3 rounded-lg border border-border bg-surface p-3"
+                      className="p-3 rounded-lg border border-border bg-surface"
                     >
                       <div className="flex justify-between items-center mb-1">
-                        <span className="text-[10px] font-mono text-accent font-semibold">
+                        <span className="text-[10px] font-mono text-primary font-semibold">
                           0{idx + 1}. {step.title}
                         </span>
                         {step.tech && (
@@ -155,7 +164,7 @@ export default function ProjectDetailModal({ project, onClose }: ProjectDetailMo
               <div className="p-4 rounded-xl border border-emerald-500/20 bg-emerald-500/5">
                 <h3 className="text-xs font-mono uppercase tracking-wider text-emerald-500 mb-1.5 flex items-center gap-2 font-semibold">
                   <CheckCircle2 className="w-4 h-4 text-emerald-500" />
-                  Capaian & Hasil Evaluasi
+                  {isEn ? "Key Results & Impact" : "Capaian & Hasil Evaluasi"}
                 </h3>
                 <p className="leading-relaxed text-foreground/85">{project.results}</p>
               </div>
@@ -173,7 +182,7 @@ export default function ProjectDetailModal({ project, onClose }: ProjectDetailMo
                   className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-primary text-primary-foreground font-medium text-xs hover:opacity-90 transition-opacity"
                 >
                   <ExternalLink className="w-3.5 h-3.5" />
-                  Buka Tautan Demo / Hasil
+                  {isEn ? "Live Demo / Output" : "Buka Tautan Demo / Hasil"}
                 </a>
               )}
               {project.codeUrl && project.codeUrl !== "#" && (
@@ -181,10 +190,10 @@ export default function ProjectDetailModal({ project, onClose }: ProjectDetailMo
                   href={project.codeUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-border bg-surface text-foreground font-medium text-xs hover:border-interactive-hover transition-colors"
+                  className="inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-border bg-surface text-foreground font-medium text-xs hover:border-primary transition-colors"
                 >
                   <Github className="w-3.5 h-3.5" />
-                  Repositori Kode
+                  {isEn ? "Code Repository" : "Repositori Kode"}
                 </a>
               )}
             </div>
@@ -193,7 +202,7 @@ export default function ProjectDetailModal({ project, onClose }: ProjectDetailMo
               onClick={onClose}
               className="text-xs font-mono text-muted-foreground hover:text-foreground transition-colors ml-auto"
             >
-              [Tutup Window]
+              [{isEn ? "Close Window" : "Tutup Window"}]
             </button>
           </div>
         </motion.div>

@@ -2,123 +2,153 @@ import { SkillCategory, SoftSkillItem, LanguageSkillItem } from "@/types/portfol
 
 export const technicalSkillCategories: SkillCategory[] = [
   {
-    category: "Programming Languages",
-    description: "Bahasa inti yang digunakan untuk implementasi algoritma AI dan sistem backend.",
+    category: "Artificial Intelligence & Machine Learning",
+    description: "Pemodelan kecerdasan buatan, Computer Vision, pemrosesan bahasa, dan implementasi inferensi on-device.",
     skills: [
-      { name: "Python", badge: "Core AI / Backend" },
-      { name: "PHP", badge: "Backend MVC" },
+      { name: "Machine Learning", badge: "Core AI" },
+      { name: "Deep Learning", badge: "Neural Nets" },
+      { name: "Computer Vision", badge: "Specialization" },
+      { name: "Natural Language Processing", badge: "NLP" },
+      { name: "TensorFlow", badge: "Primary Framework" },
+      { name: "Keras", badge: "Model Design" },
+      { name: "Scikit-learn", badge: "ML Pipelines" },
+      { name: "MediaPipe", badge: "Real-time Landmarks" },
+      { name: "TFLite", badge: "Edge / On-Device" },
+      { name: "Feature Engineering", badge: "Data Modeling" },
+      { name: "Model Evaluation", badge: "Metrics & Validation" },
+    ],
+  },
+  {
+    category: "Data Science & Analytics",
+    description: "Pembersihan dataset, transformasi ETL, analisis statistik eksploratif, dan dasbor visualisasi intelijen bisnis.",
+    skills: [
+      { name: "Data Science", badge: "Analytics" },
+      { name: "Data Analytics", badge: "Insights" },
+      { name: "Data Preprocessing", badge: "Data Prep" },
+      { name: "Data Cleaning", badge: "Data Quality" },
+      { name: "ETL", badge: "Extract-Transform-Load" },
+      { name: "Exploratory Data Analysis (EDA)", badge: "Exploration" },
+      { name: "Pandas", badge: "DataFrames" },
+      { name: "NumPy", badge: "Numerical Arrays" },
+      { name: "Microsoft Excel", badge: "Spreadsheets" },
+      { name: "Power Query", badge: "Data Pipeline" },
+      { name: "Power BI", badge: "Interactive BI" },
+    ],
+  },
+  {
+    category: "Programming Languages",
+    description: "Bahasa pemrograman inti yang dikuasai untuk komputasi analitis, rekayasa perangkat lunak, dan sistem backend.",
+    skills: [
+      { name: "Python", badge: "Primary (AI / Backend)" },
+      { name: "Java", badge: "Android & Systems" },
+      { name: "C++", badge: "Embedded / High Perf" },
+      { name: "PHP", badge: "Enterprise Web" },
+      { name: "Golang", badge: "Concurrent Backend" },
       { name: "JavaScript", badge: "Full-Stack" },
       { name: "TypeScript", badge: "Type-Safe Web" },
-      { name: "Java", badge: "Android & Systems" },
-      { name: "SQL", badge: "Relational Query" },
+      { name: "HTML", badge: "Markup" },
+      { name: "CSS", badge: "Styling" },
+      { name: "SQL", badge: "Relational Queries" },
     ],
   },
   {
-    category: "AI, Machine Learning & Deep Learning",
-    description: "Pemodelan kecerdasan buatan dari data preprocessing hingga on-device deployment.",
+    category: "Backend & Software Engineering",
+    description: "Perancangan arsitektur server-side, pemodelan database relasional, REST API, dan sistem kontrol akses bertingkat.",
     skills: [
-      { name: "Computer Vision", badge: "Specialization" },
-      { name: "TensorFlow", badge: "Framework" },
-      { name: "Keras", badge: "Deep Learning" },
-      { name: "MediaPipe", badge: "Realtime Landmark" },
-      { name: "OpenCV", badge: "Image Processing" },
-      { name: "Scikit-Learn", badge: "ML Models" },
-      { name: "TFLite", badge: "Edge / On-Device" },
-      { name: "NLP", badge: "Text Processing" },
-      { name: "Time Series (LSTM / ANN)", badge: "Forecasting" },
-    ],
-  },
-  {
-    category: "Web & Backend Engineering",
-    description: "Arsitektur server-side, integrasi database, dan pembuatan RESTful API.",
-    skills: [
-      { name: "Laravel", badge: "Enterprise PHP" },
+      { name: "Laravel", badge: "Enterprise MVC" },
+      { name: "CodeIgniter", badge: "PHP Framework" },
       { name: "Inertia.js", badge: "Modern Monolith" },
-      { name: "Vue.js", badge: "Reactive UI" },
-      { name: "React", badge: "Frontend Library" },
-      { name: "Next.js", badge: "SSR & Fullstack" },
-      { name: "CodeIgniter 4", badge: "MVC Framework" },
-      { name: "RESTful API", badge: "API Design" },
-      { name: "MVC Architecture", badge: "Pattern" },
-    ],
-  },
-  {
-    category: "Database & Storage",
-    description: "Manajemen basis data relasional dengan integritas data dan indexing yang optimal.",
-    skills: [
+      { name: "Node.js", badge: "Runtime Engine" },
+      { name: "REST API", badge: "API Architecture" },
+      { name: "MySQL", badge: "RDBMS" },
       { name: "PostgreSQL", badge: "Primary RDBMS" },
-      { name: "MySQL", badge: "Relational DB" },
-      { name: "Database Design & Normalization", badge: "Architecture" },
-    ],
-  },
-  {
-    category: "Tools, Platforms & AI Data Labeling",
-    description: "Alat pengembang, kontrol versi, dan platform anotasi dataset primer.",
-    skills: [
-      { name: "Docker", badge: "Containerization" },
+      { name: "Database Design (ERD)", badge: "Schema Modeling" },
+      { name: "Role-Based Access Control (RBAC)", badge: "Security" },
       { name: "Git & GitHub", badge: "Version Control" },
-      { name: "CVAT", badge: "Image Segmentation" },
-      { name: "Roboflow", badge: "Dataset Annotation" },
-      { name: "Google Colab", badge: "Model Training" },
-      { name: "VS Code", badge: "Primary IDE" },
-      { name: "Android Studio", badge: "Mobile SDK" },
-      { name: "Figma", badge: "UI/UX Specs" },
+      { name: "Docker", badge: "Containerization" },
     ],
   },
   {
-    category: "IoT & Embedded Systems",
-    description: "Integrasi sensor fisik dengan mikrokontroler untuk akuisisi data real-time.",
+    category: "IoT & Cloud",
+    description: "Integrasi sensor fisik, mikrokontroler, telemetri real-time, protokol pesan jaringan, dan komputasi awan.",
     skills: [
+      { name: "Cloud Computing", badge: "Cloud Infra" },
+      { name: "Deployment", badge: "Production Ops" },
+      { name: "CI/CD", badge: "DevOps Pipeline" },
+      { name: "MQTT", badge: "IoT Protocol" },
+      { name: "Arduino", badge: "Firmware" },
       { name: "ESP32", badge: "Microcontroller" },
-      { name: "Arduino IDE", badge: "Firmware Dev" },
-      { name: "Wireless Sensor Network (WSN)", badge: "Telemetry" },
-      { name: "IoT Telemetry Pipeline", badge: "Data Ingestion" },
+      { name: "Embedded Systems", badge: "Hardware Interfacing" },
+      { name: "Wireless Sensor Network", badge: "Telemetry Network" },
+    ],
+  },
+  {
+    category: "Development & Research Tools",
+    description: "Alat bantu terintegrasi untuk eksperimentasi model, kurasi dataset, pengembangan kode, dan kolaborasi tim.",
+    skills: [
+      { name: "Jupyter Notebook", badge: "Data Notebook" },
+      { name: "Google Colab", badge: "Cloud GPU Training" },
+      { name: "Android Studio", badge: "Mobile IDE" },
+      { name: "Visual Studio Code", badge: "Primary Editor" },
+      { name: "Figma", badge: "UI/UX Design" },
+      { name: "Roboflow", badge: "Computer Vision Datasets" },
+      { name: "CVAT", badge: "Semantic Annotation" },
+      { name: "Arduino IDE", badge: "Embedded IDE" },
+      { name: "Kaggle", badge: "Competitions & Datasets" },
+      { name: "SharePoint", badge: "Intranet & Document Mgmt" },
     ],
   },
 ]
 
 export const softSkillsData: SoftSkillItem[] = [
   {
-    title: "Leadership & Team Management",
+    title: "Analytical Thinking & Problem Solving",
     description:
-      "Berpengalaman memimpin organisasi teknologi (Ketua Habibie Coding Club) dan mengoordinasikan tim teknis multidisiplin untuk menyelesaikan proyek riset dan kompetisi inovasi.",
+      "Mampu menganalisis masalah komputasi kompleks, membedah struktur data, merancang alur sistem teroptimasi, dan mengevaluasi trade-off performa teknis secara objektif.",
   },
   {
-    title: "Technical Problem Solving",
+    title: "Technical Leadership",
     description:
-      "Menganalisis akar masalah komputasi secara analitis, memecah arsitektur sistem kompleks menjadi modul efisien, dan mengevaluasi trade-off performa teknis.",
+      "Berpengalaman memimpin komunitas teknologi kampus (Ketua Habibie Coding Club) dan mengoordinasikan pembagian modul teknis pada proyek pengembangan E-Monev Bappeda.",
   },
   {
-    title: "Public Speaking & Technical Presentation",
+    title: "Team Collaboration",
     description:
-      "Mampu mendemokan dan mengomunikasikan konsep arsitektur AI dan sistem perangkat lunak di hadapan panel juri kompetisi nasional, internasional, dan pemangku kepentingan.",
+      "Terbiasa bekerja efektif dalam tim lintas fungsi dan multidisiplin, berkolaborasi dengan analis ekonomi Bank Indonesia, peneliti medis GoDentist, serta pemangku kebijakan pemerintah daerah.",
   },
   {
-    title: "Cross-functional Collaboration",
+    title: "Project Coordination",
     description:
-      "Terbiasa bekerja dalam tim lintas peran (dokter gigi, analis kebijakan ekonomi, pembuat kebijakan pemerintah daerah, dan developer).",
+      "Teruji mengawal alur kerja rekayasa tepat waktu, integrasi antarmuka dan backend, manajemen sprint, serta pemenuhan deliverable proyek PKM-KC dan sistem pemerintahan daerah.",
   },
   {
-    title: "End-to-End Project Execution",
+    title: "Technical Communication",
     description:
-      "Mengawal siklus pengembangan dari perumusan kebutuhan, pengumpulan dan anotasi dataset, pelatihan model, arsitektur backend, hingga deployment operasional.",
+      "Mampu mempresentasikan konsep arsitektur AI, temuan analitik data Power BI, dan policy note secara jelas dan persuasif di hadapan panel juri kompetisi maupun pemangku kepentingan.",
   },
   {
     title: "Adaptability & Continuous Learning",
     description:
-      "Cepat menguasai teknologi baru dan framework komputasi modern untuk memenuhi kebutuhan riset dan tantangan rekayasa terkini.",
+      "Cepat beradaptasi menguasai domain baru dan instrumen terkini, mulai dari Computer Vision on-device, rekayasa data Big Data/ETL, hingga arsitektur telemetri IoT industri tambang.",
+  },
+  {
+    title: "Research & Critical Thinking",
+    description:
+      "Terbiasa menyusun dokumen rancangan riset formal, studi literatur ilmiah komprehensif, desain dataset primer, serta pengujian empiris performa model kecerdasan buatan.",
   },
 ]
 
 export const languageSkillsData: LanguageSkillItem[] = [
   {
     language: "Bahasa Indonesia",
-    proficiency: "Penutur Asli (Native)",
-    description: "Bahasa utama untuk komunikasi profesional, penulisan laporan teknis, dan koordinasi tim.",
+    proficiency: "Native / Terbiasa",
+    description:
+      "Penutur asli dengan penguasaan komunikasi lisan dan penulisan formal, teknis, dan dokumentasi akademik.",
   },
   {
     language: "English",
     proficiency: "Professional Working Proficiency",
-    description: "Mampu membaca dan memahami literatur ilmiah AI, dokumentasi teknis, serta komunikasi kerja tertulis.",
+    description:
+      "Mampu membaca literatur ilmiah internasional, menyusun dokumentasi teknis kode, dan berkomunikasi dalam konteks profesional rekayasa perangkat lunak.",
   },
 ]

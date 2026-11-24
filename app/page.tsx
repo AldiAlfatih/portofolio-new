@@ -9,7 +9,6 @@ import Projects from "@/components/projects"
 import Achievements from "@/components/achievements"
 import Certifications from "@/components/certifications"
 import Organizations from "@/components/organizations"
-import Testimonials from "@/components/testimonials"
 import Contact from "@/components/contact"
 
 export default function Home() {
@@ -24,7 +23,6 @@ export default function Home() {
       <Achievements />
       <Certifications />
       <Organizations />
-      <Testimonials />
       <Contact />
     </main>
   )

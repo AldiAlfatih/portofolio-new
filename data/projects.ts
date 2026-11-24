@@ -4,52 +4,52 @@ export const projectsData: ProjectItem[] = [
   {
     id: "isara-bisindo",
     title: "ISARA: Inovasi Komunikasi Dua Arah Bahasa Isyarat",
-    role: "Co-Founder & Computer Vision Engineer",
+    role: "Co-Founder & AI Engineer",
     category: "Computer Vision",
     featured: true,
     description:
-      "Arsitektur Computer Vision dan mobile AI untuk menerjemahkan Bahasa Isyarat Indonesia (BISINDO) secara near real-time menggunakan TensorFlow dan MediaPipe. Berhasil meraih pendanaan nasional PKM-KC 2025.",
+      "Arsitektur Computer Vision dan mobile on-device AI untuk menerjemahkan Bahasa Isyarat Indonesia (BISINDO) ke teks/suara secara near real-time dengan akurasi test set 96.06%. Berhasil meraih pendanaan nasional PKM-KC 2025.",
     longDescription:
-      "ISARA adalah platform komunikasi inklusif yang menjembatani kesenjangan komunikasi antara komunitas Tuli dan masyarakat dengar. Sistem memanfaatkan kamera ponsel pintar biasa untuk menangkap pose tangan dan tubuh, memproses landmark spasial, dan menerjemahkannya ke teks/audio secara langsung di perangkat (on-device AI).",
+      "ISARA adalah platform komunikasi inklusif yang menjembatani kesenjangan komunikasi antara komunitas Tuli dan masyarakat dengar. Sistem memanfaatkan kamera ponsel pintar biasa untuk menangkap pose tangan dan tubuh, memproses landmark spasial, dan menerjemahkannya ke teks/audio secara langsung di perangkat (on-device AI) tanpa ketergantungan server awan.",
     problemStatement:
       "Keterbatasan akses penerjemah bahasa isyarat profesional di ruang publik dan institusi layanan masyarakat, sementara aplikasi yang ada umumnya bergantung pada cloud computing yang lambat dan memerlukan kuota internet stabil.",
     technicalApproach:
-      "Mengekstraksi 21 koordinat landmark tangan dan pose tubuh per frame menggunakan MediaPipe, kemudian mengklasifikasikan urutan gerak sekuensial menggunakan arsitektur deep learning (kombinasi Conv1D + BiGRU + Attention Mechanism). Model dikonversi ke format TensorFlow Lite (TFLite) untuk inferensi cepat dengan latensi rendah pada perangkat Android.",
+      "Mengekstraksi 270 fitur data sekuensial per frame, terdiri dari 258 fitur landmark spasial 3D MediaPipe (Hands & Pose) serta 12 fitur sudut dan jarak hasil feature engineering. Model deep learning dilatih menggunakan arsitektur gabungan Conv1D, Bidirectional GRU (BiGRU), dan Attention Mechanism untuk mengenali 73 label BISINDO pada dataset 17.138 sampel. Model dikonversi ke format TensorFlow Lite (.tflite) dan diintegrasikan dengan Android CameraX untuk inferensi cepat berlatensi rendah secara offline.",
     results:
-      "Meraih pendanaan nasional Program Kreativitas Mahasiswa Karsa Cipta (PKM-KC) Kemendikbudristek DIKTI 2025 dan sukses dibangun sebagai prototipe aplikasi Android fungsional.",
+      "Meraih akurasi 96,06% pada test set evaluasi, memenangkan pendanaan nasional PKM-KC Kemendikbudristek DIKTI 2025, dan sukses diintegrasikan dengan fitur Sign-to-Text, Text-to-Sign, serta modul pembelajaran interaktif.",
     architecture: [
       {
         title: "Video Stream Ingestion",
-        description: "Android CameraX menangkap frame video kamera depan 30 FPS.",
+        description: "Android CameraX menangkap aliran frame video kamera depan perangkat secara real-time pada 30 FPS.",
         tech: "Android CameraX",
       },
       {
-        title: "Landmark Extraction",
-        description: "MediaPipe Hands & Pose mengekstraksi 21 keypoint koordinat 3D per tangan.",
-        tech: "MediaPipe",
+        title: "Landmark Extraction & Feature Engineering",
+        description: "MediaPipe mengekstraksi 258 koordinat spasial 3D, dikombinasikan dengan 12 fitur sudut dan jarak relatif hasil feature engineering (total 270 fitur).",
+        tech: "MediaPipe Hands & Pose",
       },
       {
         title: "Sequential Preprocessing",
-        description: "Normalisasi koordinat relatif terhadap pergelangan tangan dan pembentukan jendela waktu (temporal sliding window).",
+        description: "Normalisasi koordinat pergelangan tangan dan pembentukan jendela waktu sekuensial (temporal sliding window) untuk 17.138 sampel dataset.",
         tech: "Python / NumPy",
       },
       {
-        title: "Neural Classifier",
-        description: "Inferensi model Conv1D-BiGRU TFLite untuk mengenali huruf alfabet dan kata isyarat BISINDO.",
-        tech: "TensorFlow Lite",
+        title: "Neural Classifier with Attention",
+        description: "Inferensi model Conv1D + BiGRU + Attention Mechanism terkuantisasi TFLite untuk mengenali 73 label gestur BISINDO.",
+        tech: "TensorFlow Lite (.tflite)",
       },
       {
-        title: "Text & Audio Synthesis",
-        description: "Menampilkan hasil transkripsi teks pada layar dan memutar audio Text-to-Speech secara simultan.",
-        tech: "Android TTS API",
+        title: "Bidirectional Synthesis",
+        description: "Menampilkan hasil transkripsi teks, memutar sintesis audio Text-to-Speech, serta menyediakan modul animasi Text-to-Sign dan edukasi.",
+        tech: "Android TTS & Canvas",
       },
     ],
     modelDatasetDetails: {
-      modelType: "Conv1D + Bidirectional GRU with Attention",
-      inputShape: "(TimeSteps: 30, Features: 126 coordinates)",
-      datasetDescription: "Dataset primer kurasi internal berisi rekaman gesture tangan alfabet dan kata dasar BISINDO.",
-      sampleSize: "Ribuan sampel urutan keypoint pose",
-      deployment: "On-Device Inference via TensorFlow Lite (.tflite)",
+      modelType: "Conv1D + Bidirectional GRU (BiGRU) + Attention Mechanism",
+      inputShape: "(TimeSteps: 30, Features: 270 [258 landmarks + 12 engineered features])",
+      datasetDescription: "Dataset primer 17.138 sampel koordinat keypoint terstruktur mencakup 73 label alfabet dan kata BISINDO.",
+      sampleSize: "17.138 sampel (Akurasi Test-Set 96.06%)",
+      deployment: "On-Device Mobile Android via TensorFlow Lite & CameraX",
     },
     technologies: [
       "Python",
@@ -60,6 +60,7 @@ export const projectsData: ProjectItem[] = [
       "OpenCV",
       "Android",
       "Java",
+      "CameraX",
     ],
     image: "/ai-project-showcase.png",
     demoUrl: "#",
@@ -68,57 +69,203 @@ export const projectsData: ProjectItem[] = [
   {
     id: "emonev-bappeda",
     title: "Sistem E-Monev Bappeda Kota Parepare",
-    role: "Lead Back-End Developer",
+    role: "Lead Backend Developer",
     category: "Backend Development",
     featured: true,
     description:
-      "Arsitektur server-side enterprise berbasis Laravel, PostgreSQL, dan Inertia.js untuk pemantauan dan evaluasi realisasi anggaran program pemerintah daerah secara transparan.",
+      "Arsitektur server-side enterprise berbasis Laravel 12.9.2, MySQL, dan Inertia.js untuk pemantauan dan evaluasi realisasi fisik dan keuangan program pembangunan pada 34 perangkat daerah di Kota Parepare.",
     longDescription:
-      "Sistem Elektronik Monitoring dan Evaluasi (E-Monev) yang dikembangkan khusus untuk Badan Perencanaan Pembangunan Daerah (Bappeda) Kota Parepare. Platform ini menggantikan pelaporan manual berbasis spreadsheet dan mengotomatisasi kalkulasi deviasi realisasi fisik dan keuangan seluruh Organisasi Perangkat Daerah (OPD).",
+      "Sistem Elektronik Monitoring dan Evaluasi (E-Monev) yang dikembangkan untuk Badan Perencanaan Pembangunan Daerah (Bappeda) Kota Parepare. Platform ini menggantikan rekapitulasi spreadsheet manual dan mengotomatisasi kalkulasi deviasi realisasi fisik serta keuangan di seluruh dinas/badan perangkat daerah.",
     problemStatement:
-      "Proses konsolidasi pelaporan capaian anggaran dari puluhan OPD sebelumnya memakan waktu berminggu-minggu, rentan inkonsistensi data, dan sulit diaudit secara historis.",
+      "Proses konsolidasi pelaporan capaian anggaran dari 34 perangkat daerah sebelumnya memakan waktu berminggu-minggu, rentan inkonsistensi data antar dokumen anggaran, dan sulit diaudit riwayat perubahannya secara transparan.",
     technicalApproach:
-      "Merancang skema database relasional ternormalisasi pada PostgreSQL dengan indeks teroptimasi untuk query agregasi bertingkat. Membangun RESTful controller berbasis Laravel 10 dengan arsitektur Service-Repository pattern, middleware otorisasi multi-role (Admin Bappeda, Verifikator Bidang, Operator OPD), dan integrasi front-end modern melalui Inertia.js dan Vue.js.",
+      "Merancang struktur database relasional menggunakan MySQL dengan Entity Relationship Diagram (ERD) menyeluruh, indexing teroptimasi, dan database migration. Mengembangkan REST API, modular business logic, serta CRUD berjenjang untuk urusan, bidang urusan, program, kegiatan, subkegiatan, dan pos belanja menggunakan Laravel 12.9.2. Mengintegrasikan autentikasi dan Role-Based Access Control (RBAC) bertingkat menggunakan Spatie Permission (super_admin, admin, perangkat daerah, operator). Menghubungkan backend dengan Vue.js melalui adapter Inertia.js untuk pengalaman antarmuka modern tanpa reload halaman.",
     results:
-      "Sistem berhasil di-deploy dan digunakan secara aktif oleh seluruh dinas/badan di lingkungan Pemerintah Kota Parepare untuk pelaporan triwulanan dan evaluasi APBD.",
+      "Sistem berhasil di-deploy ke server produksi dan secara aktif digunakan oleh 34 perangkat daerah di lingkungan Pemerintah Kota Parepare untuk pelaporan triwulanan dan evaluasi APBD.",
     architecture: [
       {
-        title: "Client Layer",
-        description: "Antarmuka reaktif Vue.js dengan Tailwind CSS, disajikan tanpa reload melalui adapter Inertia.js.",
+        title: "Reactive Client Layer",
+        description: "Antarmuka berbasis Vue.js dan Tailwind CSS, disajikan secara reaktif tanpa reload melalui Inertia.js.",
         tech: "Vue.js & Inertia.js",
       },
       {
-        title: "Routing & Middleware",
-        description: "Otentikasi sesi aman, CSRF protection, dan Role-Based Access Control (RBAC) bertingkat.",
-        tech: "Laravel Middleware",
+        title: "Routing & Authorization Gate",
+        description: "Sesi otentikasi aman dengan RBAC 4 tingkat (super_admin, admin, perangkat daerah, operator) via Spatie Permission.",
+        tech: "Laravel 12.9.2 & Spatie",
       },
       {
-        title: "Business Logic Layer",
-        description: "Service layer yang mengkalkulasi bobot program, pagu anggaran, realisasi fisik & keuangan, serta persentase deviasi.",
-        tech: "PHP / Laravel Services",
+        title: "Enterprise Business Logic",
+        description: "Service layer yang mengkalkulasi pagu anggaran, deviasi target vs realisasi fisik-keuangan, dan pembobotan program kerja.",
+        tech: "PHP / Service-Repository Pattern",
       },
       {
         title: "Relational Persistence",
-        description: "Penyimpanan data terstruktur dengan integritas referensial dan audit trail perubahan data.",
-        tech: "PostgreSQL",
+        description: "Penyimpanan data terstruktur pada MySQL dengan integritas referensial dan audit trail pencatatan aktivitas.",
+        tech: "MySQL & Eloquent ORM",
       },
     ],
     modelDatasetDetails: {
       modelType: "Relational Database & Enterprise Business Logic",
-      datasetDescription: "Database program kerja, sub-kegiatan, pagu anggaran, dan realisasi fisik-keuangan APBD daerah.",
-      deployment: "Linux Virtual Private Server (VPS) dengan Nginx & PHP-FPM",
+      datasetDescription: "Database master program, subkegiatan, pagu anggaran, dan realisasi fisik-keuangan APBD Kota Parepare.",
+      deployment: "Linux VPS dengan Web Server Nginx & PHP-FPM",
     },
     technologies: [
       "Laravel",
       "PHP",
-      "PostgreSQL",
+      "MySQL",
       "Inertia.js",
       "Vue.js",
       "Tailwind CSS",
-      "RESTful API",
+      "REST API",
+      "Spatie Permission",
     ],
     image: "/ai-project-showcase.png",
     demoUrl: "https://drive.google.com/file/d/1x3zWwVp6C_xoth3EjXX6TPY1R3l5-QrL/view?usp=drive_link",
+    codeUrl: "#",
+  },
+  {
+    id: "orthopredict-ai",
+    title: "OrthoPredictAI: Multimodal Orthodontic Treatment Prediction",
+    role: "AI Research Engineer (GoDentist)",
+    category: "AI / Machine Learning",
+    featured: true,
+    description:
+      "Riset dan perancangan konsep sistem kecerdasan buatan multimodal yang mengintegrasikan citra klinis ortodonti dan data pasien terstruktur untuk memprediksi durasi dan estimasi biaya perawatan gigi.",
+    longDescription:
+      "OrthoPredictAI dikembangkan selama magang riset AI di GoDentist (PT Periksa Gigi Indonesia). Proyek ini merancang blueprint teknologi AI di bidang kedokteran gigi untuk membantu dokter gigi spesialis ortodonti memprediksi lama durasi pemasangan kawat gigi dan kalkulasi biaya perawatan secara lebih akurat dan objektif.",
+    problemStatement:
+      "Penentuan durasi dan biaya perawatan ortodonti selama ini sangat bergantung pada estimasi subjektif dokter dengan variasi tinggi, minim dukungan data kuantitatif historis, dan sulit diprediksi sebelum terapi dimulai.",
+    technicalApproach:
+      "Menyusun dokumen rancangan riset formal (research plan) yang memuat formulasi masalah klinis, tujuan penelitian, pertanyaan riset, hipotesis terukur, dan metodologi evaluasi. Merancang struktur dataset multimodal yang memadukan citra pra-perawatan (foto ekstraoral/intraoral) dengan data tabular (demografis pasien, tipe maloklusi, kebiasaan, riwayat medis, dan biaya historis). Melakukan kajian literatur terhadap model Convolutional Neural Network (CNN) dan tabular gradient boosting untuk perencanaan ortodontik serta merancang arsitektur pipeline inferensi sistem.",
+    results:
+      "Menghasilkan dokumen riset komprehensif, desain arsitektur teknis OrthoPredictAI, dan struktur dataset multimodal yang diadopsi sebagai dasar implementasi modul cerdas di ekosistem GoDentist.",
+    architecture: [
+      {
+        title: "Multimodal Clinical Ingestion",
+        description: "Pengumpulan citra fotografi intraoral/ekstraoral dan kuesioner data klinis pasien.",
+        tech: "Multimodal Data Schema",
+      },
+      {
+        title: "Visual Feature Extraction",
+        description: "Pipeline Computer Vision untuk mengekstraksi representasi derajat keparahan maloklusi gigi dari citra.",
+        tech: "CNN / Computer Vision",
+      },
+      {
+        title: "Tabular Feature Fusion",
+        description: "Penggabungan vektor visual dengan data numerik demografis, biologis, dan riwayat klinis pasien.",
+        tech: "Feature Fusion Layer",
+      },
+      {
+        title: "Predictive Output",
+        description: "Estimasi durasi waktu perawatan dalam hitungan bulan dan proyeksi rentang biaya perawatan ortodonti.",
+        tech: "Machine Learning Regressor",
+      },
+    ],
+    modelDatasetDetails: {
+      modelType: "Multimodal Deep Learning (Vision Feature Extractor + Tabular Regressor)",
+      inputShape: "Citra Klinis Gigi (RGB) + Vektor Tabular Pasien",
+      datasetDescription: "Skema dataset multimodal penggabungan citra fotografi ortodonti dan parameter klinis demografis.",
+      deployment: "Research Blueprint & Technical Specification Architecture",
+    },
+    technologies: [
+      "Python",
+      "Machine Learning",
+      "Computer Vision",
+      "Multimodal Data",
+      "Healthcare AI",
+      "Research Design",
+      "Literature Review",
+    ],
+    image: "/ai-project-showcase.png",
+    demoUrl: "#",
+    codeUrl: "#",
+  },
+  {
+    id: "mining-fleet-dss",
+    title: "Mining Fleet Operations Decision Support System",
+    role: "AI & Software Engineer (Independent Project)",
+    category: "AI / Machine Learning",
+    featured: true,
+    description:
+      "Sistem cerdas pendukung keputusan operasional armada tambang berbasis telemetri IoT real-time, deteksi anomali konsumsi bahan bakar, estimasi keausan komponen, dan scoring risiko operasional.",
+    longDescription:
+      "Sistem rekayasa terintegrasi yang menggabungkan transmisi telemetri IoT armada dump truck / alat berat tambang dengan analitik prediktif. Sistem dirancang untuk meningkatkan efisiensi konsumsi bahan bakar, meminimalkan downtime tak terduga melalui predictive maintenance, dan memberikan rekomendasi rute serta kecepatan optimal.",
+    problemStatement:
+      "Biaya operasional tinggi akibat inefisiensi bahan bakar dan kerusakan mendadak komponen alat berat tambang, di mana data sensor telemetri seringkali hanya dicatat tanpa analisis prediktif berbasis machine learning.",
+    technicalApproach:
+      "Membangun pipeline ingestion telemetri berkemampuan tinggi menggunakan protokol MQTT dan backend berbasis FastAPI. Menyimpan data spasial dan time-series ke PostgreSQL dengan ekstensi PostGIS untuk analisis geofencing dan rute tambang. Merancang model Machine Learning untuk deteksi anomali pola kerja mesin, estimasi sisa umur pakai komponen (Remaining Useful Life), serta kalkulasi risk score keselamatan armada. Fitur ingestion data dan penyimpanan database telah diimplementasikan, sedangkan model deep anomaly dan algoritma dispatch otomatis sedang dalam tahap riset lanjutan.",
+    results:
+      "Berhasil membangun prototipe ingestion telemetri real-time, skema database PostGIS, dan dasbor pemantauan status armada dengan visualisasi metrik operasional terpadu.",
+    architecture: [
+      {
+        title: "IoT Ingestion [Implemented]",
+        description: "Broker MQTT menerima payload telemetri GPS, kecepatan, temperatur mesin, beban muatan, dan konsumsi bahan bakar.",
+        tech: "MQTT Protocol & Python",
+      },
+      {
+        title: "Backend Core API [Implemented]",
+        description: "Layanan API asinkron FastAPI berkinerja tinggi untuk validasi payload dan orkestrasi data.",
+        tech: "FastAPI & Docker",
+      },
+      {
+        title: "Spatial & Time-Series DB [Implemented]",
+        description: "Penyimpanan data koordinat lokasi pit tambang, geofencing, dan riwayat telemetri berindeks spasial.",
+        tech: "PostgreSQL & PostGIS",
+      },
+      {
+        title: "Predictive Analytics [Planned / In-Progress]",
+        description: "Pipeline machine learning untuk deteksi anomali bahan bakar, pemeliharaan prediktif, dan dispatching cerdas.",
+        tech: "Scikit-Learn & ML Anomaly Detection",
+      },
+    ],
+    modelDatasetDetails: {
+      modelType: "Time-Series Anomaly Detection & Predictive Maintenance Regressor",
+      inputShape: "(Telemetry Signals: Speed, RPM, Fuel Flow Rate, Engine Temp, Payload)",
+      datasetDescription: "Dataset telemetri operasional armada tambang dan riwayat log pemeliharaan mesin.",
+      deployment: "FastAPI REST Server, MQTT Broker, dan Docker Container",
+    },
+    technologies: [
+      "FastAPI",
+      "Python",
+      "MQTT",
+      "PostgreSQL",
+      "PostGIS",
+      "Machine Learning",
+      "Docker",
+      "IoT Telemetry",
+    ],
+    image: "/ai-project-showcase.png",
+    demoUrl: "#",
+    codeUrl: "#",
+  },
+  {
+    id: "ogitech-ecosystem",
+    title: "OgiTech Enterprise & AI Solutions (OgiFarm & Ogi'E)",
+    role: "Software & AI Engineer",
+    category: "Web Development",
+    featured: false,
+    description:
+      "Pengembangan rangkaian produk teknologi di OgiTech yang mencakup aplikasi FarmTech OgiFarm, teknologi pelestarian bahasa daerah Ogi'E, dan platform e-commerce skincare berbasis Computer Vision.",
+    longDescription:
+      "Di OgiTech, Aldi merancang dan membangun ekosistem perangkat lunak yang menjawab kebutuhan industri riil: OgiFarm memodernisasi pencatatan operasional peternakan, Ogi'E mendigitalisasi aksara Lontara dan bahasa daerah, sedangkan platform skincare mengintegrasikan Computer Vision untuk rekomendasi produk berdasarkan analisis foto wajah pengguna.",
+    problemStatement:
+      "Kebutuhan transformasi digital di sektor agribisnis peternakan lokal, ancaman kepunahan aksara daerah, dan kebutuhan konsumen skincare akan analisis kondisi kulit yang objektif.",
+    technicalApproach:
+      "Mengembangkan arsitektur backend andal berbasis Laravel dan REST API, antarmuka reaktif menggunakan React/Vue.js, serta aplikasi mobile pendukung. Menerapkan modul Computer Vision berbasis OpenCV dan model klasifikasi wajah untuk mengevaluasi jenis kulit dan mencocokkannya dengan katalog bahan aktif produk kecantikan.",
+    results:
+      "Produk-produk berhasil diluncurkan dan digunakan oleh pengguna target untuk operasional peternakan, edukasi budaya, dan transaksi e-commerce.",
+    technologies: [
+      "Python",
+      "Computer Vision",
+      "Laravel",
+      "PHP",
+      "React",
+      "Vue.js",
+      "PostgreSQL",
+      "REST API",
+    ],
+    image: "/ai-project-showcase.png",
+    demoUrl: "#",
     codeUrl: "#",
   },
   {
@@ -126,7 +273,7 @@ export const projectsData: ProjectItem[] = [
     title: "Sistem AI Monitoring & Prediksi Hidroponik Cerdas",
     role: "AI Engineer",
     category: "AI / Machine Learning",
-    featured: true,
+    featured: false,
     description:
       "Pengembangan model prediktif berbasis Artificial Neural Network (ANN) dan LSTM untuk meramalkan kualitas panen tanaman selada berdasarkan telemetri sensor lingkungan fisik IoT.",
     longDescription:
@@ -184,6 +331,7 @@ export const projectsData: ProjectItem[] = [
     title: "Sistem Klasifikasi & Deteksi Gulma Hortikultura",
     role: "Peneliti Pembantu (Computer Vision)",
     category: "Computer Vision",
+    featured: false,
     description:
       "Pembangunan dataset primer citra tanaman di Kabupaten Enrekang dan pemodelan klasifikasi varietas gulma untuk mendukung otomasi pengendalian hama perkebunan.",
     longDescription:
@@ -234,6 +382,7 @@ export const projectsData: ProjectItem[] = [
     title: "Dataset & Anotasi Segmentasi Semantik Bencana Banjir",
     role: "Peneliti Pembantu (Dataset Specialist)",
     category: "Computer Vision",
+    featured: false,
     description:
       "Ekstraksi ribuan frame dari video pengawasan dan dokumentasi amatir bencana serta anotasi segmentasi semantik area genangan air menggunakan platform CVAT.",
     longDescription:
