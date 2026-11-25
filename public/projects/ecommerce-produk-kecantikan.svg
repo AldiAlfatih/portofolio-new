@@ -1,0 +1,105 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" width="1200" height="675">
+  <defs>
+    <linearGradient id="ecom-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1a1216" />
+      <stop offset="100%" stop-color="#2c1922" />
+    </linearGradient>
+    <linearGradient id="rose-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#be123c" />
+      <stop offset="100%" stop-color="#9f1239" />
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="675" fill="url(#ecom-bg)" />
+
+  <!-- Outer Browser Frame -->
+  <rect x="48" y="42" width="1104" height="591" rx="18" fill="#1e151a" stroke="#522c3c" stroke-width="2" />
+
+  <!-- Header -->
+  <rect x="48" y="42" width="1104" height="72" rx="18" fill="#2a1a22" />
+  <rect x="48" y="96" width="1104" height="18" fill="#2a1a22" />
+  <circle cx="78" cy="76" r="6" fill="#f43f5e" />
+  <circle cx="98" cy="76" r="6" fill="#fb7185" />
+  <circle cx="118" cy="76" r="6" fill="#fda4af" />
+
+  <text x="148" y="76" fill="#fff1f2" font-family="system-ui, -apple-system, sans-serif" font-size="21" font-weight="700">Beauty &amp; Cosmetics Web E-Commerce Platform</text>
+  <text x="148" y="97" fill="#fda4af" font-family="ui-monospace, monospace" font-size="12">Laravel • MySQL Relational Catalog • Docker + Nginx • Multi-Shade Variant Engine</text>
+
+  <rect x="944" y="61" width="184" height="34" rx="17" fill="#881337" stroke="#fb7185" />
+  <text x="966" y="82" fill="#ffe4e6" font-family="ui-monospace, monospace" font-size="12" font-weight="700">LIVE STOCK VALIDATOR</text>
+
+  <!-- Left Panel: Product Showcase & Multi-Shade Selector -->
+  <rect x="74" y="136" width="580" height="472" rx="16" fill="#171014" stroke="#472735" stroke-width="1.5" />
+
+  <!-- Stylized Cosmetic Bottle / Product Visual -->
+  <rect x="98" y="160" width="230" height="320" rx="14" fill="#281a21" stroke="#522c3c" />
+  <!-- Bottle Shape -->
+  <rect x="178" y="218" width="70" height="150" rx="14" fill="#e11d48" fill-opacity="0.85" stroke="#fda4af" stroke-width="1.5" />
+  <rect x="193" y="192" width="40" height="28" rx="4" fill="#1f1f23" stroke="#fda4af" stroke-width="1" />
+  <rect x="190" y="266" width="46" height="58" rx="6" fill="#fff1f2" />
+  <text x="196" y="290" fill="#881337" font-family="system-ui, sans-serif" font-size="9" font-weight="800">SERUM</text>
+  <text x="196" y="306" fill="#9f1239" font-family="ui-monospace, monospace" font-size="8">GLOW 30ml</text>
+
+  <rect x="120" y="408" width="186" height="44" rx="8" fill="#1e151a" stroke="#522c3c" />
+  <text x="134" y="427" fill="#fda4af" font-family="ui-monospace, monospace" font-size="10">VARIANT INVENTORY SYNC</text>
+  <text x="134" y="443" fill="#ffffff" font-family="ui-monospace, monospace" font-size="12" font-weight="700">Stok Tersedia: 28 pcs</text>
+
+  <!-- Right Side inside Product Card: Shade Picker -->
+  <text x="352" y="188" fill="#fda4af" font-family="ui-monospace, monospace" font-size="11" font-weight="700">SKINCARE &amp; MAKEUP CATALOG</text>
+  <text x="352" y="216" fill="#ffffff" font-family="system-ui, sans-serif" font-size="19" font-weight="700">Velvet Matte Cushion</text>
+  <text x="352" y="242" fill="#e2e8f0" font-family="ui-monospace, monospace" font-size="15" font-weight="700">Rp 189.000</text>
+
+  <text x="352" y="282" fill="#cbd5e1" font-family="system-ui, sans-serif" font-size="12" font-weight="600">Pilih Varian Shade (Real-time Stock):</text>
+
+  <!-- Shade Swatch Grid -->
+  <g transform="translate(352, 300)">
+    <circle cx="24" cy="24" r="20" fill="#f5d7c4" stroke="#fb7185" stroke-width="3" />
+    <circle cx="80" cy="24" r="20" fill="#e3b79c" stroke="#522c3c" stroke-width="2" />
+    <circle cx="136" cy="24" r="20" fill="#c78d6c" stroke="#522c3c" stroke-width="2" />
+    <circle cx="192" cy="24" r="20" fill="#9a6448" stroke="#522c3c" stroke-width="2" />
+
+    <text x="4" y="64" fill="#ffe4e6" font-family="ui-monospace, monospace" font-size="10">01 Ivory</text>
+    <text x="60" y="64" fill="#94a3b8" font-family="ui-monospace, monospace" font-size="10">02 Sand</text>
+    <text x="114" y="64" fill="#94a3b8" font-family="ui-monospace, monospace" font-size="10">03 Honey</text>
+    <text x="172" y="64" fill="#94a3b8" font-family="ui-monospace, monospace" font-size="10">04 Cocoa</text>
+  </g>
+
+  <rect x="352" y="396" width="278" height="44" rx="10" fill="url(#rose-grad)" />
+  <text x="418" y="423" fill="#ffffff" font-family="system-ui, sans-serif" font-size="13" font-weight="700">Tambah ke Keranjang</text>
+
+  <rect x="98" y="512" width="532" height="72" rx="12" fill="#24181e" stroke="#472735" />
+  <text x="118" y="540" fill="#fda4af" font-family="ui-monospace, monospace" font-size="11" font-weight="700">LARAVEL + TAILWIND + BOOTSTRAP FRONTEND</text>
+  <text x="118" y="562" fill="#e2e8f0" font-family="system-ui, sans-serif" font-size="12">Dynamic AJAX Shade Selection • Zero Page Reload Inventory Check</text>
+
+  <!-- Right Column: Automated Checkout & Merchant Admin -->
+  <rect x="678" y="136" width="450" height="236" rx="16" fill="#171014" stroke="#472735" stroke-width="1.5" />
+  <text x="702" y="168" fill="#ffffff" font-family="system-ui, sans-serif" font-size="16" font-weight="700">Automated Address &amp; Checkout Pipeline</text>
+  <text x="702" y="188" fill="#fda4af" font-family="ui-monospace, monospace" font-size="11">API Pengisian Alamat Otomatis &amp; Kalkulasi Ongkir</text>
+
+  <rect x="702" y="206" width="402" height="46" rx="10" fill="#24181e" stroke="#522c3c" />
+  <text x="720" y="233" fill="#e2e8f0" font-family="ui-monospace, monospace" font-size="12">Kec. Ujung, Kota Parepare (Auto-Matched)</text>
+
+  <rect x="702" y="266" width="194" height="84" rx="10" fill="#24181e" stroke="#522c3c" />
+  <text x="718" y="294" fill="#94a3b8" font-family="ui-monospace, monospace" font-size="10">INVOICE GENERATOR</text>
+  <text x="718" y="324" fill="#34d399" font-family="ui-monospace, monospace" font-size="15" font-weight="700">#INV-2025-884</text>
+
+  <rect x="910" y="266" width="194" height="84" rx="10" fill="#24181e" stroke="#522c3c" />
+  <text x="926" y="294" fill="#94a3b8" font-family="ui-monospace, monospace" font-size="10">TRANSACTION</text>
+  <text x="926" y="324" fill="#fb7185" font-family="ui-monospace, monospace" font-size="15" font-weight="700">VERIFIED</text>
+
+  <!-- Right Column Bottom: Containerized Deployment & Admin -->
+  <rect x="678" y="392" width="450" height="216" rx="16" fill="#171014" stroke="#472735" stroke-width="1.5" />
+  <text x="702" y="424" fill="#ffffff" font-family="system-ui, sans-serif" font-size="16" font-weight="700">Merchant Admin &amp; Docker Deployment</text>
+
+  <rect x="702" y="446" width="194" height="66" rx="10" fill="#24181e" stroke="#522c3c" />
+  <text x="718" y="472" fill="#38bdf8" font-family="ui-monospace, monospace" font-size="14" font-weight="700">Docker + Nginx</text>
+  <text x="718" y="494" fill="#94a3b8" font-family="system-ui, sans-serif" font-size="11">PHP-FPM Containerized</text>
+
+  <rect x="910" y="446" width="194" height="66" rx="10" fill="#24181e" stroke="#522c3c" />
+  <text x="926" y="472" fill="#fbbf24" font-family="ui-monospace, monospace" font-size="14" font-weight="700">MySQL Normalized</text>
+  <text x="926" y="494" fill="#94a3b8" font-family="system-ui, sans-serif" font-size="11">Product • Shade • Order</text>
+
+  <rect x="702" y="528" width="402" height="58" rx="10" fill="#24181e" stroke="#522c3c" />
+  <text x="720" y="553" fill="#ffffff" font-family="ui-monospace, monospace" font-size="12" font-weight="700">Merchant Fulfillment: Update Resi &amp; Laporan Penjualan</text>
+  <text x="720" y="572" fill="#fda4af" font-family="ui-monospace, monospace" font-size="11">Laravel Session Security • Role Admin Management</text>
+</svg>

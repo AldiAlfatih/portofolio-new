@@ -1,0 +1,93 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" width="1200" height="675">
+  <defs>
+    <linearGradient id="hydro-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#06181c" />
+      <stop offset="100%" stop-color="#0b282b" />
+    </linearGradient>
+    <linearGradient id="cyan-emerald" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#06b6d4" />
+      <stop offset="100%" stop-color="#10b981" />
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="675" fill="url(#hydro-bg)" />
+
+  <!-- Outer Frame -->
+  <rect x="48" y="42" width="1104" height="591" rx="18" fill="#091f24" stroke="#1b4d54" stroke-width="2" />
+
+  <!-- Header -->
+  <rect x="48" y="42" width="1104" height="72" rx="18" fill="#0f343b" />
+  <rect x="48" y="96" width="1104" height="18" fill="#0f343b" />
+  <text x="78" y="76" fill="#ecfeff" font-family="system-ui, -apple-system, sans-serif" font-size="21" font-weight="700">Smart Hydroponic AI Monitoring &amp; Yield Prediction</text>
+  <text x="78" y="97" fill="#67e8f9" font-family="ui-monospace, monospace" font-size="12">ESP32 Microcontroller • IoT Telemetry (TDS, pH, Temp) • TensorFlow ANN &amp; LSTM</text>
+
+  <rect x="944" y="61" width="184" height="34" rx="17" fill="#064e3b" stroke="#2dd4bf" />
+  <text x="966" y="82" fill="#ccfbf1" font-family="ui-monospace, monospace" font-size="12" font-weight="700">LSTM INFERENCE LIVE</text>
+
+  <!-- Left Panel: ESP32 IoT Physical Telemetry -->
+  <rect x="74" y="136" width="460" height="472" rx="16" fill="#07171b" stroke="#1b4d54" stroke-width="1.5" />
+  <text x="98" y="168" fill="#ffffff" font-family="system-ui, sans-serif" font-size="16" font-weight="700">ESP32 Environmental Telemetry Feed</text>
+  <text x="98" y="186" fill="#5eead4" font-family="ui-monospace, monospace" font-size="11">HTTP/MQTT Telemetry Payload • Interval 15 Menit</text>
+
+  <!-- Sensor Cards Grid -->
+  <rect x="98" y="210" width="198" height="114" rx="12" fill="#0d292f" stroke="#225e66" />
+  <text x="116" y="236" fill="#94a3b8" font-family="ui-monospace, monospace" font-size="11">TDS NUTRISI AIR</text>
+  <text x="116" y="276" fill="#22d3ee" font-family="ui-monospace, monospace" font-size="28" font-weight="800">840 ppm</text>
+  <text x="116" y="304" fill="#6ee7b7" font-family="ui-monospace, monospace" font-size="11">Target Range: 800-900</text>
+
+  <rect x="312" y="210" width="198" height="114" rx="12" fill="#0d292f" stroke="#225e66" />
+  <text x="330" y="236" fill="#94a3b8" font-family="ui-monospace, monospace" font-size="11">SUHU MIKROKLIMAT</text>
+  <text x="330" y="276" fill="#34d399" font-family="ui-monospace, monospace" font-size="28" font-weight="800">23.6 °C</text>
+  <text x="330" y="304" fill="#67e8f9" font-family="ui-monospace, monospace" font-size="11">Sensor DS18B20 + DHT22</text>
+
+  <rect x="98" y="342" width="198" height="114" rx="12" fill="#0d292f" stroke="#225e66" />
+  <text x="116" y="368" fill="#94a3b8" font-family="ui-monospace, monospace" font-size="11">KELEMBABAN UDARA</text>
+  <text x="116" y="408" fill="#a7f3d0" font-family="ui-monospace, monospace" font-size="28" font-weight="800">72 %</text>
+  <text x="116" y="436" fill="#94a3b8" font-family="ui-monospace, monospace" font-size="11">Stabilitas Transpirasi</text>
+
+  <rect x="312" y="342" width="198" height="114" rx="12" fill="#0d292f" stroke="#225e66" />
+  <text x="330" y="368" fill="#94a3b8" font-family="ui-monospace, monospace" font-size="11">DERAJAT KEASAMAN</text>
+  <text x="330" y="408" fill="#fbbf24" font-family="ui-monospace, monospace" font-size="28" font-weight="800">pH 6.1</text>
+  <text x="330" y="436" fill="#6ee7b7" font-family="ui-monospace, monospace" font-size="11">Status: Serapan Optimal</text>
+
+  <!-- Hardware Bridge -->
+  <rect x="98" y="476" width="412" height="108" rx="12" fill="#0d292f" stroke="#22d3ee" stroke-opacity="0.5" />
+  <text x="118" y="504" fill="#22d3ee" font-family="ui-monospace, monospace" font-size="12" font-weight="700">FIRMWARE PIPELINE (ESP32 C++)</text>
+  <text x="118" y="530" fill="#ffffff" font-family="system-ui, sans-serif" font-size="13">Sampling Sensor → StandardScaler Normalizer → TensorFlow</text>
+  <text x="118" y="556" fill="#6ee7b7" font-family="ui-monospace, monospace" font-size="11">Selada Hidroponik • Instalasi Mini-Hydroponic Kampus</text>
+
+  <!-- Right Panel Top: Neural Forecasting Curve -->
+  <rect x="558" y="136" width="570" height="278" rx="16" fill="#07171b" stroke="#1b4d54" stroke-width="1.5" />
+  <text x="582" y="168" fill="#ffffff" font-family="system-ui, sans-serif" font-size="16" font-weight="700">LSTM Time-Series Biomass &amp; Quality Curve</text>
+  <text x="582" y="186" fill="#67e8f9" font-family="ui-monospace, monospace" font-size="11">Akumulasi Nutrisi vs Proyeksi Kualitas Panen (TensorFlow / Keras)</text>
+
+  <g stroke="#163a40" stroke-width="1">
+    <line x1="590" y1="226" x2="1095" y2="226" />
+    <line x1="590" y1="276" x2="1095" y2="276" />
+    <line x1="590" y1="326" x2="1095" y2="326" />
+    <line x1="590" y1="376" x2="1095" y2="376" />
+  </g>
+  <path d="M595 368 Q 690 340, 775 298 T 940 245 T 1090 218" stroke="url(#cyan-emerald)" stroke-width="4.5" fill="none" stroke-linecap="round" />
+  <circle cx="940" cy="245" r="5" fill="#2dd4bf" />
+  <circle cx="1090" cy="218" r="7" fill="#34d399" stroke="#ffffff" stroke-width="2" />
+  <text x="965" y="208" fill="#6ee7b7" font-family="ui-monospace, monospace" font-size="11" font-weight="700">Optimal Harvest Window</text>
+
+  <!-- Right Panel Bottom: Classification Output Grade -->
+  <rect x="558" y="432" width="570" height="176" rx="16" fill="#07171b" stroke="#1b4d54" stroke-width="1.5" />
+  <text x="582" y="464" fill="#ffffff" font-family="system-ui, sans-serif" font-size="16" font-weight="700">Klasifikasi Estimasi Mutu Panen (ANN + LSTM Output)</text>
+
+  <rect x="582" y="486" width="166" height="96" rx="12" fill="#064e3b" stroke="#10b981" stroke-width="1.5" />
+  <text x="598" y="514" fill="#a7f3d0" font-family="ui-monospace, monospace" font-size="11">PREDIKSI MUTU</text>
+  <text x="598" y="548" fill="#ffffff" font-family="system-ui, sans-serif" font-size="24" font-weight="800">Grade A</text>
+  <text x="598" y="570" fill="#6ee7b7" font-family="ui-monospace, monospace" font-size="10">High Biomass Confidence</text>
+
+  <rect x="764" y="486" width="166" height="96" rx="12" fill="#0d292f" stroke="#225e66" />
+  <text x="780" y="514" fill="#94a3b8" font-family="ui-monospace, monospace" font-size="11">ARSITEKTUR</text>
+  <text x="780" y="544" fill="#22d3ee" font-family="ui-monospace, monospace" font-size="16" font-weight="700">ANN + LSTM</text>
+  <text x="780" y="570" fill="#cbd5e1" font-family="ui-monospace, monospace" font-size="10">Scikit-Learn • Keras</text>
+
+  <rect x="946" y="486" width="158" height="96" rx="12" fill="#0d292f" stroke="#225e66" />
+  <text x="962" y="514" fill="#94a3b8" font-family="ui-monospace, monospace" font-size="11">MONITORING</text>
+  <text x="962" y="544" fill="#34d399" font-family="ui-monospace, monospace" font-size="16" font-weight="700">Early Alert</text>
+  <text x="962" y="570" fill="#cbd5e1" font-family="ui-monospace, monospace" font-size="10">Android Client UI</text>
+</svg>

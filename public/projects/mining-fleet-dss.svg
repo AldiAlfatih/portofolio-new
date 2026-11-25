@@ -1,0 +1,90 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" width="1200" height="675">
+  <defs>
+    <linearGradient id="mine-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0b0f14" />
+      <stop offset="100%" stop-color="#141b24" />
+    </linearGradient>
+    <filter id="amber-glow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="5" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="675" fill="url(#mine-bg)" />
+
+  <!-- Outer Industrial Frame -->
+  <rect x="48" y="42" width="1104" height="591" rx="18" fill="#11161d" stroke="#2d3748" stroke-width="2" />
+
+  <!-- Top Command Header -->
+  <rect x="48" y="42" width="1104" height="72" rx="18" fill="#18202c" />
+  <rect x="48" y="96" width="1104" height="18" fill="#18202c" />
+  <rect x="74" y="61" width="10" height="34" rx="5" fill="#f59e0b" />
+  <text x="98" y="76" fill="#f8fafc" font-family="system-ui, -apple-system, sans-serif" font-size="21" font-weight="700">Mining Fleet Operations Decision Support System</text>
+  <text x="98" y="97" fill="#fbbf24" font-family="ui-monospace, monospace" font-size="12">MQTT IoT Telemetry • FastAPI Async • PostgreSQL + PostGIS • Predictive Maintenance ML</text>
+
+  <rect x="936" y="61" width="192" height="34" rx="17" fill="#451a03" stroke="#f59e0b" />
+  <text x="954" y="82" fill="#fde68a" font-family="ui-monospace, monospace" font-size="12" font-weight="700">MQTT STREAM ACTIVE</text>
+
+  <!-- Left Panel: PostGIS Spatial & Haul Road Geofence Map -->
+  <rect x="74" y="136" width="600" height="472" rx="14" fill="#0d1218" stroke="#2d3748" stroke-width="1.5" />
+  <text x="96" y="168" fill="#ffffff" font-family="system-ui, sans-serif" font-size="16" font-weight="700">PostGIS Spatial Geofence &amp; Haul Road Map</text>
+  <text x="96" y="186" fill="#94a3b8" font-family="ui-monospace, monospace" font-size="11">PostgreSQL Spatial Query • Real-time Dump Truck Coordinates</text>
+
+  <!-- Contour / Quarry Polygons -->
+  <polygon points="118,280 265,220 440,255 390,390 160,415" fill="#1e293b" fill-opacity="0.4" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="6 4" />
+  <text x="155" y="254" fill="#fbbf24" font-family="ui-monospace, monospace" font-size="11" font-weight="700">GEOFENCE: PIT EXCAVATION UTARA</text>
+
+  <polygon points="440,395 630,365 645,515 470,535" fill="#0f291e" fill-opacity="0.45" stroke="#10b981" stroke-width="1.5" stroke-dasharray="6 4" />
+  <text x="462" y="425" fill="#34d399" font-family="ui-monospace, monospace" font-size="11" font-weight="700">CRUSHER &amp; STOCKPILE</text>
+
+  <!-- Haul Route Line -->
+  <path d="M210,335 Q 340,315 415,380 T 555,465" stroke="#38bdf8" stroke-width="4" fill="none" stroke-linecap="round" />
+
+  <!-- Haul Truck Node 1 (Nominal) -->
+  <circle cx="245" cy="330" r="10" fill="#10b981" stroke="#ffffff" stroke-width="2" />
+  <rect x="135" y="346" width="144" height="38" rx="6" fill="#1e293b" stroke="#10b981" />
+  <text x="145" y="363" fill="#ffffff" font-family="ui-monospace, monospace" font-size="11" font-weight="700">DT-102 • NOMINAL</text>
+  <text x="145" y="377" fill="#6ee7b7" font-family="ui-monospace, monospace" font-size="10">Payload 92T • 28 km/h</text>
+
+  <!-- Haul Truck Node 2 (Fuel Anomaly) -->
+  <circle cx="430" cy="388" r="18" fill="#ef4444" fill-opacity="0.25" />
+  <circle cx="430" cy="388" r="10" fill="#ef4444" stroke="#ffffff" stroke-width="2" filter="url(#amber-glow)" />
+  <rect x="448" y="340" width="166" height="42" rx="6" fill="#2b1215" stroke="#ef4444" />
+  <text x="458" y="357" fill="#fecaca" font-family="ui-monospace, monospace" font-size="11" font-weight="700">DT-108 • ANOMALY</text>
+  <text x="458" y="373" fill="#fca5a5" font-family="ui-monospace, monospace" font-size="10">Fuel Burn +19% Alert</text>
+
+  <!-- Map Bottom Ingestion Status -->
+  <rect x="96" y="544" width="556" height="46" rx="10" fill="#151d26" stroke="#2d3748" />
+  <text x="114" y="572" fill="#94a3b8" font-family="ui-monospace, monospace" font-size="12">Ingest: MQTT Broker → FastAPI Worker → PostGIS Polygon Check</text>
+
+  <!-- Right Panel Top: ML Fuel Anomaly & Telemetry Chart -->
+  <rect x="698" y="136" width="430" height="236" rx="14" fill="#151c24" stroke="#2d3748" stroke-width="1.5" />
+  <text x="722" y="168" fill="#ffffff" font-family="system-ui, sans-serif" font-size="16" font-weight="700">Deteksi Anomali Konsumsi Bahan Bakar</text>
+  <text x="722" y="186" fill="#fbbf24" font-family="ui-monospace, monospace" font-size="11">Machine Learning Time-Series Anomaly Detection</text>
+
+  <!-- Chart -->
+  <line x1="726" y1="260" x2="1100" y2="260" stroke="#ef4444" stroke-dasharray="5 5" stroke-width="1.2" />
+  <text x="985" y="252" fill="#f87171" font-family="ui-monospace, monospace" font-size="10">Anomaly Threshold</text>
+  <path d="M726 320 L785 312 L844 316 L903 298 L962 224 L1021 300 L1095 294" stroke="#f59e0b" stroke-width="3.5" fill="none" stroke-linecap="round" />
+  <circle cx="962" cy="224" r="6" fill="#ef4444" stroke="#ffffff" stroke-width="2" />
+  <text x="726" y="352" fill="#94a3b8" font-family="ui-monospace, monospace" font-size="11">Spike terdeteksi pada DT-108 saat gradien tanjakan 11°</text>
+
+  <!-- Right Panel Bottom: Predictive Maintenance RUL -->
+  <rect x="698" y="392" width="430" height="216" rx="14" fill="#151c24" stroke="#2d3748" stroke-width="1.5" />
+  <text x="722" y="424" fill="#ffffff" font-family="system-ui, sans-serif" font-size="16" font-weight="700">Predictive Maintenance &amp; Risk Score</text>
+
+  <rect x="722" y="446" width="184" height="70" rx="10" fill="#1c2530" stroke="#334155" />
+  <text x="738" y="470" fill="#94a3b8" font-family="ui-monospace, monospace" font-size="10">REMAINING USEFUL LIFE</text>
+  <text x="738" y="500" fill="#34d399" font-family="ui-monospace, monospace" font-size="22" font-weight="800">412 Jam</text>
+
+  <rect x="920" y="446" width="184" height="70" rx="10" fill="#1c2530" stroke="#334155" />
+  <text x="936" y="470" fill="#94a3b8" font-family="ui-monospace, monospace" font-size="10">OPERATIONAL RISK</text>
+  <text x="936" y="500" fill="#fbbf24" font-family="ui-monospace, monospace" font-size="22" font-weight="800">MEDIUM</text>
+
+  <rect x="722" y="532" width="382" height="54" rx="10" fill="#1c2530" stroke="#334155" />
+  <text x="738" y="556" fill="#ffffff" font-family="ui-monospace, monospace" font-size="12" font-weight="700">Stack: Python • FastAPI • Docker • PostgreSQL</text>
+  <text x="738" y="574" fill="#94a3b8" font-family="ui-monospace, monospace" font-size="11">WebSocket Real-Time Fleet Alerting Engine</text>
+</svg>

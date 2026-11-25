@@ -1,0 +1,91 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" width="1200" height="675">
+  <defs>
+    <linearGradient id="farm-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#14110b" />
+      <stop offset="100%" stop-color="#1e291d" />
+    </linearGradient>
+    <linearGradient id="amber-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#d97706" />
+      <stop offset="100%" stop-color="#059669" />
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="675" fill="url(#farm-bg)" />
+
+  <!-- Main Window -->
+  <rect x="48" y="42" width="1104" height="591" rx="18" fill="#161d17" stroke="#2f4a34" stroke-width="2" />
+
+  <!-- Top Bar -->
+  <rect x="48" y="42" width="1104" height="72" rx="18" fill="#1c2a1f" />
+  <rect x="48" y="96" width="1104" height="18" fill="#1c2a1f" />
+  <rect x="74" y="59" width="38" height="38" rx="10" fill="url(#amber-grad)" />
+  <path d="M93 67 C99 67 103 73 103 80 C103 86 98 90 93 90 C88 90 83 86 83 80 C83 73 87 67 93 67 Z" fill="#fef3c7" />
+  <text x="128" y="76" fill="#ffffff" font-family="system-ui, -apple-system, sans-serif" font-size="21" font-weight="700">OgiFarm — Layer Poultry FarmTech Platform</text>
+  <text x="128" y="97" fill="#fcd34d" font-family="ui-monospace, monospace" font-size="12">Flutter • Supabase • PostgreSQL • Offline-First Field Sync • OgiTech</text>
+
+  <rect x="954" y="61" width="174" height="34" rx="17" fill="#064e3b" stroke="#10b981" />
+  <text x="974" y="82" fill="#a7f3d0" font-family="ui-monospace, monospace" font-size="12" font-weight="700">SUPABASE REALTIME</text>
+
+  <!-- Left Panel: Flutter Mobile Client Frame -->
+  <rect x="76" y="134" width="318" height="474" rx="28" fill="#0d130f" stroke="#4b5563" stroke-width="3" />
+  <rect x="175" y="146" width="120" height="12" rx="6" fill="#27272a" />
+
+  <!-- Mobile Screen Header -->
+  <rect x="96" y="176" width="278" height="74" rx="14" fill="#1f3a29" />
+  <text x="114" y="204" fill="#fde68a" font-family="ui-monospace, monospace" font-size="11" font-weight="700">FLUTTER MOBILE CLIENT</text>
+  <text x="114" y="232" fill="#ffffff" font-family="system-ui, sans-serif" font-size="17" font-weight="700">Kandang Blok A — Layer</text>
+
+  <!-- Mobile KPI Tiles -->
+  <rect x="96" y="266" width="132" height="92" rx="12" fill="#18261c" stroke="#2d4a35" />
+  <text x="112" y="290" fill="#9ca3af" font-family="ui-monospace, monospace" font-size="10">PRODUKSI TELUR</text>
+  <text x="112" y="324" fill="#fbbf24" font-family="ui-monospace, monospace" font-size="24" font-weight="800">4,820</text>
+  <text x="112" y="344" fill="#86efac" font-family="ui-monospace, monospace" font-size="10">Butir / Hari (+2.4%)</text>
+
+  <rect x="242" y="266" width="132" height="92" rx="12" fill="#18261c" stroke="#2d4a35" />
+  <text x="258" y="290" fill="#9ca3af" font-family="ui-monospace, monospace" font-size="10">FCR RATIO</text>
+  <text x="258" y="324" fill="#34d399" font-family="ui-monospace, monospace" font-size="24" font-weight="800">2.08</text>
+  <text x="258" y="344" fill="#a7f3d0" font-family="ui-monospace, monospace" font-size="10">Feed Efisien (Optimal)</text>
+
+  <!-- Mobile Daily Log Cards -->
+  <rect x="96" y="374" width="278" height="62" rx="12" fill="#18261c" stroke="#2d4a35" />
+  <text x="114" y="400" fill="#f8fafc" font-family="system-ui, sans-serif" font-size="13" font-weight="700">Hen-Day Production (HDP)</text>
+  <text x="114" y="420" fill="#fcd34d" font-family="ui-monospace, monospace" font-size="12">91.4% • Populasi Aktif 5.270 Ekor</text>
+
+  <rect x="96" y="450" width="278" height="62" rx="12" fill="#18261c" stroke="#2d4a35" />
+  <text x="114" y="476" fill="#f8fafc" font-family="system-ui, sans-serif" font-size="13" font-weight="700">Konsumsi Pakan &amp; Mortalitas</text>
+  <text x="114" y="496" fill="#34d399" font-family="ui-monospace, monospace" font-size="12">598 kg pakan • 0.04% mortalitas</text>
+
+  <rect x="96" y="530" width="278" height="48" rx="12" fill="#059669" />
+  <text x="148" y="559" fill="#ffffff" font-family="system-ui, sans-serif" font-size="14" font-weight="700">+ Catat Aktivitas Kandang</text>
+
+  <!-- Right Panel Top: Egg Yield & FCR Trend Chart -->
+  <rect x="418" y="134" width="710" height="290" rx="16" fill="#121a14" stroke="#2f4a34" stroke-width="1.5" />
+  <text x="444" y="168" fill="#ffffff" font-family="system-ui, sans-serif" font-size="17" font-weight="700">Analitik Produksi Telur &amp; Biaya Pakan (HDP vs FCR)</text>
+  <text x="444" y="188" fill="#9ca3af" font-family="ui-monospace, monospace" font-size="11">PostgreSQL Time-Series Telemetry • 7-Day Moving Production Trend</text>
+
+  <!-- Chart Axes & Curve -->
+  <g stroke="#293d2d" stroke-width="1">
+    <line x1="450" y1="230" x2="1095" y2="230" />
+    <line x1="450" y1="280" x2="1095" y2="280" />
+    <line x1="450" y1="330" x2="1095" y2="330" />
+    <line x1="450" y1="380" x2="1095" y2="380" />
+  </g>
+  <path d="M460 345 L565 322 L670 295 L775 304 L880 264 L985 248 L1085 232" stroke="#f59e0b" stroke-width="4" fill="none" stroke-linecap="round" />
+  <path d="M460 365 L565 352 L670 338 L775 335 L880 318 L985 302 L1085 288" stroke="#10b981" stroke-width="3" fill="none" stroke-dasharray="6 4" stroke-linecap="round" />
+  <circle cx="880" cy="264" r="6" fill="#fbbf24" />
+  <circle cx="1085" cy="232" r="7" fill="#fbbf24" stroke="#ffffff" stroke-width="2" />
+  <text x="990" y="218" fill="#fde68a" font-family="ui-monospace, monospace" font-size="11" font-weight="700">Peak HDP 91.4%</text>
+
+  <!-- Bottom Right Cards: Profitability & Offline Sync -->
+  <rect x="418" y="444" width="344" height="164" rx="16" fill="#121a14" stroke="#2f4a34" stroke-width="1.5" />
+  <text x="442" y="476" fill="#ffffff" font-family="system-ui, sans-serif" font-size="15" font-weight="700">Margin Operasional &amp; Pakan</text>
+  <text x="442" y="516" fill="#fbbf24" font-family="ui-monospace, monospace" font-size="28" font-weight="800">+28.4%</text>
+  <text x="442" y="544" fill="#9ca3af" font-family="system-ui, sans-serif" font-size="12">Estimasi Margin Bersih Mingguan</text>
+  <text x="442" y="574" fill="#6ee7b7" font-family="ui-monospace, monospace" font-size="11">Automated Cost-Per-Egg Ledger</text>
+
+  <rect x="784" y="444" width="344" height="164" rx="16" fill="#121a14" stroke="#2f4a34" stroke-width="1.5" />
+  <text x="808" y="476" fill="#ffffff" font-family="system-ui, sans-serif" font-size="15" font-weight="700">Arsitektur Sinkronisasi</text>
+  <rect x="808" y="496" width="296" height="40" rx="8" fill="#1b2b1e" stroke="#2d4a35" />
+  <text x="824" y="520" fill="#a7f3d0" font-family="ui-monospace, monospace" font-size="12">Offline Cache → Supabase Sync</text>
+  <text x="808" y="574" fill="#9ca3af" font-family="ui-monospace, monospace" font-size="11">REST API • Auth • Real-time DB</text>
+</svg>

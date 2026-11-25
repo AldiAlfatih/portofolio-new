@@ -4,8 +4,8 @@ export const experiencesData: ExperienceItem[] = [
   // Professional Experience
   {
     id: "ogitech",
-    title: "Co-Founder & Lead Software Engineer",
-    titleEn: "Co-Founder & Lead Software Engineer",
+    title: "Co-Founder & Chief Strategy Officer",
+    titleEn: "Co-Founder & Chief Strategy Officer",
     company: "OgiTech",
     location: "Parepare, Sulawesi Selatan",
     locationEn: "Parepare, South Sulawesi",
@@ -16,9 +16,9 @@ export const experiencesData: ExperienceItem[] = [
     typeEn: "Venture / Startup",
     category: "professional",
     description:
-      "Co-Founder & Lead Software Engineer di OgiTech, memimpin perancangan arsitektur dan pengembangan software produk digital berbasis mobile dan web di sektor agribisnis dan kebudayaan daerah.",
+      "Co-Founder & Chief Strategy Officer di OgiTech, merumuskan strategi produk dan bisnis sekaligus mengawal perancangan arsitektur solusi digital berbasis mobile dan web di sektor agribisnis serta kebudayaan daerah.",
     descriptionEn:
-      "Co-Founder & Lead Software Engineer at OgiTech, architecting and engineering digital mobile and web software solutions across regional agribusiness and cultural preservation.",
+      "Co-Founder & Chief Strategy Officer at OgiTech, steering product strategy and business direction while overseeing architecture and delivery of digital mobile and web solutions across regional agribusiness and cultural preservation.",
     achievements: [
       "Menginisiasi arsitektur sistem dan mengembangkan aplikasi mobile OgiFarm berbasis Flutter dan Supabase untuk pencatatan operasional kandang harian, tracking produksi telur, dan kalkulasi rasio konversi pakan (FCR).",
       "Mengembangkan aplikasi mobile Ogi'E berbasis Flutter dan Supabase untuk transliterasi fonetik interaktif, kamus digital kosakata Bugis, dan pelestarian aksara daerah Lontara.",
@@ -57,7 +57,7 @@ export const experiencesData: ExperienceItem[] = [
     typeEn: "Professional Internship",
     category: "professional",
     description:
-      "Melaksanakan tugas Data Analytics dan Business Intelligence pada Kelompok Perumusan Kebijakan Provinsi (KPKP) Bank Indonesia KPw Sulsel, mengolah data makroekonomi dan anggaran se-sulampua (Sulawesi, Maluku, Papua), mengembangkan dashboard Power BI, serta mengoptimalkan minisite SharePoint institusional.",
+      "Melaksanakan tugas Data Analytics dan Business Intelligence pada Kelompok Perumusan Kebijakan Provinsi (KPKP) Bank Indonesia KPw Sulsel, mengolah data makroekonomi dan anggaran se-Sulampua (Sulawesi, Maluku, Papua), mengembangkan dashboard Power BI, serta mengoptimalkan minisite SharePoint institusional.",
     descriptionEn:
       "Executed Data Analytics and Business Intelligence initiatives at Bank Indonesia South Sulawesi (KPKP Division), analyzing macroeconomic and budget data, building interactive Power BI dashboards, and optimizing the institutional SharePoint minisite.",
     achievements: [
@@ -239,8 +239,8 @@ export const experiencesData: ExperienceItem[] = [
   },
   {
     id: "emonev-bappeda",
-    title: "Ketua Tim Pengembang (Lead Software Engineer) — Sistem E-Monev Bappeda",
-    titleEn: "Lead Software Engineer — E-Monev Bappeda System",
+    title: "Lead Backend Developer — Sistem E-Monev Bappeda",
+    titleEn: "Lead Backend Developer — E-Monev Bappeda System",
     company: "Bappeda Kota Parepare",
     location: "Parepare, Sulawesi Selatan",
     locationEn: "Parepare, South Sulawesi",

@@ -59,9 +59,9 @@ export const projectsData: ProjectItem[] = [
     technicalApproachEn:
       "Engineered a 270D feature extraction pipeline per sequential frame (258 MediaPipe 3D coordinates plus 12 engineered spatial angle and distance metrics). The premier deep learning architecture fuses Conv1D for local spatial extraction, Bidirectional GRU (BiGRU) for temporal gesture transitions, and an Attention Mechanism to focus on informative movement frames. Converted into quantized TensorFlow Lite (.tflite) and interfaced with Android CameraX for fast on-device inference.",
     results:
-      "Pada evaluasi dataset penelitian terisolasi (17.138 sampel), Model 3 (Conv1D + BiGRU + Attention) mencapai akurasi validasi terbaik 96.44% dan akurasi test set 96.06% dengan beban komputasi terukur pada perangkat mobile. Aplikasi berhasil mengintegrasikan fitur sign-to-text, text-to-sign, dan modul pembelajaran interaktif.",
+      "Pada evaluasi dataset penelitian terisolasi (17.138 sampel), Model 3 (Conv1D + BiGRU + Attention) mencapai akurasi validasi terbaik 96.44% dan akurasi test set 96.06% dengan beban komputasi terukur pada perangkat mobile. Aplikasi berhasil mengintegrasikan fitur sign-to-text, text-to-sign, dan modul pembelajaran interaktif, serta terdaftar HKI resmi Kemenkumham RI (No. 001010151 & 001010113).",
     resultsEn:
-      "In benchmark evaluations on a controlled research dataset of 17,138 samples, Model 3 (Conv1D + BiGRU + Attention) achieved 96.44% validation accuracy and 96.06% test set accuracy with balanced compute load on mobile hardware. Successfully deployed core sign-to-text, text-to-sign, and interactive learning modules.",
+      "In benchmark evaluations on a controlled research dataset of 17,138 samples, Model 3 (Conv1D + BiGRU + Attention) achieved 96.44% validation accuracy and 96.06% test set accuracy with balanced compute load on mobile hardware. Successfully deployed core sign-to-text, text-to-sign, and interactive learning modules, backed by official Indonesian copyright registrations (HKI No. 001010151 & 001010113).",
     architecture: [
       {
         title: "Kamera Smartphone (Input Visual)",
@@ -123,16 +123,6 @@ export const projectsData: ProjectItem[] = [
         title: "Alur Ekstraksi Landmark & Inferensi",
         url: "/evidence/isara-workflow.jpg",
         caption: "Diagram tahapan Camera → Landmarks → AI Model → Text Output.",
-      },
-      {
-        title: "Sertifikat Hak Cipta Kemenkumham RI — Aplikasi ISARA Language",
-        url: "/certificates/hki_SuratCiptaan_EC002025169891_2.png",
-        caption: "Surat Pencatatan Hak Cipta resmi No. 001010151 dari DJKI Kementerian Hukum RI.",
-      },
-      {
-        title: "Sertifikat Hak Cipta Kemenkumham RI — Basis Data Video BISINDO",
-        url: "/certificates/hki_SuratCiptaan_EC002025169853_3.png",
-        caption: "Surat Pencatatan Ciptaan Basis Data No. 001010113 untuk Korpus Video BISINDO.",
       },
     ],
     demoUrl: "#",
@@ -213,9 +203,9 @@ export const projectsData: ProjectItem[] = [
         caption: "Konseptualisasi penerjemahan representasi glosa bahasa isyarat menuju teks Bahasa Indonesia terstruktur.",
       },
       {
-        title: "Diagram Alur Penelitian NLP",
+        title: "Abstrak Penelitian Skripsi",
         url: "/evidence/thesis-nlp-pipeline.png",
-        caption: "Tahapan alur Problem → Dataset → Preprocessing → Model → Evaluation dari portofolio resmi.",
+        caption: "Abstrak penelitian NLP penerjemahan glosa BISINDO (3.460 skenario uji, BLEU 17.12, chrF 58.80, latensi 4.89 ms).",
       },
       {
         title: "Grafik Evaluasi Eksperimen Model",
@@ -223,9 +213,9 @@ export const projectsData: ProjectItem[] = [
         caption: "Perbandingan hasil eksperimen metrik evaluasi pemodelan bahasa pada riset skripsi.",
       },
       {
-        title: "Eksplorasi Decoding Bahasa",
+        title: "Rilis Library Open-Source PyPI bisindo-trans v1.2.0",
         url: "/evidence/thesis-nlp-decoding.jpg",
-        caption: "Analisis strategi decoding Beam Search dan Nucleus Sampling dalam merekonstruksi teks.",
+        caption: "Publikasi resmi package Python bisindo-trans di PyPI sebagai implementasi terbuka riset NLP.",
       },
     ],
     demoUrl: "#",
@@ -305,7 +295,14 @@ export const projectsData: ProjectItem[] = [
       "MySQL",
       "JavaScript",
     ],
-    image: "/web.png",
+    image: "/projects/terminal-induk-parepare.svg",
+    evidenceImages: [
+      {
+        title: "Dasbor Live Tracking & Public Schedule Board Terminal Induk Parepare",
+        url: "/projects/terminal-induk-parepare.svg",
+        caption: "Visualisasi peta pelacakan Leaflet.js real-time berbasis Laravel Reverb WebSocket dan panel jadwal publik.",
+      },
+    ],
     demoUrl: "#",
     codeUrl: "#",
   },
@@ -315,8 +312,8 @@ export const projectsData: ProjectItem[] = [
     id: "emonev-bappeda",
     title: "Sistem E-Monev Bappeda: Monitoring & Evaluasi Anggaran Daerah",
     titleEn: "Municipal E-Monev System — Bappeda Parepare",
-    role: "Lead Software Engineer",
-    roleEn: "Lead Software Engineer",
+    role: "Lead Backend Developer",
+    roleEn: "Lead Backend Developer",
     category: "Backend Development",
     featured: true,
     description:
@@ -431,9 +428,9 @@ export const projectsData: ProjectItem[] = [
     technicalApproachEn:
       "Executed a 5-stage workflow: Field Survey → Primary Image Ingestion → Multi-Class Bounding Box Annotation in Roboflow → Augmentation Pipeline (rotation, shear, brightness, blur) → Train-Ready Export. Maintained tight-fitting bounding boxes to suppress false positives during detector training.",
     results:
-      "Menghasilkan ratusan citra primer terkurasi dengan ribuan anotasi bounding box siap latih yang diekspor dalam format standar (COCO JSON, Pascal VOC XML, YOLO format), siap digunakan untuk pelatihan model object detection.",
+      "Menghasilkan ratusan citra primer terkurasi dengan ribuan anotasi bounding box siap latih yang diekspor dalam format standar (COCO JSON, Pascal VOC XML, YOLO format), serta telah terdaftar Hak Cipta resmi Kemenkumham RI (No. 000767371).",
     resultsEn:
-      "Delivered hundreds of curated field images with thousands of verified bounding box labels in standardized formats (COCO JSON, Pascal VOC, YOLO) ready for object detection training.",
+      "Delivered hundreds of curated field images with thousands of verified bounding box labels in standardized formats (COCO JSON, Pascal VOC, YOLO), registered under official Indonesian copyright (HKI No. 000767371).",
     architecture: [
       {
         title: "Field Survey & Image Acquisition",
@@ -470,17 +467,12 @@ export const projectsData: ProjectItem[] = [
       "Python",
       "OpenCV",
     ],
-    image: "/evidence/cv-dataset-annotation-workflow.jpg",
+    image: "/projects/dataset-gulma-hortikultura.svg",
     evidenceImages: [
       {
-        title: "Alur Kerja Anotasi & Kurasi Dataset Visi Komputer",
-        url: "/evidence/cv-dataset-annotation-workflow.jpg",
-        caption: "Dokumentasi tahapan Collect → Annotate → Augment → Validate → Train-ready Dataset dari portfolio resmi.",
-      },
-      {
-        title: "Sertifikat Hak Cipta Kemenkumham RI — Dataset Cabbage & Weed",
-        url: "/certificates/hki_sertifikat_EC002024194904.png",
-        caption: "Surat Pencatatan Hak Cipta resmi No. 000767371 atas Program Komputer Dataset Pertanian Hortikultura.",
+        title: "Visualisasi Anotasi Bounding Box Multi-Kelas Gulma & Kubis (Roboflow)",
+        url: "/projects/dataset-gulma-hortikultura.svg",
+        caption: "Contoh pelabelan objek multi-kelas pada lahan hortikultura serta pipeline augmentasi sebelum ekspor COCO/YOLO.",
       },
     ],
     demoUrl: "#",
@@ -642,8 +634,8 @@ export const projectsData: ProjectItem[] = [
     id: "ogifarm",
     title: "OgiFarm: Platform Manajemen FarmTech Peternakan Ayam Petelur",
     titleEn: "OgiFarm: FarmTech Layer Chicken Farm Management Platform",
-    role: "Co-Founder & Lead Software Engineer (OgiTech)",
-    roleEn: "Co-Founder & Lead Software Engineer (OgiTech)",
+    role: "Co-Founder & Chief Strategy Officer (OgiTech)",
+    roleEn: "Co-Founder & Chief Strategy Officer (OgiTech)",
     category: "Mobile Development",
     featured: true,
     description:
@@ -676,7 +668,7 @@ export const projectsData: ProjectItem[] = [
       "REST API",
       "Tailwind CSS",
     ],
-    image: "/ai-project-showcase.png",
+    image: "/projects/ogifarm.svg",
     demoUrl: "#",
     codeUrl: "#",
   },
@@ -686,8 +678,8 @@ export const projectsData: ProjectItem[] = [
     id: "ogie",
     title: "Ogi'E: Platform Teknologi Bahasa & Pelestarian Aksara Lontara",
     titleEn: "Ogi'E: Language Technology & Lontara Script Preservation",
-    role: "Co-Founder & Lead Software Engineer (OgiTech)",
-    roleEn: "Co-Founder & Lead Software Engineer (OgiTech)",
+    role: "Co-Founder & Chief Strategy Officer (OgiTech)",
+    roleEn: "Co-Founder & Chief Strategy Officer (OgiTech)",
     category: "Mobile Development",
     featured: false,
     description:
@@ -719,7 +711,7 @@ export const projectsData: ProjectItem[] = [
       "Natural Language Processing",
       "REST API",
     ],
-    image: "/ai-project-showcase.png",
+    image: "/projects/ogie.svg",
     demoUrl: "#",
     codeUrl: "#",
   },
@@ -780,7 +772,7 @@ export const projectsData: ProjectItem[] = [
       "Docker",
       "IoT Telemetry",
     ],
-    image: "/ai-project-showcase.png",
+    image: "/projects/mining-fleet-dss.svg",
     demoUrl: "#",
     codeUrl: "#",
   },
@@ -856,7 +848,7 @@ export const projectsData: ProjectItem[] = [
       "JavaScript",
       "PHP",
     ],
-    image: "/web.png",
+    image: "/projects/ecommerce-produk-kecantikan.svg",
     demoUrl: "#",
     codeUrl: "#",
   },
@@ -900,7 +892,7 @@ export const projectsData: ProjectItem[] = [
       "Scikit-Learn",
       "Android",
     ],
-    image: "/ai-project-showcase.png",
+    image: "/projects/hidroponik-ai.svg",
     demoUrl: "#",
     codeUrl: "#",
   },
