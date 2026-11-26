@@ -124,7 +124,7 @@ export default function ExperienceDetailModal({
               <div>
                 <h3 className="text-xs font-mono uppercase tracking-wider text-muted-foreground mb-3 flex items-center gap-2">
                   <CheckCircle2 className="w-3.5 h-3.5 text-primary" />
-                  {dict.experience.contributionsLabel}
+                  {dict.experience.contributionsLabel}:
                 </h3>
                 <ul className="space-y-2 text-xs sm:text-sm text-foreground/85 font-sans">
                   {expAchievements.map((ach, aIdx) => (
@@ -142,7 +142,7 @@ export default function ExperienceDetailModal({
               <div className="pt-4 border-t border-border">
                 <h3 className="text-xs font-mono uppercase tracking-wider text-muted-foreground mb-3 flex items-center gap-2">
                   <Layers className="w-3.5 h-3.5 text-primary" />
-                  {dict.experience.technologiesLabel}
+                  {dict.experience.technologiesLabel}:
                 </h3>
                 <div className="flex flex-wrap gap-1.5">
                   {experience.technologies.map((tech) => (

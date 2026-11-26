@@ -95,7 +95,7 @@ export default function About() {
                 <span className="font-semibold text-foreground">{dict.about.majorVal}</span>
               </div>
               <div className="flex items-center justify-between pb-2 border-b border-border">
-                <span className="font-mono text-muted-foreground">{dict.about.honorsLabel}</span>
+                <span className="font-mono text-muted-foreground">{dict.about.honorsLabel}:</span>
                 <span className="font-semibold text-primary text-right text-[11px]">
                   {dict.about.honorsVal}
                 </span>
