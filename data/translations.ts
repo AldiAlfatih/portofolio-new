@@ -25,6 +25,7 @@ export interface TranslationDictionary {
     exploreProfile: string
     viewProjects: string
     downloadCV: string
+    viewPortfolioDrive: string
     connect: string
     copyEmail: string
     copied: string
@@ -62,6 +63,7 @@ export interface TranslationDictionary {
     researchDatasets: string
     researchDatasetsSub: string
     downloadCvBtn: string
+    viewPortfolioDriveBtn: string
     viewExpBtn: string
   }
   skills: {
@@ -106,6 +108,8 @@ export interface TranslationDictionary {
     demoBtn: string
     codeBtn: string
     roleLabel: string
+    driveDeckBtn: string
+    driveDeckNote: string
   }
   achievements: {
     badge: string
@@ -160,6 +164,8 @@ export interface TranslationDictionary {
     socialProfiles: string
     cvTitle: string
     cvSubtitle: string
+    portfolioDeckLabel: string
+    portfolioDeckSub: string
     openToOpportunities: string
     openToOpportunitiesDesc: string
   }
@@ -200,6 +206,7 @@ export const translations: Record<Language, TranslationDictionary> = {
       exploreProfile: "Jelajahi Profil:",
       viewProjects: "Lihat Proyek Saya",
       downloadCV: "Unduh CV (PDF)",
+      viewPortfolioDrive: "Portofolio (Drive)",
       connect: "Tautan:",
       copyEmail: "Salin Email",
       copied: "Tersalin!",
@@ -240,6 +247,7 @@ export const translations: Record<Language, TranslationDictionary> = {
       researchDatasets: "3+",
       researchDatasetsSub: "Dataset Riset",
       downloadCvBtn: "Unduh CV Lengkap",
+      viewPortfolioDriveBtn: "Lihat Portofolio (Drive)",
       viewExpBtn: "Lihat Riwayat Pengalaman",
     },
     skills: {
@@ -284,6 +292,8 @@ export const translations: Record<Language, TranslationDictionary> = {
       demoBtn: "Demo",
       codeBtn: "Kode",
       roleLabel: "Peran:",
+      driveDeckBtn: "Lihat Portofolio (Google Drive)",
+      driveDeckNote: "Tersedia juga versi slide PDF pilihan di Google Drive — catatan: tidak seluruh proyek dan studi kasus di website ini tercantum di dalam dokumen Drive tersebut.",
     },
     achievements: {
       badge: "PRESTASI",
@@ -338,6 +348,8 @@ export const translations: Record<Language, TranslationDictionary> = {
       socialProfiles: "Tautan Profesional",
       cvTitle: "Curriculum Vitae",
       cvSubtitle: "Unduh CV terbaru versi PDF.",
+      portfolioDeckLabel: "Portofolio Slide (Drive)",
+      portfolioDeckSub: "Buka Ringkasan PDF (Drive)",
       openToOpportunities: "Terbuka untuk Peluang Kerja",
       openToOpportunitiesDesc: "Siap berkontribusi penuh sebagai AI Engineer, Machine Learning Specialist, atau Software Engineer.",
     },
@@ -376,6 +388,7 @@ export const translations: Record<Language, TranslationDictionary> = {
       exploreProfile: "Explore Profile:",
       viewProjects: "View My Projects",
       downloadCV: "Download CV (PDF)",
+      viewPortfolioDrive: "Portfolio (Drive)",
       connect: "Connect:",
       copyEmail: "Copy Email",
       copied: "Copied!",
@@ -416,6 +429,7 @@ export const translations: Record<Language, TranslationDictionary> = {
       researchDatasets: "3+",
       researchDatasetsSub: "Research Datasets",
       downloadCvBtn: "Download Full CV",
+      viewPortfolioDriveBtn: "View Portfolio (Drive)",
       viewExpBtn: "Explore Career Timeline",
     },
     skills: {
@@ -460,6 +474,8 @@ export const translations: Record<Language, TranslationDictionary> = {
       demoBtn: "Demo",
       codeBtn: "Code",
       roleLabel: "Role:",
+      driveDeckBtn: "View Portfolio (Google Drive)",
+      driveDeckNote: "A curated PDF portfolio deck is also available on Google Drive — note: not every engineering project listed on this site appears in that document.",
     },
     achievements: {
       badge: "AWARDS",
@@ -514,6 +530,8 @@ export const translations: Record<Language, TranslationDictionary> = {
       socialProfiles: "Professional Profiles",
       cvTitle: "Curriculum Vitae",
       cvSubtitle: "Download the latest copy of my resume in PDF.",
+      portfolioDeckLabel: "Portfolio Deck (Drive)",
+      portfolioDeckSub: "Open Curated PDF (Drive)",
       openToOpportunities: "Open to Opportunities",
       openToOpportunitiesDesc: "Ready to contribute as an AI Engineer, Machine Learning Specialist, or Software Engineer.",
     },

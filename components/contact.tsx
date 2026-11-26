@@ -13,6 +13,7 @@ import {
   Copy,
   ExternalLink,
   Sparkles,
+  FileText,
 } from "lucide-react"
 import { profileData } from "@/data/profile"
 import { useLanguage } from "@/contexts/language-context"
@@ -142,8 +143,8 @@ export default function Contact() {
           </div>
         </div>
 
-        {/* Social Profiles & CV Row */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        {/* Social Profiles Row */}
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 mb-5">
           {/* GitHub Profile */}
           <a
             href={profileData.contact.github}
@@ -206,7 +207,10 @@ export default function Contact() {
             </div>
             <ExternalLink className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors" />
           </a>
+        </div>
 
+        {/* Documents Row: CV PDF & Portfolio Deck on Google Drive */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
           {/* Curriculum Vitae Download */}
           <a
             href={profileData.cvUrl}
@@ -227,6 +231,31 @@ export default function Contact() {
             </div>
             <ExternalLink className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors" />
           </a>
+
+          {/* Google Drive Portfolio Deck */}
+          {profileData.portfolioDriveUrl && (
+            <a
+              href={profileData.portfolioDriveUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-5 rounded-3xl border border-border bg-card shadow-xs hover:border-primary transition-all group flex items-center justify-between"
+            >
+              <div className="flex items-center gap-3">
+                <div className="p-2.5 rounded-xl border border-border bg-surface-secondary text-primary">
+                  <FileText className="w-5 h-5" />
+                </div>
+                <div>
+                  <div className="text-xs font-mono text-muted-foreground">
+                    {dict.contact.portfolioDeckLabel}
+                  </div>
+                  <div className="text-sm font-bold text-foreground group-hover:text-primary transition-colors">
+                    {dict.contact.portfolioDeckSub}
+                  </div>
+                </div>
+              </div>
+              <ExternalLink className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors" />
+            </a>
+          )}
         </div>
       </div>
     </section>

@@ -6,6 +6,8 @@ import Image from "next/image"
 import {
   GraduationCap,
   Download,
+  FileText,
+  ExternalLink,
 } from "lucide-react"
 import { GlareCard } from "@/components/ui/glare-card"
 import { profileData } from "@/data/profile"
@@ -156,6 +158,19 @@ export default function About() {
                 <Download className="w-3.5 h-3.5" />
                 {dict.about.downloadCvBtn}
               </a>
+
+              {profileData.portfolioDriveUrl && (
+                <a
+                  href={profileData.portfolioDriveUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-5 py-2.5 rounded-xl border border-border bg-surface text-foreground font-medium text-xs hover:border-primary hover:text-primary transition-colors inline-flex items-center gap-2 shadow-xs"
+                >
+                  <FileText className="w-3.5 h-3.5 text-primary" />
+                  <span>{dict.about.viewPortfolioDriveBtn}</span>
+                  <ExternalLink className="w-3 h-3 opacity-70" />
+                </a>
+              )}
 
               <a
                 href="#experience"

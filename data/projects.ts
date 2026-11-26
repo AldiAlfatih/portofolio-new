@@ -195,7 +195,7 @@ export const projectsData: ProjectItem[] = [
       "Text Processing",
       "Model Evaluation",
     ],
-    image: "/evidence/thesis-nlp-sign-language.jpg",
+    image: "/evidence/thesis-nlp-decoding.jpg",
     evidenceImages: [
       {
         title: "Representasi Bahasa Isyarat ke Teks",
@@ -394,6 +394,91 @@ export const projectsData: ProjectItem[] = [
       },
     ],
     demoUrl: "https://drive.google.com/file/d/1x3zWwVp6C_xoth3EjXX6TPY1R3l5-QrL/view?usp=drive_link",
+    codeUrl: "#",
+  },
+
+  // 04C — POWER BI DASHBOARD & DATA VISUALIZATION (BANK INDONESIA)
+  {
+    id: "bi-powerbi-dashboard",
+    title: "Power BI Dashboard & Data Visualization — Bank Indonesia KPw Sulsel",
+    titleEn: "Power BI Dashboard & Data Visualization — Bank Indonesia",
+    role: "Data Analytics & Business Intelligence Intern — KPKP",
+    roleEn: "Data Analytics & Business Intelligence Intern — KPKP",
+    category: "Data Analytics & BI",
+    featured: true,
+    workflowSteps: [
+      "Data Cleaning & Preprocessing (Python & Excel)",
+      "Power Query ETL Pipeline",
+      "DAX Modeling & Budget Absorption KPI",
+      "Interactive Power BI Dashboard (Beranda, DHA & Prognosa)",
+      "Microsoft SharePoint Minisite & Policy Notes",
+    ],
+    description:
+      "Pengembangan dashboard interaktif Power BI berbasis pipeline ETL Power Query untuk prognosa dan monitoring realisasi anggaran KPKP Bank Indonesia KPw Sulawesi Selatan (anggaran Rp11,1 Miliar), dilengkapi pengolahan data Python/Excel serta optimasi minisite internal Microsoft SharePoint.",
+    descriptionEn:
+      "Interactive Power BI dashboard with automated Power Query ETL pipelines engineered for budget forecasting (prognosa) and real-time expenditure realization monitoring at Bank Indonesia South Sulawesi (KPKP, Rp11.1B allocation), paired with Python data cleaning and SharePoint minisite optimization.",
+    longDescription:
+      "Proyek Data Analytics & Business Intelligence ini dikerjakan pada Kelompok Perumusan Kebijakan Provinsi (KPKP) Bank Indonesia KPw Provinsi Sulawesi Selatan. Dashboard Power BI dibangun untuk memantau prognosa kegiatan, realisasi Daftar Himpunan Anggaran (DHA), persentase penyerapan anggaran, serta indikator makroekonomi dan komoditas strategis kawasan Sulampua (Sulawesi, Maluku, Papua). Selain pengembangan visualisasi analitik dan pipeline ETL Power Query, proyek ini mencakup optimasi minisite internal Microsoft SharePoint guna menyentralisasi pelaporan institusional dan penyusunan Terms of Reference (TOR) kebijakan ekonomi.",
+    longDescriptionEn:
+      "Data Analytics & Business Intelligence project executed at the Provincial Policy Formulation Group (KPKP) of Bank Indonesia South Sulawesi. The Power BI solution tracks operational budget allocations, activity forecasting (prognosa), DHA expenditure realization rates, and macroeconomic indicators across the Sulampua region (Sulawesi, Maluku, Papua). Beyond ETL pipelines and executive dashboards, the initiative optimized the internal Microsoft SharePoint minisite for centralized reporting and authored regional commodity policy Terms of Reference (TOR).",
+    problemStatement:
+      "Data prognosa kegiatan, realisasi anggaran DHA, serta indikator ekonomi makro dari berbagai sumber masih memerlukan pembersihan manual yang menyita waktu, sehingga pimpinan membutuhkan panel analitik terpusat yang mampu memantau serapan anggaran dan tren secara real-time.",
+    problemStatementEn:
+      "Fragmented activity prognosa sheets, DHA budget realization records, and macroeconomic series required repetitive manual cleaning, creating a need for an automated ETL pipeline and executive dashboard for real-time budget oversight.",
+    technicalApproach:
+      "Menggunakan Python dan Microsoft Excel untuk pembersihan dan standardisasi data historis makroekonomi serta anggaran. Membangun pipeline Extract-Transform-Load (ETL) otomatis menggunakan Power Query, lalu merancang skema relasional dan formula DAX di Power BI dengan navigasi multi-halaman (Beranda, Realisasi DHA KPKP, Prognosa Kegiatan KPKP, dan Detail Realisasi DHA). Di tingkat kolaborasi institusi, menata struktur informasi minisite internal menggunakan Microsoft SharePoint.",
+    technicalApproachEn:
+      "Leveraged Python and Microsoft Excel to clean and standardize historical macroeconomic and budget records. Engineered automated Extract-Transform-Load (ETL) pipelines in Power Query and relational data models with DAX KPI measures across multi-page Power BI views (Home, DHA Realization, Activity Prognosa, and Detail Drilldown), complemented by Microsoft SharePoint internal portal optimization.",
+    results:
+      "Menghadirkan dashboard eksekutif interaktif Power BI yang memantau alokasi anggaran KPKP sebesar Rp11,1 Miliar beserta pelacakan realisasi DHA, % penyerapan, dan rincian rencana prognosa kegiatan secara terstruktur, sekaligus meningkatkan efisiensi diseminasi pelaporan pada minisite SharePoint Bank Indonesia KPw Sulsel.",
+    resultsEn:
+      "Delivered an executive interactive Power BI suite monitoring Rp11.1B (Rp11,107M) in KPKP institutional budget allocations, expenditure absorption rates, and granular activity prognosa tracking, while streamlining internal document workflows via the Bank Indonesia South Sulawesi SharePoint portal.",
+    architecture: [
+      {
+        title: "Data Preparation & Cleaning",
+        description: "Pembersihan dan standardisasi dataset historis anggaran serta indikator ekonomi makro kawasan Sulampua.",
+        tech: "Python & Microsoft Excel",
+      },
+      {
+        title: "Power Query ETL Transformation",
+        description: "Otomatisasi ekstraksi, transformasi skema kolom, dan konsolidasi tabel sumber data tanpa proses manual berulang.",
+        tech: "Power Query ETL",
+      },
+      {
+        title: "DAX KPI & Fiscal Modeling",
+        description: "Perumusan kalkulasi total anggaran, total realisasi, sisa anggaran, persentase penyerapan, dan prognosa kegiatan.",
+        tech: "Power BI & DAX",
+      },
+      {
+        title: "Multi-Page Executive Dashboard",
+        description: "Antarmuka interaktif meliputi halaman Beranda, Realisasi DHA KPKP, Prognosa Kegiatan, dan Detail Realisasi.",
+        tech: "Power BI Interactive UI",
+      },
+      {
+        title: "Institutional Minisite Optimization",
+        description: "Pengelolaan struktur navigasi, repositori dokumen kajian, dan diseminasi laporan analitik internal.",
+        tech: "Microsoft SharePoint",
+      },
+    ],
+    technologies: [
+      "Power BI",
+      "Power Query",
+      "Python",
+      "Microsoft Excel",
+      "SharePoint",
+      "ETL",
+      "Data Analytics",
+      "Data Visualization",
+    ],
+    image: "/Picture2.png",
+    evidenceImages: [
+      {
+        title: "Power BI Dashboard & Data Visualization — Bank Indonesia KPKP",
+        url: "/Picture2.png",
+        caption: "Dashboard interaktif Prognosa dan Monitoring Anggaran KPKP (Beranda, Realisasi DHA, dan Detail Prognosa) dengan Key Metrics Overview.",
+      },
+    ],
+    demoUrl: "#",
     codeUrl: "#",
   },
 

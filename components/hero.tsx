@@ -12,6 +12,8 @@ import {
   ArrowRight,
   Check,
   MapPin,
+  FileText,
+  ExternalLink,
 } from "lucide-react"
 import { profileData } from "@/data/profile"
 import { useLanguage } from "@/contexts/language-context"
@@ -164,6 +166,19 @@ export default function Hero() {
                 <Download className="w-4 h-4 text-primary" />
                 <span>{dict.hero.downloadCV}</span>
               </a>
+
+              {profileData.portfolioDriveUrl && (
+                <a
+                  href={profileData.portfolioDriveUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-5 py-3 rounded-xl border border-border bg-surface/80 text-foreground font-medium text-xs sm:text-sm transition-all duration-200 hover:border-primary hover:text-primary shadow-xs inline-flex items-center gap-2"
+                >
+                  <FileText className="w-4 h-4 text-primary" />
+                  <span>{dict.hero.viewPortfolioDrive}</span>
+                  <ExternalLink className="w-3.5 h-3.5 opacity-70" />
+                </a>
+              )}
             </div>
 
             {/* Social Channels with Copy Interaction */}

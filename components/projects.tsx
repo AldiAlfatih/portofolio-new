@@ -9,8 +9,10 @@ import {
   Search,
   FolderGit2,
   ArrowUpRight,
+  FileText,
 } from "lucide-react"
 import { projectsData } from "@/data/projects"
+import { profileData } from "@/data/profile"
 import { ProjectItem } from "@/types/portfolio"
 import ProjectDetailModal from "@/components/projects/project-detail-modal"
 import ArchitectureViewer from "@/components/technical-showcase/architecture-viewer"
@@ -23,6 +25,7 @@ const categories = [
   "All",
   "AI / Machine Learning",
   "Computer Vision",
+  "Data Analytics & BI",
   "Backend Development",
   "Mobile Development",
   "Web Development",
@@ -51,7 +54,9 @@ export default function Projects() {
       const matchSearch =
         query === "" ||
         project.title.toLowerCase().includes(query) ||
+        (project.titleEn && project.titleEn.toLowerCase().includes(query)) ||
         project.description.toLowerCase().includes(query) ||
+        (project.descriptionEn && project.descriptionEn.toLowerCase().includes(query)) ||
         project.role.toLowerCase().includes(query) ||
         project.technologies.some((t) => t.toLowerCase().includes(query))
 
@@ -85,6 +90,29 @@ export default function Projects() {
             />
           </div>
         </div>
+
+        {/* Google Drive Portfolio Deck Companion Banner */}
+        {profileData.portfolioDriveUrl && (
+          <div className="mb-8 p-4 sm:p-5 rounded-2xl border border-border bg-card/75 backdrop-blur-sm flex flex-col sm:flex-row sm:items-center justify-between gap-4 shadow-xs">
+            <div className="flex items-start sm:items-center gap-3">
+              <div className="p-2.5 rounded-xl border border-border bg-surface-secondary text-primary shrink-0">
+                <FileText className="w-4 h-4" />
+              </div>
+              <p className="text-xs sm:text-sm text-foreground/85 leading-relaxed font-sans">
+                {dict.projects.driveDeckNote}
+              </p>
+            </div>
+            <a
+              href={profileData.portfolioDriveUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2 px-4 py-2 rounded-xl border border-primary/40 bg-primary/10 text-primary hover:bg-primary hover:text-primary-foreground font-mono text-xs font-semibold transition-all whitespace-nowrap shrink-0 shadow-xs"
+            >
+              <span>{dict.projects.driveDeckBtn}</span>
+              <ExternalLink className="w-3.5 h-3.5" />
+            </a>
+          </div>
+        )}
 
         {/* Category Filters */}
         <div className="flex flex-wrap items-center justify-between gap-3 mb-10">

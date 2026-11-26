@@ -58,6 +58,31 @@ export function TechLogo({ name, className = "w-4 h-4", size = 16 }: TechLogoPro
           <path d="M10 2v20H6V2h4zm7 5v15h-4V7h4zm7 5v10h-4V12h4zM3 15v7H0v-7h3z" />
         </svg>
       )
+    case "sharepoint":
+      return (
+        <svg viewBox="0 0 24 24" width={size} height={size} className={className} fill="#038387">
+          <path d="M14.5 2A5.5 5.5 0 0 0 9.03 7.05 4.5 4.5 0 0 0 5 11.5c0 2.09 1.42 3.84 3.35 4.35A4.5 4.5 0 0 0 12.5 22a4.5 4.5 0 0 0 4.46-3.95A5.5 5.5 0 0 0 14.5 2zm-6 7.5h5v5h-5v-5z" />
+        </svg>
+      )
+    case "microsoftexcel":
+    case "excel":
+      return (
+        <svg viewBox="0 0 24 24" width={size} height={size} className={className} fill="#217346">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm-3.2 15L9 14.2 7.2 17H5.4l2.7-4.1L5.6 9h1.8L9 11.7 10.6 9h1.8l-2.5 3.9L12.6 17h-1.8zM13 9V3.5L18.5 9H13z" />
+        </svg>
+      )
+    case "etl":
+    case "dataanalytics":
+    case "datavisualization":
+    case "macroeconomicdata":
+      return (
+        <svg viewBox="0 0 24 24" width={size} height={size} className={className} fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M3 3v18h18" />
+          <path d="M18 17V9" />
+          <path d="M13 17V5" />
+          <path d="M8 17v-3" />
+        </svg>
+      )
     case "fastapi":
       return (
         <svg viewBox="0 0 24 24" width={size} height={size} className={className} fill="currentColor">

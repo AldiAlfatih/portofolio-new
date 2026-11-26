@@ -29,6 +29,7 @@ export interface ProfileData {
   }
   cvUrl: string
   cvLocalUrl: string
+  portfolioDriveUrl?: string
   stats: {
     label: string
     value: string
@@ -110,7 +111,14 @@ export interface ProjectItem {
   titleEn?: string
   role: string
   roleEn?: string
-  category: "AI / Machine Learning" | "Computer Vision" | "Backend Development" | "Mobile Development" | "Web Development" | "IoT"
+  category:
+    | "AI / Machine Learning"
+    | "Computer Vision"
+    | "Data Analytics & BI"
+    | "Backend Development"
+    | "Mobile Development"
+    | "Web Development"
+    | "IoT"
   description: string
   descriptionEn?: string
   longDescription?: string

@@ -17,6 +17,7 @@ import {
   ExternalLink,
   Check,
   Download,
+  FileText,
   X,
 } from "lucide-react"
 import { usePortfolioTheme } from "@/contexts/theme-context"
@@ -231,6 +232,21 @@ export default function CommandPalette() {
                       </span>
                       <ExternalLink className="w-3.5 h-3.5 text-muted-foreground" />
                     </a>
+
+                    {profileData.portfolioDriveUrl && (
+                      <a
+                        href={profileData.portfolioDriveUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="w-full flex items-center justify-between px-3 py-2 rounded-lg text-xs text-foreground/90 hover:text-foreground hover:bg-surface-secondary transition-colors text-left"
+                      >
+                        <span className="flex items-center gap-2.5">
+                          <FileText className="w-4 h-4 text-primary" />
+                          <span>{isEn ? "Open Portfolio Deck (Google Drive)" : "Lihat Portofolio Slide (Google Drive)"}</span>
+                        </span>
+                        <ExternalLink className="w-3.5 h-3.5 text-muted-foreground" />
+                      </a>
+                    )}
 
                     <a
                       href={profileData.contact.github}
