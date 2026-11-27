@@ -32,6 +32,7 @@ export const profileData: ProfileData = {
   cvUrl: "/CV_Muhammad Aldi Alfatih.pdf",
   cvLocalUrl: "/CV_Muhammad Aldi Alfatih.pdf",
   portfolioDriveUrl: "https://drive.google.com/file/d/1rHIiyaq7GIGkSWAIoclJkbmUxHRikDqY/view?usp=sharing",
+  ogitechUrl: "https://ogitech.my.id/",
   stats: [
     { label: "IPK", value: "3.93", sublabel: "Skala 4.00 (ITH)" },
     { label: "Proyek Rekayasa", value: "10+", sublabel: "AI, Web & Software" },

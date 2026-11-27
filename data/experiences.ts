@@ -15,6 +15,7 @@ export const experiencesData: ExperienceItem[] = [
     type: "Venture / Startup",
     typeEn: "Venture / Startup",
     category: "professional",
+    websiteUrl: "https://ogitech.my.id/",
     description:
       "Co-Founder & Chief Strategy Officer di OgiTech, merumuskan strategi produk dan bisnis sekaligus mengawal perancangan arsitektur solusi digital berbasis mobile dan web di sektor agribisnis serta kebudayaan daerah.",
     descriptionEn:

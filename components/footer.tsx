@@ -1,7 +1,7 @@
 "use client"
 
 import React from "react"
-import { ArrowUp, Github, Linkedin, Instagram, Mail } from "lucide-react"
+import { ArrowUp, Github, Linkedin, Instagram, Mail, Globe } from "lucide-react"
 import { profileData } from "@/data/profile"
 import { useLanguage } from "@/contexts/language-context"
 
@@ -73,6 +73,18 @@ export default function Footer() {
                   aria-label="Instagram"
                 >
                   <Instagram className="w-4 h-4" />
+                </a>
+              )}
+              {profileData.ogitechUrl && (
+                <a
+                  href={profileData.ogitechUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-2 rounded-lg border border-border bg-surface text-muted-foreground hover:text-foreground hover:border-primary transition-colors"
+                  aria-label="OgiTech Software House"
+                  title="OgiTech (ogitech.my.id)"
+                >
+                  <Globe className="w-4 h-4" />
                 </a>
               )}
               <a

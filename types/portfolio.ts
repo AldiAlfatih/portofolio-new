@@ -30,6 +30,7 @@ export interface ProfileData {
   cvUrl: string
   cvLocalUrl: string
   portfolioDriveUrl?: string
+  ogitechUrl?: string
   stats: {
     label: string
     value: string
@@ -82,6 +83,7 @@ export interface ExperienceItem {
   achievementsEn?: string[]
   technologies: string[]
   category: "professional" | "academic_project" | "leadership"
+  websiteUrl?: string
 }
 
 export interface ProjectArchitectureStep {
@@ -143,6 +145,8 @@ export interface ProjectItem {
   technologies: string[]
   image: string
   demoUrl?: string
+  demoLabel?: string
+  demoLabelEn?: string
   codeUrl?: string
   featured?: boolean
 }

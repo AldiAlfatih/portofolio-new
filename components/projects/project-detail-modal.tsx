@@ -326,7 +326,13 @@ export default function ProjectDetailModal({ project, onClose }: ProjectDetailMo
                   className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-primary text-primary-foreground font-medium text-xs hover:opacity-90 transition-opacity"
                 >
                   <ExternalLink className="w-3.5 h-3.5" />
-                  {isEn ? "Live Demo / Output" : "Buka Tautan Demo / Hasil"}
+                  {project.demoLabel
+                    ? isEn
+                      ? `Visit ${project.demoLabelEn || project.demoLabel}`
+                      : `Kunjungi ${project.demoLabel}`
+                    : isEn
+                    ? "Live Demo / Output"
+                    : "Buka Tautan Demo / Hasil"}
                 </a>
               )}
               {project.codeUrl && project.codeUrl !== "#" && (

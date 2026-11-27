@@ -14,6 +14,7 @@ import {
   ExternalLink,
   Sparkles,
   FileText,
+  Globe,
 } from "lucide-react"
 import { profileData } from "@/data/profile"
 import { useLanguage } from "@/contexts/language-context"
@@ -143,8 +144,8 @@ export default function Contact() {
           </div>
         </div>
 
-        {/* Social Profiles Row */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 mb-5">
+        {/* Social & Venture Profiles Row */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-5">
           {/* GitHub Profile */}
           <a
             href={profileData.contact.github}
@@ -207,6 +208,29 @@ export default function Contact() {
             </div>
             <ExternalLink className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors" />
           </a>
+
+          {/* OgiTech Software House */}
+          {profileData.ogitechUrl && (
+            <a
+              href={profileData.ogitechUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-5 rounded-3xl border border-border bg-card shadow-xs hover:border-primary transition-all group flex items-center justify-between"
+            >
+              <div className="flex items-center gap-3 min-w-0">
+                <div className="p-2.5 rounded-xl border border-border bg-surface-secondary text-primary shrink-0">
+                  <Globe className="w-5 h-5" />
+                </div>
+                <div className="min-w-0">
+                  <div className="text-xs font-mono text-muted-foreground">Software House</div>
+                  <div className="text-sm font-bold text-foreground group-hover:text-primary transition-colors truncate">
+                    OgiTech
+                  </div>
+                </div>
+              </div>
+              <ExternalLink className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors shrink-0" />
+            </a>
+          )}
         </div>
 
         {/* Documents Row: CV PDF & Portfolio Deck on Google Drive */}

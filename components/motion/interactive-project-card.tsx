@@ -157,7 +157,11 @@ export default function InteractiveProjectCard({
                 title="Buka Demo / Tautan Hasil"
               >
                 <ExternalLink className="w-3.5 h-3.5" />
-                <span>{dict.projects.demoBtn}</span>
+                <span>
+                  {isEn && project.demoLabelEn
+                    ? project.demoLabelEn
+                    : project.demoLabel || dict.projects.demoBtn}
+                </span>
               </a>
             )}
             {project.codeUrl && project.codeUrl !== "#" && (

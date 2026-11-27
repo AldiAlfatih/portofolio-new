@@ -754,7 +754,9 @@ export const projectsData: ProjectItem[] = [
       "Tailwind CSS",
     ],
     image: "/projects/ogifarm.svg",
-    demoUrl: "#",
+    demoUrl: "https://landingpageogifarm.vercel.app/",
+    demoLabel: "Landing Page",
+    demoLabelEn: "Landing Page",
     codeUrl: "#",
   },
 
@@ -797,7 +799,9 @@ export const projectsData: ProjectItem[] = [
       "REST API",
     ],
     image: "/projects/ogie.svg",
-    demoUrl: "#",
+    demoUrl: "https://web-ogie.vercel.app/",
+    demoLabel: "Landing Page",
+    demoLabelEn: "Landing Page",
     codeUrl: "#",
   },
 

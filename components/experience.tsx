@@ -13,6 +13,8 @@ import {
   ArrowUpRight,
   ChevronDown,
   ChevronUp,
+  Globe,
+  ExternalLink,
 } from "lucide-react"
 import { experiencesData } from "@/data/experiences"
 import { useLanguage } from "@/contexts/language-context"
@@ -245,15 +247,31 @@ export default function Experience() {
                           </p>
                         </div>
 
-                        {/* Card Footer: Clean View Details Action */}
-                        <div className="pt-3 border-t border-border/60 flex items-center justify-between">
-                          <button
-                            onClick={() => setSelectedExperience(exp)}
-                            className="inline-flex items-center gap-1.5 text-xs font-mono font-bold text-primary hover:underline group/btn"
-                          >
-                            <span>{dict.experience.viewDetailsBtn}</span>
-                            <ArrowUpRight className="w-3.5 h-3.5 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform" />
-                          </button>
+                        {/* Card Footer: Clean View Details Action & Optional Website Link */}
+                        <div className="pt-3 border-t border-border/60 flex flex-wrap items-center justify-between gap-2">
+                          <div className="flex flex-wrap items-center gap-3">
+                            <button
+                              onClick={() => setSelectedExperience(exp)}
+                              className="inline-flex items-center gap-1.5 text-xs font-mono font-bold text-primary hover:underline group/btn"
+                            >
+                              <span>{dict.experience.viewDetailsBtn}</span>
+                              <ArrowUpRight className="w-3.5 h-3.5 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform" />
+                            </button>
+
+                            {exp.websiteUrl && (
+                              <a
+                                href={exp.websiteUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg border border-primary/30 bg-primary/10 text-[11px] font-mono font-semibold text-primary hover:bg-primary hover:text-primary-foreground transition-colors"
+                                title={isEn ? "Visit Company Website" : "Kunjungi Website Resmi"}
+                              >
+                                <Globe className="w-3 h-3" />
+                                <span>{exp.websiteUrl.replace(/^https?:\/\//, "").replace(/\/$/, "")}</span>
+                                <ExternalLink className="w-3 h-3" />
+                              </a>
+                            )}
+                          </div>
 
                           {/* Mini count indicator for key contributions */}
                           {exp.achievements && exp.achievements.length > 0 && (

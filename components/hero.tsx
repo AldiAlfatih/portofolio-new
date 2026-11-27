@@ -14,6 +14,7 @@ import {
   MapPin,
   FileText,
   ExternalLink,
+  Globe,
 } from "lucide-react"
 import { profileData } from "@/data/profile"
 import { useLanguage } from "@/contexts/language-context"
@@ -212,6 +213,18 @@ export default function Hero() {
                 >
                   <Instagram className="w-3.5 h-3.5 text-primary" />
                   <span>Instagram</span>
+                </a>
+              )}
+
+              {profileData.ogitechUrl && (
+                <a
+                  href={profileData.ogitechUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-border bg-surface hover:border-primary hover:text-primary transition-colors text-foreground"
+                >
+                  <Globe className="w-3.5 h-3.5 text-primary" />
+                  <span>OgiTech</span>
                 </a>
               )}
 

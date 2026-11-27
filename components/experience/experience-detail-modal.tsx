@@ -10,6 +10,8 @@ import {
   CheckCircle2,
   Briefcase,
   Layers,
+  Globe,
+  ExternalLink,
 } from "lucide-react"
 import { ExperienceItem } from "@/types/portfolio"
 import { TechLogo } from "@/components/tech-logo"
@@ -95,13 +97,25 @@ export default function ExperienceDetailModal({
               {expTitle}
             </h2>
 
-            <div className="text-xs sm:text-sm font-semibold text-accent flex items-center gap-1.5 font-sans">
+            <div className="text-xs sm:text-sm font-semibold text-accent flex flex-wrap items-center gap-1.5 font-sans">
               <Building className="w-3.5 h-3.5 shrink-0" />
               <span>{experience.company}</span>
               {expLocation && (
                 <span className="text-muted-foreground font-normal">
                   • {expLocation}
                 </span>
+              )}
+              {experience.websiteUrl && (
+                <a
+                  href={experience.websiteUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1 ml-1 text-xs font-mono text-primary hover:underline"
+                >
+                  <Globe className="w-3 h-3" />
+                  <span>{experience.websiteUrl.replace(/^https?:\/\//, "").replace(/\/$/, "")}</span>
+                  <ExternalLink className="w-3 h-3" />
+                </a>
               )}
             </div>
           </div>
@@ -160,7 +174,25 @@ export default function ExperienceDetailModal({
           </div>
 
           {/* Footer Action */}
-          <div className="mt-8 pt-4 border-t border-border flex justify-end">
+          <div className="mt-8 pt-4 border-t border-border flex flex-wrap items-center justify-between gap-3">
+            {experience.websiteUrl ? (
+              <a
+                href={experience.websiteUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-primary text-primary-foreground font-mono text-xs font-semibold hover:opacity-90 transition-opacity shadow-xs"
+              >
+                <Globe className="w-3.5 h-3.5" />
+                <span>
+                  {isEn ? "Visit Website" : "Kunjungi Website"} (
+                  {experience.websiteUrl.replace(/^https?:\/\//, "").replace(/\/$/, "")})
+                </span>
+                <ExternalLink className="w-3.5 h-3.5" />
+              </a>
+            ) : (
+              <span />
+            )}
+
             <button
               onClick={onClose}
               className="px-5 py-2 rounded-xl bg-surface border border-border text-foreground hover:border-primary transition-colors text-xs font-mono font-medium"
